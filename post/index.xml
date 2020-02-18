@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on 天宝的博客</title>
+    <link>http://tianbaoo.github.io/post/</link>
+    <description>Recent content in Posts on 天宝的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Thu, 06 Feb 2020 14:15:46 +0000</lastBuildDate>
+    
+	<atom:link href="http://tianbaoo.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>所爱隔山海，山海皆可平</title>
+      <link>http://tianbaoo.github.io/post/life-feel-1/</link>
+      <pubDate>Thu, 06 Feb 2020 14:15:46 +0000</pubDate>
+      
+      <guid>http://tianbaoo.github.io/post/life-feel-1/</guid>
+      <description>人生总有千万疾 唯有相思不可医</description>
+    </item>
+    
+  </channel>
+</rss>
