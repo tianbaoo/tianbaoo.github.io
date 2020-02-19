@@ -218,9 +218,8 @@ logger <span style="color:#ff79c6">=</span> logging<span style="color:#ff79c6">.
 
 
 <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">main</span>(server_ip, port):
-    <span style="color:#f1fa8c">&#34;&#34;&#34;main function&#34;&#34;&#34;</span>
 
-    <span style="color:#6272a4"># Threading HTTP-Server</span>
+    <span style="color:#6272a4"># 线程 HTTP-Server</span>
     http_server <span style="color:#ff79c6">=</span> pyjsonrpc<span style="color:#ff79c6">.</span>ThreadingHttpServer(
         server_address<span style="color:#ff79c6">=</span>(server_ip, port),
         RequestHandlerClass<span style="color:#ff79c6">=</span>RequestHandler
