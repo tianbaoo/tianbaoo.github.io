@@ -97,7 +97,13 @@
         <div class="post-content">
             <p>人生总有千万疾<br />
 唯有相思不可医</p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#8be9fd;font-style:italic">func</span> <span style="color:#50fa7b">main</span>() {
+	r <span style="color:#ff79c6">:=</span> gin.<span style="color:#50fa7b">Default</span>()
+	r.<span style="color:#50fa7b">GET</span>(<span style="color:#f1fa8c">&#34;/hello&#34;</span>, <span style="color:#8be9fd;font-style:italic">func</span>(c <span style="color:#ff79c6">*</span>gin.Context) {
+		c.<span style="color:#50fa7b">JSON</span>(<span style="color:#bd93f9">200</span>, gin.H{<span style="color:#f1fa8c">&#34;message&#34;</span>: <span style="color:#f1fa8c">&#34;hello world&#34;</span>})
+	})
+	r.<span style="color:#50fa7b">Run</span>(<span style="color:#f1fa8c">&#34;:8080&#34;</span>)
+}</code></pre></div>
 <p><a data-fancybox="gallery" href="http://q59po5fgn.bkt.clouddn.com/20200206-m.jpg"><img src="http://q59po5fgn.bkt.clouddn.com/20200206-m.jpg" width="60%" ></a></p>
 
         </div>

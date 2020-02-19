@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>代码 on 天宝的博客</title>
-    <link>https://www.github.com/tianbaoo/tags/%E4%BB%A3%E7%A0%81/</link>
+    <link>http://tianbaoo.github.io/tags/%E4%BB%A3%E7%A0%81/</link>
     <description>Recent content in 代码 on 天宝的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Sun, 05 Jan 2020 09:15:29 +0000</lastBuildDate>
     
-	<atom:link href="https://www.github.com/tianbaoo/tags/%E4%BB%A3%E7%A0%81/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://tianbaoo.github.io/tags/%E4%BB%A3%E7%A0%81/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Go基础之变量和常量</title>
-      <link>https://www.github.com/tianbaoo/post/1-Go%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%8F%98%E9%87%8F%E5%92%8C%E5%B8%B8%E9%87%8F/</link>
+      <link>http://tianbaoo.github.io/post/1-Go%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%8F%98%E9%87%8F%E5%92%8C%E5%B8%B8%E9%87%8F/</link>
       <pubDate>Sun, 05 Jan 2020 09:15:29 +0000</pubDate>
       
-      <guid>https://www.github.com/tianbaoo/post/1-Go%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%8F%98%E9%87%8F%E5%92%8C%E5%B8%B8%E9%87%8F/</guid>
+      <guid>http://tianbaoo.github.io/post/1-Go%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%8F%98%E9%87%8F%E5%92%8C%E5%B8%B8%E9%87%8F/</guid>
       <description>Go基础之变量和常量 标识符和关键字 标识符 在编程语言中标识符就是程序员定义的具有特殊意义的词，比如变量名、常量名、函数名等等。 Go语言中标识符由字母数字和_(下划线）组成，并且只能以字母和_开头。 举几个例子：abc, _, _123, a123。 关键字 关键字是指编程语言中预先定义好的具有特殊含义的</description>
     </item>
     
