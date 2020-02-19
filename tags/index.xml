@@ -6,7 +6,7 @@
     <description>Recent content in Tags on 天宝的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Thu, 06 Feb 2020 14:15:46 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 19 Feb 2020 14:15:46 +0000</lastBuildDate>
     
 	<atom:link href="http://tianbaoo.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,9 +14,18 @@
     <item>
       <title>生活</title>
       <link>http://tianbaoo.github.io/tags/%E7%94%9F%E6%B4%BB/</link>
-      <pubDate>Thu, 06 Feb 2020 14:15:46 +0000</pubDate>
+      <pubDate>Wed, 19 Feb 2020 14:15:46 +0000</pubDate>
       
       <guid>http://tianbaoo.github.io/tags/%E7%94%9F%E6%B4%BB/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>pyjsonrpc</title>
+      <link>http://tianbaoo.github.io/tags/pyjsonrpc/</link>
+      <pubDate>Wed, 19 Feb 2020 12:15:46 +0000</pubDate>
+      
+      <guid>http://tianbaoo.github.io/tags/pyjsonrpc/</guid>
       <description></description>
     </item>
     

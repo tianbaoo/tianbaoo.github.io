@@ -6,21 +6,21 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>生活 | 天宝的博客</title>
-    <meta property="og:title" content="生活 - 天宝的博客">
+    <title>Python | 天宝的博客</title>
+    <meta property="og:title" content="Python - 天宝的博客">
     <meta property="og:type" content="article">
         
         
     <meta name="Keywords" content="golang,go语言,go语言笔记,天宝,Python,Django,博客">
-    <meta name="description" content="生活">
+    <meta name="description" content="Python">
         
     <meta name="author" content="郭天宝">
-    <meta property="og:url" content="http://tianbaoo.github.io/tags/%E7%94%9F%E6%B4%BB/">
+    <meta property="og:url" content="http://tianbaoo.github.io/categories/Python/">
     <link rel="shortcut icon" href='css/favicon.ico' type="image/x-icon">
 
     <link rel="stylesheet" href='/css/normalize.css'>
     <link rel="stylesheet" href='/css/style.css'>
-    <link rel="alternate" type="application/rss+xml+xml" href="http://tianbaoo.github.io/tags/%E7%94%9F%E6%B4%BB/index.xml" title="天宝的博客" />
+    <link rel="alternate" type="application/rss+xml+xml" href="http://tianbaoo.github.io/categories/Python/index.xml" title="天宝的博客" />
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
     
@@ -70,9 +70,9 @@
 <div class="res-cons">
     
     <h3 class="archive-title">
-        包含标签
-        <span class="keyword">生活</span>
-        的文章
+        分类
+        <span class="keyword">Python</span>
+        中的文章
     </h3>
     
 
@@ -80,7 +80,7 @@
     <article class="post">
         <header>
             <h1 class="post-title">
-                <a href="http://tianbaoo.github.io/post/mo-1/">所爱隔山海，山海皆可平</a>
+                <a href="http://tianbaoo.github.io/post/jsonrpc/">pyjsonrpc的使用</a>
             </h1>
         </header>
         <date class="post-meta meta-date">
@@ -90,13 +90,13 @@
         <div class="post-meta meta-category">
             |
             
-            <a href='http://tianbaoo.github.io/categories/%E7%94%9F%E6%B4%BB'>生活</a>
+            <a href='http://tianbaoo.github.io/categories/Python'>Python</a>
             
         </div>
         
         <div class="post-content">
-            人生总有千万疾 唯有相思不可医……
-            <p class="readmore"><a href="http://tianbaoo.github.io/post/mo-1/">阅读全文</a></p>
+            pyjsonrpc的使用 客户端 JsonRpcClient.py #!usr/bin/env python2.7 # -*- coding: utf-8 -*- import ssl import socket import inspect import logging import pyjsonrpc try: ssl._create_default_https_context = ssl._create_unverified_context except Exception: pass logger = logging.getLogger(&#39;blog&#39;) def func(): # 获取当前函数名, 如果是类直接调用，则是类名 return inspect.stack()[1][3] class JsonRpcIF(object): &#34;&#34;&#34;封装的基类&#34;&#34;&#34; def __init__(self, server, port, ssl=True): if ssl: self.url = &#34;https://%s:%s/jsonrpc&#34; % (server, port) else: self.url = &#34;http://%s:%s/jsonrpc&#34; % (server, port) def request(self, method, params, timeout=None): # params是参……
+            <p class="readmore"><a href="http://tianbaoo.github.io/post/jsonrpc/">阅读全文</a></p>
         </div>
     </article>
     

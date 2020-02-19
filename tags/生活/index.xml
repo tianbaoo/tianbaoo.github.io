@@ -6,18 +6,18 @@
     <description>Recent content in 生活 on 天宝的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Thu, 06 Feb 2020 14:15:46 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 19 Feb 2020 14:15:46 +0000</lastBuildDate>
     
 	<atom:link href="http://tianbaoo.github.io/tags/%E7%94%9F%E6%B4%BB/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>所爱隔山海，山海皆可平</title>
-      <link>http://tianbaoo.github.io/post/life-feel-1/</link>
-      <pubDate>Thu, 06 Feb 2020 14:15:46 +0000</pubDate>
+      <link>http://tianbaoo.github.io/post/mo-1/</link>
+      <pubDate>Wed, 19 Feb 2020 14:15:46 +0000</pubDate>
       
-      <guid>http://tianbaoo.github.io/post/life-feel-1/</guid>
-      <description>人生总有千万疾 唯有相思不可医 func main() { r := gin.Default() r.GET(&amp;#34;/hello&amp;#34;, func(c *gin.Context) { c.JSON(200, gin.H{&amp;#34;message&amp;#34;: &amp;#34;hello world&amp;#34;}) }) r.Run(&amp;#34;:8080&amp;#34;) }</description>
+      <guid>http://tianbaoo.github.io/post/mo-1/</guid>
+      <description>人生总有千万疾 唯有相思不可医</description>
     </item>
     
   </channel>
