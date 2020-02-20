@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Redis on 天宝的博客</title>
+    <link>https://www.github.com/tianbaoo/tags/Redis/</link>
+    <description>Recent content in Redis on 天宝的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Thu, 20 Feb 2020 11:15:46 +0000</lastBuildDate>
+    
+	<atom:link href="https://www.github.com/tianbaoo/tags/Redis/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>封装的Redis队列</title>
+      <link>https://www.github.com/tianbaoo/post/MyRedisQueue/</link>
+      <pubDate>Thu, 20 Feb 2020 11:15:46 +0000</pubDate>
+      
+      <guid>https://www.github.com/tianbaoo/post/MyRedisQueue/</guid>
+      <description>封装的Redis队列 MyRedisQueue.py #!usr/bin/env python2.7 # -*- coding: utf-8 -*- import redis class RedisQueue(object): def __init__(self, name, namespace=&amp;#39;queue&amp;#39;, **redis_kwargs): # redis的默认参数为：host=&amp;#39;localhost&amp;#39;, port=6379, db=0， 其中db为定义redis database的数量 # r = redis.Redis(host=&amp;#39;localhost&amp;#39;, port=6379, decode_responses=True) # 加上decode_responses=True，写入的键值对中的value为s</description>
+    </item>
+    
+  </channel>
+</rss>

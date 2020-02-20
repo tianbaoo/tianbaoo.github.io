@@ -2,30 +2,39 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on 天宝的博客</title>
-    <link>http://tianbaoo.github.io/tags/</link>
+    <link>https://www.github.com/tianbaoo/tags/</link>
     <description>Recent content in Tags on 天宝的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Wed, 19 Feb 2020 14:15:46 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 20 Feb 2020 12:15:46 +0000</lastBuildDate>
     
-	<atom:link href="http://tianbaoo.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://www.github.com/tianbaoo/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>生活</title>
-      <link>http://tianbaoo.github.io/tags/%E7%94%9F%E6%B4%BB/</link>
-      <pubDate>Wed, 19 Feb 2020 14:15:46 +0000</pubDate>
+      <link>https://www.github.com/tianbaoo/tags/%E7%94%9F%E6%B4%BB/</link>
+      <pubDate>Thu, 20 Feb 2020 12:15:46 +0000</pubDate>
       
-      <guid>http://tianbaoo.github.io/tags/%E7%94%9F%E6%B4%BB/</guid>
+      <guid>https://www.github.com/tianbaoo/tags/%E7%94%9F%E6%B4%BB/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Redis</title>
+      <link>https://www.github.com/tianbaoo/tags/Redis/</link>
+      <pubDate>Thu, 20 Feb 2020 11:15:46 +0000</pubDate>
+      
+      <guid>https://www.github.com/tianbaoo/tags/Redis/</guid>
       <description></description>
     </item>
     
     <item>
       <title>pyjsonrpc</title>
-      <link>http://tianbaoo.github.io/tags/pyjsonrpc/</link>
+      <link>https://www.github.com/tianbaoo/tags/pyjsonrpc/</link>
       <pubDate>Wed, 19 Feb 2020 12:15:46 +0000</pubDate>
       
-      <guid>http://tianbaoo.github.io/tags/pyjsonrpc/</guid>
+      <guid>https://www.github.com/tianbaoo/tags/pyjsonrpc/</guid>
       <description></description>
     </item>
     

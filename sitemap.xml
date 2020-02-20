@@ -3,74 +3,91 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>http://tianbaoo.github.io/categories/</loc>
-    <lastmod>2020-02-19T14:15:46+00:00</lastmod>
+    <loc>https://www.github.com/tianbaoo/categories/</loc>
+    <lastmod>2020-02-20T12:15:46+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://tianbaoo.github.io/post/</loc>
-    <lastmod>2020-02-19T14:15:46+00:00</lastmod>
+    <loc>https://www.github.com/tianbaoo/post/</loc>
+    <lastmod>2020-02-20T12:15:46+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://tianbaoo.github.io/tags/</loc>
-    <lastmod>2020-02-19T14:15:46+00:00</lastmod>
+    <loc>https://www.github.com/tianbaoo/tags/</loc>
+    <lastmod>2020-02-20T12:15:46+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://tianbaoo.github.io/</loc>
-    <lastmod>2020-02-19T14:15:46+00:00</lastmod>
+    <loc>https://www.github.com/tianbaoo/</loc>
+    <lastmod>2020-02-20T12:15:46+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://tianbaoo.github.io/post/mo-1/</loc>
-    <lastmod>2020-02-19T14:15:46+00:00</lastmod>
+    <loc>https://www.github.com/tianbaoo/post/mo-1/</loc>
+    <lastmod>2020-02-20T12:15:46+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://tianbaoo.github.io/tags/%E7%94%9F%E6%B4%BB/</loc>
-    <lastmod>2020-02-19T14:15:46+00:00</lastmod>
+    <loc>https://www.github.com/tianbaoo/categories/%E7%94%9F%E6%B4%BB/</loc>
+    <lastmod>2020-02-20T12:15:46+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://tianbaoo.github.io/categories/%E7%94%9F%E6%B4%BB/</loc>
-    <lastmod>2020-02-19T14:15:46+00:00</lastmod>
+    <loc>https://www.github.com/tianbaoo/tags/%E7%94%9F%E6%B4%BB/</loc>
+    <lastmod>2020-02-20T12:15:46+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://tianbaoo.github.io/categories/Python/</loc>
+    <loc>https://www.github.com/tianbaoo/tags/Redis/</loc>
+    <lastmod>2020-02-20T11:15:46+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.github.com/tianbaoo/post/MyRedisQueue/</loc>
+    <lastmod>2020-02-20T11:15:46+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.github.com/tianbaoo/categories/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/</loc>
+    <lastmod>2020-02-20T11:15:46+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.github.com/tianbaoo/categories/Python/</loc>
     <lastmod>2020-02-19T12:15:46+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://tianbaoo.github.io/tags/pyjsonrpc/</loc>
+    <loc>https://www.github.com/tianbaoo/tags/pyjsonrpc/</loc>
     <lastmod>2020-02-19T12:15:46+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://tianbaoo.github.io/post/jsonrpc/</loc>
+    <loc>https://www.github.com/tianbaoo/post/jsonrpc/</loc>
     <lastmod>2020-02-19T12:15:46+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://tianbaoo.github.io/about/</loc>
+    <loc>https://www.github.com/tianbaoo/about/</loc>
     <lastmod>2020-02-18T00:13:27+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://tianbaoo.github.io/archives/</loc>
+    <loc>https://www.github.com/tianbaoo/archives/</loc>
   </url>
   
   <url>
-    <loc>http://tianbaoo.github.io/search/</loc>
+    <loc>https://www.github.com/tianbaoo/search/</loc>
   </url>
   
 </urlset>

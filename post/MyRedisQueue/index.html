@@ -6,20 +6,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>所爱隔山海，山海皆可平 | 天宝的博客</title>
-    <meta property="og:title" content="所爱隔山海，山海皆可平 - 天宝的博客">
+    <title>封装的Redis队列 | 天宝的博客</title>
+    <meta property="og:title" content="封装的Redis队列 - 天宝的博客">
     <meta property="og:type" content="article">
         
-    <meta property="article:published_time" content='2020-02-20T12:15:46&#43;08:00'>
+    <meta property="article:published_time" content='2020-02-20T11:15:46&#43;08:00'>
         
         
-    <meta property="article:modified_time" content='2020-02-20T12:15:46&#43;08:00'>
+    <meta property="article:modified_time" content='2020-02-20T11:15:46&#43;08:00'>
         
     <meta name="Keywords" content="golang,go语言,go语言笔记,天宝,Python,Django,博客">
-    <meta name="description" content="所爱隔山海，山海皆可平">
+    <meta name="description" content="封装的Redis队列">
         
     <meta name="author" content="郭天宝">
-    <meta property="og:url" content="https://www.github.com/tianbaoo/post/mo-1/">
+    <meta property="og:url" content="https://www.github.com/tianbaoo/post/MyRedisQueue/">
     <link rel="shortcut icon" href='css/favicon.ico' type="image/x-icon">
 
     <link rel="stylesheet" href='/tianbaoo/css/normalize.css'>
@@ -74,7 +74,7 @@
     
     <article class="post">
         <header>
-            <h1 class="post-title">所爱隔山海，山海皆可平</h1>
+            <h1 class="post-title">封装的Redis队列</h1>
         </header>
         <date class="post-meta meta-date">
             2020年2月20日
@@ -83,7 +83,7 @@
         <div class="post-meta">
             <span>|</span>
             
-            <span class="meta-category"><a href='https://www.github.com/categories/%E7%94%9F%E6%B4%BB'>生活</a></span>
+            <span class="meta-category"><a href='https://www.github.com/categories/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97'>消息队列</a></span>
             
         </div>
         
@@ -95,18 +95,84 @@
         
         
         <div class="post-content">
-            <p>人生纵有千万疾<br />
-唯有相思不可医</p>
+            
 
-<p><a data-fancybox="gallery" href="http://q59po5fgn.bkt.clouddn.com/20200206-m.jpg"><img src="http://q59po5fgn.bkt.clouddn.com/20200206-m.jpg" style="width:60%" ></a></p>
+<h2 id="封装的redis队列">封装的Redis队列</h2>
 
+<h3 id="myredisqueue-py">MyRedisQueue.py</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#6272a4">#!usr/bin/env python2.7</span>
+<span style="color:#6272a4"># -*- coding: utf-8 -*-</span>
+
+<span style="color:#ff79c6">import</span> redis
+
+
+<span style="color:#ff79c6">class</span> <span style="color:#50fa7b">RedisQueue</span>(<span style="color:#8be9fd;font-style:italic">object</span>):
+    <span style="color:#ff79c6">def</span> __init__(self, name, namespace<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;queue&#39;</span>, <span style="color:#ff79c6">**</span>redis_kwargs):
+        <span style="color:#6272a4"># redis的默认参数为：host=&#39;localhost&#39;, port=6379, db=0， 其中db为定义redis database的数量</span>
+        <span style="color:#6272a4"># r = redis.Redis(host=&#39;localhost&#39;, port=6379, decode_responses=True)</span>
+        <span style="color:#6272a4"># 加上decode_responses=True，写入的键值对中的value为str类型，不加这个参数写入的则为字节类型</span>
+        <span style="color:#6272a4"># host是redis主机，需要redis服务端和客户端都启动 redis默认端口是6379</span>
+        self<span style="color:#ff79c6">.</span>__db <span style="color:#ff79c6">=</span> redis<span style="color:#ff79c6">.</span>Redis(<span style="color:#ff79c6">**</span>redis_kwargs)
+        self<span style="color:#ff79c6">.</span>key <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#39;</span><span style="color:#f1fa8c">%s</span><span style="color:#f1fa8c">:</span><span style="color:#f1fa8c">%s</span><span style="color:#f1fa8c">&#39;</span> <span style="color:#ff79c6">%</span> (namespace, name)
+
+    <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">qsize</span>(self):
+        <span style="color:#ff79c6">return</span> self<span style="color:#ff79c6">.</span>__db<span style="color:#ff79c6">.</span>llen(self<span style="color:#ff79c6">.</span>key)  <span style="color:#6272a4"># 返回队列里面list内元素的数量</span>
+
+    <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">put</span>(self, item, timeout<span style="color:#ff79c6">=</span>None):
+        self<span style="color:#ff79c6">.</span>__db<span style="color:#ff79c6">.</span>rpush(self<span style="color:#ff79c6">.</span>key, item)  <span style="color:#6272a4"># 添加新元素到队列最右方</span>
+        <span style="color:#ff79c6">if</span> <span style="color:#8be9fd;font-style:italic">isinstance</span>(timeout, <span style="color:#8be9fd;font-style:italic">int</span>):
+            self<span style="color:#ff79c6">.</span>__db<span style="color:#ff79c6">.</span>expire(self<span style="color:#ff79c6">.</span>key, timeout)
+
+    <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">get_wait</span>(self, timeout<span style="color:#ff79c6">=</span>None):
+        <span style="color:#6272a4"># 返回队列第一个元素，如果为空则等待至有元素被加入队列（超时时间阈值为timeout，如果为None则一直等待）</span>
+        item <span style="color:#ff79c6">=</span> self<span style="color:#ff79c6">.</span>__db<span style="color:#ff79c6">.</span>blpop(self<span style="color:#ff79c6">.</span>key, timeout<span style="color:#ff79c6">=</span>timeout)
+        <span style="color:#6272a4"># if item:</span>
+        <span style="color:#6272a4">#     item = item[1]  # 返回值为一个tuple</span>
+        <span style="color:#ff79c6">return</span> item
+
+    <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">get_nowait</span>(self):
+        <span style="color:#6272a4"># 直接返回队列第一个元素，如果队列为空返回的是None</span>
+        item <span style="color:#ff79c6">=</span> self<span style="color:#ff79c6">.</span>__db<span style="color:#ff79c6">.</span>lpop(self<span style="color:#ff79c6">.</span>key)
+        <span style="color:#ff79c6">return</span> item
+
+    <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">get_all</span>(self):
+        items <span style="color:#ff79c6">=</span> []
+        <span style="color:#ff79c6">while</span> True:
+            result <span style="color:#ff79c6">=</span> self<span style="color:#ff79c6">.</span>get_nowait()
+            <span style="color:#ff79c6">if</span> result:
+                items<span style="color:#ff79c6">.</span>append(<span style="color:#8be9fd;font-style:italic">eval</span>(result))
+            <span style="color:#ff79c6">else</span>:
+                <span style="color:#ff79c6">break</span>
+        <span style="color:#ff79c6">return</span> items</code></pre></div>
+<h3 id="接收端">接收端</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#6272a4">#!usr/bin/env python2.7</span>
+<span style="color:#6272a4"># -*- coding: utf-8 -*-</span>
+
+<span style="color:#ff79c6">from</span> MyRedisQueue <span style="color:#ff79c6">import</span> RedisQueue
+
+queue_name <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;q1&#34;</span>
+retCode <span style="color:#ff79c6">=</span> {<span style="color:#f1fa8c">&#34;status&#34;</span>: {<span style="color:#f1fa8c">&#34;code&#34;</span>: <span style="color:#bd93f9">0</span>, <span style="color:#f1fa8c">&#34;msg&#34;</span>: <span style="color:#f1fa8c">&#34;success&#34;</span>}}
+redis_queue <span style="color:#ff79c6">=</span> RedisQueue(queue_name)
+ret <span style="color:#ff79c6">=</span> redis_queue<span style="color:#ff79c6">.</span>get_wait(<span style="color:#bd93f9">30</span>)  <span style="color:#6272a4"># 阻塞等待30s，直到队列中有元素进来</span>
+<span style="color:#ff79c6">if</span> ret <span style="color:#ff79c6">is</span> None:
+    retCode[<span style="color:#f1fa8c">&#34;status&#34;</span>][<span style="color:#f1fa8c">&#34;code&#34;</span>] <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">2</span>
+    retCode[<span style="color:#f1fa8c">&#34;status&#34;</span>][<span style="color:#f1fa8c">&#34;msg&#34;</span>] <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;超时未响应&#34;</span></code></pre></div>
+<h3 id="发送端">发送端</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#6272a4">#!usr/bin/env python2.7</span>
+<span style="color:#6272a4"># -*- coding: utf-8 -*-</span>
+
+<span style="color:#ff79c6">from</span> MyRedisQueue <span style="color:#ff79c6">import</span> RedisQueue
+
+queue_name <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;q1&#34;</span>
+redis_queue <span style="color:#ff79c6">=</span> RedisQueue(queue_name)
+redis_queue<span style="color:#ff79c6">.</span>put(<span style="color:#f1fa8c">&#34;all done&#34;</span>)</code></pre></div>
         </div>
 
         
 <div class="post-archive">
     <ul class="post-copyright">
         <li><strong>原文作者：</strong><a rel="author" href="https://www.github.com/tianbaoo/">郭天宝</a></li>
-        <li style="word-break:break-all"><strong>原文链接：</strong><a href="https://www.github.com/tianbaoo/post/mo-1/">https://www.github.com/tianbaoo/post/mo-1/</a></li>
+        <li style="word-break:break-all"><strong>原文链接：</strong><a href="https://www.github.com/tianbaoo/post/MyRedisQueue/">https://www.github.com/tianbaoo/post/MyRedisQueue/</a></li>
         <li><strong>版权声明：</strong>本作品采用<a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议</a>进行许可，非商业转载请注明出处（作者，原文链接），商业转载请联系作者获得授权。</li>
     </ul>
 </div>
@@ -119,8 +185,6 @@
 <div class="post-archive">
     <h2>See Also</h2>
     <ul class="listing">
-        
-        <li><a href="/tianbaoo/post/MyRedisQueue/">封装的Redis队列</a></li>
         
         <li><a href="/tianbaoo/post/jsonrpc/">pyjsonrpc的使用</a></li>
         
@@ -138,7 +202,7 @@
             
             <ul class="clearfix">
                 
-                <li><a href='https://www.github.com/tags/%E7%94%9F%E6%B4%BB'>生活</a></li>
+                <li><a href='https://www.github.com/tags/Redis'>Redis</a></li>
                 
             </ul>
             

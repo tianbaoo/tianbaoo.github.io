@@ -2,30 +2,39 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on 天宝的博客</title>
-    <link>http://tianbaoo.github.io/post/</link>
+    <link>https://www.github.com/tianbaoo/post/</link>
     <description>Recent content in Posts on 天宝的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Wed, 19 Feb 2020 14:15:46 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 20 Feb 2020 12:15:46 +0000</lastBuildDate>
     
-	<atom:link href="http://tianbaoo.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://www.github.com/tianbaoo/post/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>所爱隔山海，山海皆可平</title>
-      <link>http://tianbaoo.github.io/post/mo-1/</link>
-      <pubDate>Wed, 19 Feb 2020 14:15:46 +0000</pubDate>
+      <link>https://www.github.com/tianbaoo/post/mo-1/</link>
+      <pubDate>Thu, 20 Feb 2020 12:15:46 +0000</pubDate>
       
-      <guid>http://tianbaoo.github.io/post/mo-1/</guid>
+      <guid>https://www.github.com/tianbaoo/post/mo-1/</guid>
       <description>人生纵有千万疾 唯有相思不可医</description>
     </item>
     
     <item>
+      <title>封装的Redis队列</title>
+      <link>https://www.github.com/tianbaoo/post/MyRedisQueue/</link>
+      <pubDate>Thu, 20 Feb 2020 11:15:46 +0000</pubDate>
+      
+      <guid>https://www.github.com/tianbaoo/post/MyRedisQueue/</guid>
+      <description>封装的Redis队列 MyRedisQueue.py #!usr/bin/env python2.7 # -*- coding: utf-8 -*- import redis class RedisQueue(object): def __init__(self, name, namespace=&amp;#39;queue&amp;#39;, **redis_kwargs): # redis的默认参数为：host=&amp;#39;localhost&amp;#39;, port=6379, db=0， 其中db为定义redis database的数量 # r = redis.Redis(host=&amp;#39;localhost&amp;#39;, port=6379, decode_responses=True) # 加上decode_responses=True，写入的键值对中的value为s</description>
+    </item>
+    
+    <item>
       <title>pyjsonrpc的使用</title>
-      <link>http://tianbaoo.github.io/post/jsonrpc/</link>
+      <link>https://www.github.com/tianbaoo/post/jsonrpc/</link>
       <pubDate>Wed, 19 Feb 2020 12:15:46 +0000</pubDate>
       
-      <guid>http://tianbaoo.github.io/post/jsonrpc/</guid>
+      <guid>https://www.github.com/tianbaoo/post/jsonrpc/</guid>
       <description>pyjsonrpc的使用 客户端 JsonRpcClient.py #!usr/bin/env python2.7 # -*- coding: utf-8 -*- import ssl import socket import inspect import logging import pyjsonrpc try: ssl._create_default_https_context = ssl._create_unverified_context except Exception: pass logger = logging.getLogger(&amp;#39;blog&amp;#39;) def func(): # 获取当前函数名, 如果是类直接调用，则是类名 return inspect.stack()[1][3] class JsonRpcIF(object): &amp;#34;&amp;#34;&amp;#34;封装的基类&amp;#34;&amp;#34;&amp;#34; def __init__(self, server, port, ssl=True): if ssl: self.url = &amp;#34;https://%s:%s/jsonrpc&amp;#34; % (server, port) else: self.url = &amp;#34;http://%s:%s/jsonrpc&amp;#34; % (server, port) def request(self, method, params, timeout=None): # params是参</description>
     </item>
     
