@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>生活 on 天宝的博客</title>
-    <link>https://www.github.com/tianbaoo/categories/%E7%94%9F%E6%B4%BB/</link>
+    <link>http://tianbaoo.github.io/categories/%E7%94%9F%E6%B4%BB/</link>
     <description>Recent content in 生活 on 天宝的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Thu, 20 Feb 2020 12:15:46 +0000</lastBuildDate>
     
-	<atom:link href="https://www.github.com/tianbaoo/categories/%E7%94%9F%E6%B4%BB/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://tianbaoo.github.io/categories/%E7%94%9F%E6%B4%BB/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>所爱隔山海，山海皆可平</title>
-      <link>https://www.github.com/tianbaoo/post/mo-1/</link>
+      <link>http://tianbaoo.github.io/post/mo-1/</link>
       <pubDate>Thu, 20 Feb 2020 12:15:46 +0000</pubDate>
       
-      <guid>https://www.github.com/tianbaoo/post/mo-1/</guid>
+      <guid>http://tianbaoo.github.io/post/mo-1/</guid>
       <description>人生纵有千万疾 唯有相思不可医</description>
     </item>
     
