@@ -6,19 +6,10 @@
     <description>Recent content on 天宝的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Thu, 20 Feb 2020 12:15:46 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 20 Feb 2020 11:15:46 +0000</lastBuildDate>
     
 	<atom:link href="http://tianbaoo.github.io/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>所爱隔山海，山海皆可平</title>
-      <link>http://tianbaoo.github.io/post/mo-1/</link>
-      <pubDate>Thu, 20 Feb 2020 12:15:46 +0000</pubDate>
-      
-      <guid>http://tianbaoo.github.io/post/mo-1/</guid>
-      <description>人生纵有千万疾 唯有相思不可医</description>
-    </item>
     
     <item>
       <title>封装的Redis队列</title>
