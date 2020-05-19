@@ -95,140 +95,280 @@
         
         
         <div class="post-content">
-            
+            <h2 id="pyjsonrpc的使用">pyjsonrpc的使用</h2>
+<h3 id="客户端-jsonrpcclientpy">客户端 JsonRpcClient.py</h3>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">40
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">41
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">42
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">43
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">44
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">45
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">46
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">47
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">48
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">49
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">50
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">51
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">52
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">53
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">54
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">55
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">56
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">57
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">58
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">59
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">60
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">61
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">62
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">63
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">64
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">65
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">66
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">67
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">68
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">69
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#998;font-style:italic">#!usr/bin/env python2.7</span>
+<span style="color:#998;font-style:italic"># -*- coding: utf-8 -*-</span>
 
-<h2 id="pyjsonrpc的使用">pyjsonrpc的使用</h2>
+<span style="color:#000;font-weight:bold">import</span> <span style="color:#555">ssl</span>
+<span style="color:#000;font-weight:bold">import</span> <span style="color:#555">socket</span>
+<span style="color:#000;font-weight:bold">import</span> <span style="color:#555">inspect</span>
+<span style="color:#000;font-weight:bold">import</span> <span style="color:#555">logging</span>
+<span style="color:#000;font-weight:bold">import</span> <span style="color:#555">pyjsonrpc</span>
 
-<h3 id="客户端-jsonrpcclient-py">客户端 JsonRpcClient.py</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#6272a4">#!usr/bin/env python2.7</span>
-<span style="color:#6272a4"># -*- coding: utf-8 -*-</span>
+<span style="color:#000;font-weight:bold">try</span>:
+    ssl<span style="color:#000;font-weight:bold">.</span>_create_default_https_context <span style="color:#000;font-weight:bold">=</span> ssl<span style="color:#000;font-weight:bold">.</span>_create_unverified_context
+<span style="color:#000;font-weight:bold">except</span> <span style="color:#900;font-weight:bold">Exception</span>:
+    <span style="color:#000;font-weight:bold">pass</span>
 
-<span style="color:#ff79c6">import</span> ssl
-<span style="color:#ff79c6">import</span> socket
-<span style="color:#ff79c6">import</span> inspect
-<span style="color:#ff79c6">import</span> logging
-<span style="color:#ff79c6">import</span> pyjsonrpc
-
-<span style="color:#ff79c6">try</span>:
-    ssl<span style="color:#ff79c6">.</span>_create_default_https_context <span style="color:#ff79c6">=</span> ssl<span style="color:#ff79c6">.</span>_create_unverified_context
-<span style="color:#ff79c6">except</span> Exception:
-    <span style="color:#ff79c6">pass</span>
-
-logger <span style="color:#ff79c6">=</span> logging<span style="color:#ff79c6">.</span>getLogger(<span style="color:#f1fa8c">&#39;blog&#39;</span>)
+logger <span style="color:#000;font-weight:bold">=</span> logging<span style="color:#000;font-weight:bold">.</span>getLogger(<span style="color:#d14">&#39;blog&#39;</span>)
 
 
-<span style="color:#ff79c6">def</span> <span style="color:#50fa7b">func</span>():
-    <span style="color:#6272a4"># 获取当前函数名, 如果是类直接调用，则是类名</span>
-    <span style="color:#ff79c6">return</span> inspect<span style="color:#ff79c6">.</span>stack()[<span style="color:#bd93f9">1</span>][<span style="color:#bd93f9">3</span>]
+<span style="color:#000;font-weight:bold">def</span> <span style="color:#900;font-weight:bold">func</span>():
+    <span style="color:#998;font-style:italic"># 获取当前函数名, 如果是类直接调用，则是类名</span>
+    <span style="color:#000;font-weight:bold">return</span> inspect<span style="color:#000;font-weight:bold">.</span>stack()[<span style="color:#099">1</span>][<span style="color:#099">3</span>]
 
 
-<span style="color:#ff79c6">class</span> <span style="color:#50fa7b">JsonRpcIF</span>(<span style="color:#8be9fd;font-style:italic">object</span>):
-    <span style="color:#f1fa8c">&#34;&#34;&#34;封装的基类&#34;&#34;&#34;</span>
-    <span style="color:#ff79c6">def</span> __init__(self, server, port, ssl<span style="color:#ff79c6">=</span>True):
-        <span style="color:#ff79c6">if</span> ssl:
-            self<span style="color:#ff79c6">.</span>url <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;https://</span><span style="color:#f1fa8c">%s</span><span style="color:#f1fa8c">:</span><span style="color:#f1fa8c">%s</span><span style="color:#f1fa8c">/jsonrpc&#34;</span> <span style="color:#ff79c6">%</span> (server, port)
-        <span style="color:#ff79c6">else</span>:
-            self<span style="color:#ff79c6">.</span>url <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;http://</span><span style="color:#f1fa8c">%s</span><span style="color:#f1fa8c">:</span><span style="color:#f1fa8c">%s</span><span style="color:#f1fa8c">/jsonrpc&#34;</span> <span style="color:#ff79c6">%</span> (server, port)
+<span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">JsonRpcIF</span>(<span style="color:#0086b3">object</span>):
+    <span style="color:#d14">&#34;&#34;&#34;封装的基类&#34;&#34;&#34;</span>
+    <span style="color:#000;font-weight:bold">def</span> __init__(<span style="color:#999">self</span>, server, port, ssl<span style="color:#000;font-weight:bold">=</span><span style="color:#999">True</span>):
+        <span style="color:#000;font-weight:bold">if</span> ssl:
+            <span style="color:#999">self</span><span style="color:#000;font-weight:bold">.</span>url <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;https://</span><span style="color:#d14">%s</span><span style="color:#d14">:</span><span style="color:#d14">%s</span><span style="color:#d14">/jsonrpc&#34;</span> <span style="color:#000;font-weight:bold">%</span> (server, port)
+        <span style="color:#000;font-weight:bold">else</span>:
+            <span style="color:#999">self</span><span style="color:#000;font-weight:bold">.</span>url <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;http://</span><span style="color:#d14">%s</span><span style="color:#d14">:</span><span style="color:#d14">%s</span><span style="color:#d14">/jsonrpc&#34;</span> <span style="color:#000;font-weight:bold">%</span> (server, port)
 
-    <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">request</span>(self, method, params, timeout<span style="color:#ff79c6">=</span>None):
-        <span style="color:#6272a4"># params是参数: {&#34;key1&#34;: &#34;value1&#34;, &#34;key2&#34;: &#34;value2&#34;}</span>
-        <span style="color:#ff79c6">try</span>:
-            self<span style="color:#ff79c6">.</span>client <span style="color:#ff79c6">=</span> pyjsonrpc<span style="color:#ff79c6">.</span>HttpClient(
-                url<span style="color:#ff79c6">=</span>self<span style="color:#ff79c6">.</span>url,
-                timeout<span style="color:#ff79c6">=</span>timeout,
+    <span style="color:#000;font-weight:bold">def</span> <span style="color:#900;font-weight:bold">request</span>(<span style="color:#999">self</span>, method, params, timeout<span style="color:#000;font-weight:bold">=</span><span style="color:#999">None</span>):
+        <span style="color:#998;font-style:italic"># params是参数: {&#34;key1&#34;: &#34;value1&#34;, &#34;key2&#34;: &#34;value2&#34;}</span>
+        <span style="color:#000;font-weight:bold">try</span>:
+            <span style="color:#999">self</span><span style="color:#000;font-weight:bold">.</span>client <span style="color:#000;font-weight:bold">=</span> pyjsonrpc<span style="color:#000;font-weight:bold">.</span>HttpClient(
+                url<span style="color:#000;font-weight:bold">=</span><span style="color:#999">self</span><span style="color:#000;font-weight:bold">.</span>url,
+                timeout<span style="color:#000;font-weight:bold">=</span>timeout,
             )
-            <span style="color:#6272a4"># 获取服务端执行相应method后的结果</span>
-            response <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">getattr</span>(self<span style="color:#ff79c6">.</span>client, method)(params)
-        <span style="color:#ff79c6">except</span> socket<span style="color:#ff79c6">.</span>timeout:
-            logger<span style="color:#ff79c6">.</span>error(<span style="color:#f1fa8c">&#34;JsonRpc request &#39;</span><span style="color:#f1fa8c">%s</span><span style="color:#f1fa8c">&#39; timeout&#34;</span>, method)
-            response <span style="color:#ff79c6">=</span> {<span style="color:#f1fa8c">&#34;status&#34;</span>: {<span style="color:#f1fa8c">&#34;code&#34;</span>: <span style="color:#ff79c6">-</span><span style="color:#bd93f9">1</span>, <span style="color:#f1fa8c">&#34;msg&#34;</span>: <span style="color:#f1fa8c">&#34;timeout&#34;</span>}}
-        <span style="color:#ff79c6">except</span> Exception <span style="color:#ff79c6">as</span> err:
-            logger<span style="color:#ff79c6">.</span>error(<span style="color:#f1fa8c">&#34;JsonRpc request &#39;</span><span style="color:#f1fa8c">%s</span><span style="color:#f1fa8c">&#39; exception: </span><span style="color:#f1fa8c">%s</span><span style="color:#f1fa8c">&#34;</span>, method, err)
-            response <span style="color:#ff79c6">=</span> {<span style="color:#f1fa8c">&#34;status&#34;</span>: {<span style="color:#f1fa8c">&#34;code&#34;</span>: <span style="color:#ff79c6">-</span><span style="color:#bd93f9">2</span>, <span style="color:#f1fa8c">&#34;msg&#34;</span>: err}}
-        <span style="color:#ff79c6">return</span> response
+            <span style="color:#998;font-style:italic"># 获取服务端执行相应method后的结果</span>
+            response <span style="color:#000;font-weight:bold">=</span> <span style="color:#0086b3">getattr</span>(<span style="color:#999">self</span><span style="color:#000;font-weight:bold">.</span>client, method)(params)
+        <span style="color:#000;font-weight:bold">except</span> socket<span style="color:#000;font-weight:bold">.</span>timeout:
+            logger<span style="color:#000;font-weight:bold">.</span>error(<span style="color:#d14">&#34;JsonRpc request &#39;</span><span style="color:#d14">%s</span><span style="color:#d14">&#39; timeout&#34;</span>, method)
+            response <span style="color:#000;font-weight:bold">=</span> {<span style="color:#d14">&#34;status&#34;</span>: {<span style="color:#d14">&#34;code&#34;</span>: <span style="color:#000;font-weight:bold">-</span><span style="color:#099">1</span>, <span style="color:#d14">&#34;msg&#34;</span>: <span style="color:#d14">&#34;timeout&#34;</span>}}
+        <span style="color:#000;font-weight:bold">except</span> <span style="color:#900;font-weight:bold">Exception</span> <span style="color:#000;font-weight:bold">as</span> err:
+            logger<span style="color:#000;font-weight:bold">.</span>error(<span style="color:#d14">&#34;JsonRpc request &#39;</span><span style="color:#d14">%s</span><span style="color:#d14">&#39; exception: </span><span style="color:#d14">%s</span><span style="color:#d14">&#34;</span>, method, err)
+            response <span style="color:#000;font-weight:bold">=</span> {<span style="color:#d14">&#34;status&#34;</span>: {<span style="color:#d14">&#34;code&#34;</span>: <span style="color:#000;font-weight:bold">-</span><span style="color:#099">2</span>, <span style="color:#d14">&#34;msg&#34;</span>: err}}
+        <span style="color:#000;font-weight:bold">return</span> response
 
 
-<span style="color:#ff79c6">class</span> <span style="color:#50fa7b">LocalRpc</span>(JsonRpcIF):
-    <span style="color:#f1fa8c">&#34;&#34;&#34;连接本服务器rpc&#34;&#34;&#34;</span>
+<span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">LocalRpc</span>(JsonRpcIF):
+    <span style="color:#d14">&#34;&#34;&#34;连接本服务器rpc&#34;&#34;&#34;</span>
 
-    <span style="color:#ff79c6">def</span> __init__(self, server<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;127.0.0.1&#34;</span>, port<span style="color:#ff79c6">=</span><span style="color:#bd93f9">8080</span>):
-        <span style="color:#8be9fd;font-style:italic">super</span>(LocalRpc, self)<span style="color:#ff79c6">.</span>__init__(server, port, ssl<span style="color:#ff79c6">=</span>False)
+    <span style="color:#000;font-weight:bold">def</span> __init__(<span style="color:#999">self</span>, server<span style="color:#000;font-weight:bold">=</span><span style="color:#d14">&#34;127.0.0.1&#34;</span>, port<span style="color:#000;font-weight:bold">=</span><span style="color:#099">8080</span>):
+        <span style="color:#0086b3">super</span>(LocalRpc, <span style="color:#999">self</span>)<span style="color:#000;font-weight:bold">.</span>__init__(server, port, ssl<span style="color:#000;font-weight:bold">=</span><span style="color:#999">False</span>)
 
-    <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">get_mac</span>(self, request<span style="color:#ff79c6">=</span>None):
-        <span style="color:#6272a4"># func() 返回的是&#34;get_mac&#34;字符串 request是参数: {&#34;key1&#34;: &#34;value1&#34;, &#34;key2&#34;: &#34;value2&#34;}</span>
-        <span style="color:#ff79c6">return</span> self<span style="color:#ff79c6">.</span>request(func(), request, timeout<span style="color:#ff79c6">=</span><span style="color:#bd93f9">5</span>)
+    <span style="color:#000;font-weight:bold">def</span> <span style="color:#900;font-weight:bold">get_mac</span>(<span style="color:#999">self</span>, request<span style="color:#000;font-weight:bold">=</span><span style="color:#999">None</span>):
+        <span style="color:#998;font-style:italic"># func() 返回的是&#34;get_mac&#34;字符串 request是参数: {&#34;key1&#34;: &#34;value1&#34;, &#34;key2&#34;: &#34;value2&#34;}</span>
+        <span style="color:#000;font-weight:bold">return</span> <span style="color:#999">self</span><span style="color:#000;font-weight:bold">.</span>request(func(), request, timeout<span style="color:#000;font-weight:bold">=</span><span style="color:#099">5</span>)
 
-    <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">get_server_ip</span>(self, request<span style="color:#ff79c6">=</span>None):
-        <span style="color:#6272a4"># func() 返回的是&#34;get_server_ip&#34;字符串</span>
-        <span style="color:#ff79c6">return</span> self<span style="color:#ff79c6">.</span>request(func(), request, timeout<span style="color:#ff79c6">=</span><span style="color:#bd93f9">10</span>)
+    <span style="color:#000;font-weight:bold">def</span> <span style="color:#900;font-weight:bold">get_server_ip</span>(<span style="color:#999">self</span>, request<span style="color:#000;font-weight:bold">=</span><span style="color:#999">None</span>):
+        <span style="color:#998;font-style:italic"># func() 返回的是&#34;get_server_ip&#34;字符串</span>
+        <span style="color:#000;font-weight:bold">return</span> <span style="color:#999">self</span><span style="color:#000;font-weight:bold">.</span>request(func(), request, timeout<span style="color:#000;font-weight:bold">=</span><span style="color:#099">10</span>)
 
-    <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">get_file_name</span>(self, request<span style="color:#ff79c6">=</span>None):
-        <span style="color:#6272a4"># func() 返回的是&#34;get_file_name&#34;字符串</span>
-        <span style="color:#ff79c6">return</span> self<span style="color:#ff79c6">.</span>request(func(), request, timeout<span style="color:#ff79c6">=</span>None)
-
-
-locRpc <span style="color:#ff79c6">=</span> LocalRpc(server<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;127.0.0.1&#34;</span>, port<span style="color:#ff79c6">=</span><span style="color:#bd93f9">8080</span>)</code></pre></div>
-<h3 id="服务端-jsonrpcserver-py">服务端 JsonRpcServer.py</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#6272a4">#!usr/bin/env python2.7</span>
-<span style="color:#6272a4"># -*- coding: utf-8 -*-</span>
-
-<span style="color:#ff79c6">import</span> logging
-<span style="color:#ff79c6">import</span> traceback
-<span style="color:#ff79c6">import</span> pyjsonrpc
+    <span style="color:#000;font-weight:bold">def</span> <span style="color:#900;font-weight:bold">get_file_name</span>(<span style="color:#999">self</span>, request<span style="color:#000;font-weight:bold">=</span><span style="color:#999">None</span>):
+        <span style="color:#998;font-style:italic"># func() 返回的是&#34;get_file_name&#34;字符串</span>
+        <span style="color:#000;font-weight:bold">return</span> <span style="color:#999">self</span><span style="color:#000;font-weight:bold">.</span>request(func(), request, timeout<span style="color:#000;font-weight:bold">=</span><span style="color:#999">None</span>)
 
 
-logger <span style="color:#ff79c6">=</span> logging<span style="color:#ff79c6">.</span>getLogger(<span style="color:#f1fa8c">&#39;blog&#39;</span>)
+locRpc <span style="color:#000;font-weight:bold">=</span> LocalRpc(server<span style="color:#000;font-weight:bold">=</span><span style="color:#d14">&#34;127.0.0.1&#34;</span>, port<span style="color:#000;font-weight:bold">=</span><span style="color:#099">8080</span>)
+
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="服务端-jsonrpcserverpy">服务端 JsonRpcServer.py</h3>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">40
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">41
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">42
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">43
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">44
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">45
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">46
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">47
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">48
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">49
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">50
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">51
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">52
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">53
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">54
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">55
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">56
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">57
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">58
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">59
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">60
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#998;font-style:italic">#!usr/bin/env python2.7</span>
+<span style="color:#998;font-style:italic"># -*- coding: utf-8 -*-</span>
+
+<span style="color:#000;font-weight:bold">import</span> <span style="color:#555">logging</span>
+<span style="color:#000;font-weight:bold">import</span> <span style="color:#555">traceback</span>
+<span style="color:#000;font-weight:bold">import</span> <span style="color:#555">pyjsonrpc</span>
 
 
-<span style="color:#ff79c6">class</span> <span style="color:#50fa7b">RequestHandler</span>(pyjsonrpc<span style="color:#ff79c6">.</span>HttpRequestHandler):
-
-    @pyjsonrpc.rpcmethod
-    <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">get_mac</span>(self, params):
-        ret <span style="color:#ff79c6">=</span> {<span style="color:#f1fa8c">&#34;status&#34;</span>: {<span style="color:#f1fa8c">&#34;code&#34;</span>: <span style="color:#bd93f9">0</span>, <span style="color:#f1fa8c">&#34;msg&#34;</span>: <span style="color:#f1fa8c">&#34;success&#34;</span>}, <span style="color:#f1fa8c">&#34;mac&#34;</span>: <span style="color:#f1fa8c">&#34;&#34;</span>}
-        <span style="color:#ff79c6">try</span>:
-            <span style="color:#6272a4"># params为 {&#34;key1&#34;: &#34;value1&#34;, &#34;key2&#34;: &#34;value2&#34;}</span>
-            key1 <span style="color:#ff79c6">=</span> params<span style="color:#ff79c6">.</span>get(<span style="color:#f1fa8c">&#34;key1&#34;</span>, <span style="color:#f1fa8c">&#34;&#34;</span>)
-        <span style="color:#ff79c6">except</span> Exception <span style="color:#ff79c6">as</span> err:
-            logger<span style="color:#ff79c6">.</span>error(<span style="color:#f1fa8c">&#34;get mac failed: </span><span style="color:#f1fa8c">%s</span><span style="color:#f1fa8c">&#34;</span>, err)
-            ret <span style="color:#ff79c6">=</span> {<span style="color:#f1fa8c">&#34;status&#34;</span>: {<span style="color:#f1fa8c">&#34;code&#34;</span>: <span style="color:#ff79c6">-</span><span style="color:#bd93f9">1</span>, <span style="color:#f1fa8c">&#34;msg&#34;</span>: err}}
-        <span style="color:#ff79c6">return</span> ret
-
-    @pyjsonrpc.rpcmethod
-    <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">get_server_ip</span>(self, params):
-        ret <span style="color:#ff79c6">=</span> {<span style="color:#f1fa8c">&#34;status&#34;</span>: {<span style="color:#f1fa8c">&#34;code&#34;</span>: <span style="color:#bd93f9">0</span>, <span style="color:#f1fa8c">&#34;msg&#34;</span>: <span style="color:#f1fa8c">&#34;success&#34;</span>}, <span style="color:#f1fa8c">&#34;server_ip&#34;</span>: <span style="color:#f1fa8c">&#34;&#34;</span>}
-        <span style="color:#ff79c6">try</span>:
-            <span style="color:#6272a4"># params为 {&#34;key1&#34;: &#34;value1&#34;, &#34;key2&#34;: &#34;value2&#34;}</span>
-            key1 <span style="color:#ff79c6">=</span> params<span style="color:#ff79c6">.</span>get(<span style="color:#f1fa8c">&#34;key1&#34;</span>, <span style="color:#f1fa8c">&#34;&#34;</span>)
-        <span style="color:#ff79c6">except</span> Exception:
-            <span style="color:#6272a4"># traceback.format_exc()能获取到详细的错误打印栈</span>
-            logger<span style="color:#ff79c6">.</span>error(<span style="color:#f1fa8c">&#34;get server ip error, </span><span style="color:#f1fa8c">%s</span><span style="color:#f1fa8c">&#34;</span>, traceback<span style="color:#ff79c6">.</span>format_exc())
-            ret <span style="color:#ff79c6">=</span> {<span style="color:#f1fa8c">&#34;status&#34;</span>: {<span style="color:#f1fa8c">&#34;code&#34;</span>: <span style="color:#ff79c6">-</span><span style="color:#bd93f9">1</span>, <span style="color:#f1fa8c">&#34;msg&#34;</span>: traceback<span style="color:#ff79c6">.</span>format_exc()}}
-        <span style="color:#ff79c6">return</span> ret
-
-    @pyjsonrpc.rpcmethod
-    <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">get_file_name</span>(self, params):
-        ret <span style="color:#ff79c6">=</span> {<span style="color:#f1fa8c">&#34;status&#34;</span>: {<span style="color:#f1fa8c">&#34;code&#34;</span>: <span style="color:#bd93f9">0</span>, <span style="color:#f1fa8c">&#34;msg&#34;</span>: <span style="color:#f1fa8c">&#34;success&#34;</span>}, <span style="color:#f1fa8c">&#34;get_file_name&#34;</span>: <span style="color:#f1fa8c">&#34;&#34;</span>}
-        <span style="color:#ff79c6">try</span>:
-            key1 <span style="color:#ff79c6">=</span> params<span style="color:#ff79c6">.</span>get(<span style="color:#f1fa8c">&#34;key1&#34;</span>, <span style="color:#f1fa8c">&#34;&#34;</span>)
-        <span style="color:#ff79c6">except</span> Exception:
-            <span style="color:#6272a4"># traceback.format_exc()能获取到详细的错误打印栈</span>
-            logger<span style="color:#ff79c6">.</span>error(<span style="color:#f1fa8c">&#34;get file name error, </span><span style="color:#f1fa8c">%s</span><span style="color:#f1fa8c">&#34;</span>, traceback<span style="color:#ff79c6">.</span>format_exc())
-            ret <span style="color:#ff79c6">=</span> {<span style="color:#f1fa8c">&#34;status&#34;</span>: {<span style="color:#f1fa8c">&#34;code&#34;</span>: <span style="color:#ff79c6">-</span><span style="color:#bd93f9">1</span>, <span style="color:#f1fa8c">&#34;msg&#34;</span>: traceback<span style="color:#ff79c6">.</span>format_exc()}}
-        <span style="color:#ff79c6">return</span> ret
+logger <span style="color:#000;font-weight:bold">=</span> logging<span style="color:#000;font-weight:bold">.</span>getLogger(<span style="color:#d14">&#39;blog&#39;</span>)
 
 
-<span style="color:#ff79c6">def</span> <span style="color:#50fa7b">main</span>(server_ip, port):
+<span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">RequestHandler</span>(pyjsonrpc<span style="color:#000;font-weight:bold">.</span>HttpRequestHandler):
 
-    <span style="color:#6272a4"># 线程 HTTP-Server</span>
-    http_server <span style="color:#ff79c6">=</span> pyjsonrpc<span style="color:#ff79c6">.</span>ThreadingHttpServer(
-        server_address<span style="color:#ff79c6">=</span>(server_ip, port),
-        RequestHandlerClass<span style="color:#ff79c6">=</span>RequestHandler
+    <span style="color:#3c5d5d;font-weight:bold">@pyjsonrpc.rpcmethod</span>
+    <span style="color:#000;font-weight:bold">def</span> <span style="color:#900;font-weight:bold">get_mac</span>(<span style="color:#999">self</span>, params):
+        ret <span style="color:#000;font-weight:bold">=</span> {<span style="color:#d14">&#34;status&#34;</span>: {<span style="color:#d14">&#34;code&#34;</span>: <span style="color:#099">0</span>, <span style="color:#d14">&#34;msg&#34;</span>: <span style="color:#d14">&#34;success&#34;</span>}, <span style="color:#d14">&#34;mac&#34;</span>: <span style="color:#d14">&#34;&#34;</span>}
+        <span style="color:#000;font-weight:bold">try</span>:
+            <span style="color:#998;font-style:italic"># params为 {&#34;key1&#34;: &#34;value1&#34;, &#34;key2&#34;: &#34;value2&#34;}</span>
+            key1 <span style="color:#000;font-weight:bold">=</span> params<span style="color:#000;font-weight:bold">.</span>get(<span style="color:#d14">&#34;key1&#34;</span>, <span style="color:#d14">&#34;&#34;</span>)
+        <span style="color:#000;font-weight:bold">except</span> <span style="color:#900;font-weight:bold">Exception</span> <span style="color:#000;font-weight:bold">as</span> err:
+            logger<span style="color:#000;font-weight:bold">.</span>error(<span style="color:#d14">&#34;get mac failed: </span><span style="color:#d14">%s</span><span style="color:#d14">&#34;</span>, err)
+            ret <span style="color:#000;font-weight:bold">=</span> {<span style="color:#d14">&#34;status&#34;</span>: {<span style="color:#d14">&#34;code&#34;</span>: <span style="color:#000;font-weight:bold">-</span><span style="color:#099">1</span>, <span style="color:#d14">&#34;msg&#34;</span>: err}}
+        <span style="color:#000;font-weight:bold">return</span> ret
+
+    <span style="color:#3c5d5d;font-weight:bold">@pyjsonrpc.rpcmethod</span>
+    <span style="color:#000;font-weight:bold">def</span> <span style="color:#900;font-weight:bold">get_server_ip</span>(<span style="color:#999">self</span>, params):
+        ret <span style="color:#000;font-weight:bold">=</span> {<span style="color:#d14">&#34;status&#34;</span>: {<span style="color:#d14">&#34;code&#34;</span>: <span style="color:#099">0</span>, <span style="color:#d14">&#34;msg&#34;</span>: <span style="color:#d14">&#34;success&#34;</span>}, <span style="color:#d14">&#34;server_ip&#34;</span>: <span style="color:#d14">&#34;&#34;</span>}
+        <span style="color:#000;font-weight:bold">try</span>:
+            <span style="color:#998;font-style:italic"># params为 {&#34;key1&#34;: &#34;value1&#34;, &#34;key2&#34;: &#34;value2&#34;}</span>
+            key1 <span style="color:#000;font-weight:bold">=</span> params<span style="color:#000;font-weight:bold">.</span>get(<span style="color:#d14">&#34;key1&#34;</span>, <span style="color:#d14">&#34;&#34;</span>)
+        <span style="color:#000;font-weight:bold">except</span> <span style="color:#900;font-weight:bold">Exception</span>:
+            <span style="color:#998;font-style:italic"># traceback.format_exc()能获取到详细的错误打印栈</span>
+            logger<span style="color:#000;font-weight:bold">.</span>error(<span style="color:#d14">&#34;get server ip error, </span><span style="color:#d14">%s</span><span style="color:#d14">&#34;</span>, traceback<span style="color:#000;font-weight:bold">.</span>format_exc())
+            ret <span style="color:#000;font-weight:bold">=</span> {<span style="color:#d14">&#34;status&#34;</span>: {<span style="color:#d14">&#34;code&#34;</span>: <span style="color:#000;font-weight:bold">-</span><span style="color:#099">1</span>, <span style="color:#d14">&#34;msg&#34;</span>: traceback<span style="color:#000;font-weight:bold">.</span>format_exc()}}
+        <span style="color:#000;font-weight:bold">return</span> ret
+
+    <span style="color:#3c5d5d;font-weight:bold">@pyjsonrpc.rpcmethod</span>
+    <span style="color:#000;font-weight:bold">def</span> <span style="color:#900;font-weight:bold">get_file_name</span>(<span style="color:#999">self</span>, params):
+        ret <span style="color:#000;font-weight:bold">=</span> {<span style="color:#d14">&#34;status&#34;</span>: {<span style="color:#d14">&#34;code&#34;</span>: <span style="color:#099">0</span>, <span style="color:#d14">&#34;msg&#34;</span>: <span style="color:#d14">&#34;success&#34;</span>}, <span style="color:#d14">&#34;get_file_name&#34;</span>: <span style="color:#d14">&#34;&#34;</span>}
+        <span style="color:#000;font-weight:bold">try</span>:
+            key1 <span style="color:#000;font-weight:bold">=</span> params<span style="color:#000;font-weight:bold">.</span>get(<span style="color:#d14">&#34;key1&#34;</span>, <span style="color:#d14">&#34;&#34;</span>)
+        <span style="color:#000;font-weight:bold">except</span> <span style="color:#900;font-weight:bold">Exception</span>:
+            <span style="color:#998;font-style:italic"># traceback.format_exc()能获取到详细的错误打印栈</span>
+            logger<span style="color:#000;font-weight:bold">.</span>error(<span style="color:#d14">&#34;get file name error, </span><span style="color:#d14">%s</span><span style="color:#d14">&#34;</span>, traceback<span style="color:#000;font-weight:bold">.</span>format_exc())
+            ret <span style="color:#000;font-weight:bold">=</span> {<span style="color:#d14">&#34;status&#34;</span>: {<span style="color:#d14">&#34;code&#34;</span>: <span style="color:#000;font-weight:bold">-</span><span style="color:#099">1</span>, <span style="color:#d14">&#34;msg&#34;</span>: traceback<span style="color:#000;font-weight:bold">.</span>format_exc()}}
+        <span style="color:#000;font-weight:bold">return</span> ret
+
+
+<span style="color:#000;font-weight:bold">def</span> <span style="color:#900;font-weight:bold">main</span>(server_ip, port):
+
+    <span style="color:#998;font-style:italic"># 线程 HTTP-Server</span>
+    http_server <span style="color:#000;font-weight:bold">=</span> pyjsonrpc<span style="color:#000;font-weight:bold">.</span>ThreadingHttpServer(
+        server_address<span style="color:#000;font-weight:bold">=</span>(server_ip, port),
+        RequestHandlerClass<span style="color:#000;font-weight:bold">=</span>RequestHandler
     )
-    http_server<span style="color:#ff79c6">.</span>serve_forever()
+    http_server<span style="color:#000;font-weight:bold">.</span>serve_forever()
 
 
-<span style="color:#ff79c6">if</span> __name__ <span style="color:#ff79c6">==</span> <span style="color:#f1fa8c">&#39;__main__&#39;</span>:
-    main(<span style="color:#f1fa8c">&#39;localhost&#39;</span>, <span style="color:#bd93f9">8080</span>)</code></pre></div>
+<span style="color:#000;font-weight:bold">if</span> __name__ <span style="color:#000;font-weight:bold">==</span> <span style="color:#d14">&#39;__main__&#39;</span>:
+    main(<span style="color:#d14">&#39;localhost&#39;</span>, <span style="color:#099">8080</span>)
+</code></pre></td></tr></table>
+</div>
+</div>
         </div>
 
         
