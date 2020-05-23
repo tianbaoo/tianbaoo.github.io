@@ -97,9 +97,9 @@
         <div class="post-content">
             <h2 id="封装的redis队列">封装的Redis队列</h2>
 <h3 id="myredisqueuepy">MyRedisQueue.py</h3>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
@@ -146,57 +146,57 @@
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">45
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#998;font-style:italic">#!usr/bin/env python2.7</span>
-<span style="color:#998;font-style:italic"># -*- coding: utf-8 -*-</span>
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#6272a4">#!usr/bin/env python2.7</span>
+<span style="color:#6272a4"># -*- coding: utf-8 -*-</span>
 
-<span style="color:#000;font-weight:bold">import</span> <span style="color:#555">redis</span>
+<span style="color:#ff79c6">import</span> redis
 
 
-<span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">RedisQueue</span>(<span style="color:#0086b3">object</span>):
-    <span style="color:#000;font-weight:bold">def</span> __init__(<span style="color:#999">self</span>, name, namespace<span style="color:#000;font-weight:bold">=</span><span style="color:#d14">&#39;queue&#39;</span>, <span style="color:#000;font-weight:bold">**</span>redis_kwargs):
-        <span style="color:#998;font-style:italic"># redis的默认参数为：host=&#39;localhost&#39;, port=6379, db=0， 其中db为定义redis database的数量</span>
-        <span style="color:#998;font-style:italic"># r = redis.Redis(host=&#39;localhost&#39;, port=6379, decode_responses=True)</span>
-        <span style="color:#998;font-style:italic"># 加上decode_responses=True，写入的键值对中的value为str类型，不加这个参数写入的则为字节类型</span>
-        <span style="color:#998;font-style:italic"># host是redis主机，需要redis服务端和客户端都启动 redis默认端口是6379</span>
-        <span style="color:#999">self</span><span style="color:#000;font-weight:bold">.</span>__db <span style="color:#000;font-weight:bold">=</span> redis<span style="color:#000;font-weight:bold">.</span>Redis(<span style="color:#000;font-weight:bold">**</span>redis_kwargs)
-        <span style="color:#999">self</span><span style="color:#000;font-weight:bold">.</span>key <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#39;</span><span style="color:#d14">%s</span><span style="color:#d14">:</span><span style="color:#d14">%s</span><span style="color:#d14">&#39;</span> <span style="color:#000;font-weight:bold">%</span> (namespace, name)
+<span style="color:#ff79c6">class</span> <span style="color:#50fa7b">RedisQueue</span>(<span style="color:#8be9fd;font-style:italic">object</span>):
+    <span style="color:#ff79c6">def</span> __init__(self, name, namespace<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;queue&#39;</span>, <span style="color:#ff79c6">**</span>redis_kwargs):
+        <span style="color:#6272a4"># redis的默认参数为：host=&#39;localhost&#39;, port=6379, db=0， 其中db为定义redis database的数量</span>
+        <span style="color:#6272a4"># r = redis.Redis(host=&#39;localhost&#39;, port=6379, decode_responses=True)</span>
+        <span style="color:#6272a4"># 加上decode_responses=True，写入的键值对中的value为str类型，不加这个参数写入的则为字节类型</span>
+        <span style="color:#6272a4"># host是redis主机，需要redis服务端和客户端都启动 redis默认端口是6379</span>
+        self<span style="color:#ff79c6">.</span>__db <span style="color:#ff79c6">=</span> redis<span style="color:#ff79c6">.</span>Redis(<span style="color:#ff79c6">**</span>redis_kwargs)
+        self<span style="color:#ff79c6">.</span>key <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#39;</span><span style="color:#f1fa8c">%s</span><span style="color:#f1fa8c">:</span><span style="color:#f1fa8c">%s</span><span style="color:#f1fa8c">&#39;</span> <span style="color:#ff79c6">%</span> (namespace, name)
 
-    <span style="color:#000;font-weight:bold">def</span> <span style="color:#900;font-weight:bold">qsize</span>(<span style="color:#999">self</span>):
-        <span style="color:#000;font-weight:bold">return</span> <span style="color:#999">self</span><span style="color:#000;font-weight:bold">.</span>__db<span style="color:#000;font-weight:bold">.</span>llen(<span style="color:#999">self</span><span style="color:#000;font-weight:bold">.</span>key)  <span style="color:#998;font-style:italic"># 返回队列里面list内元素的数量</span>
+    <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">qsize</span>(self):
+        <span style="color:#ff79c6">return</span> self<span style="color:#ff79c6">.</span>__db<span style="color:#ff79c6">.</span>llen(self<span style="color:#ff79c6">.</span>key)  <span style="color:#6272a4"># 返回队列里面list内元素的数量</span>
 
-    <span style="color:#000;font-weight:bold">def</span> <span style="color:#900;font-weight:bold">put</span>(<span style="color:#999">self</span>, item, timeout<span style="color:#000;font-weight:bold">=</span><span style="color:#999">None</span>):
-        <span style="color:#999">self</span><span style="color:#000;font-weight:bold">.</span>__db<span style="color:#000;font-weight:bold">.</span>rpush(<span style="color:#999">self</span><span style="color:#000;font-weight:bold">.</span>key, item)  <span style="color:#998;font-style:italic"># 添加新元素到队列最右方</span>
-        <span style="color:#000;font-weight:bold">if</span> <span style="color:#0086b3">isinstance</span>(timeout, <span style="color:#0086b3">int</span>):
-            <span style="color:#999">self</span><span style="color:#000;font-weight:bold">.</span>__db<span style="color:#000;font-weight:bold">.</span>expire(<span style="color:#999">self</span><span style="color:#000;font-weight:bold">.</span>key, timeout)
+    <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">put</span>(self, item, timeout<span style="color:#ff79c6">=</span>None):
+        self<span style="color:#ff79c6">.</span>__db<span style="color:#ff79c6">.</span>rpush(self<span style="color:#ff79c6">.</span>key, item)  <span style="color:#6272a4"># 添加新元素到队列最右方</span>
+        <span style="color:#ff79c6">if</span> <span style="color:#8be9fd;font-style:italic">isinstance</span>(timeout, <span style="color:#8be9fd;font-style:italic">int</span>):
+            self<span style="color:#ff79c6">.</span>__db<span style="color:#ff79c6">.</span>expire(self<span style="color:#ff79c6">.</span>key, timeout)
 
-    <span style="color:#000;font-weight:bold">def</span> <span style="color:#900;font-weight:bold">get_wait</span>(<span style="color:#999">self</span>, timeout<span style="color:#000;font-weight:bold">=</span><span style="color:#999">None</span>):
-        <span style="color:#998;font-style:italic"># 返回队列第一个元素，如果为空则等待至有元素被加入队列（超时时间阈值为timeout，如果为None则一直等待）</span>
-        item <span style="color:#000;font-weight:bold">=</span> <span style="color:#999">self</span><span style="color:#000;font-weight:bold">.</span>__db<span style="color:#000;font-weight:bold">.</span>blpop(<span style="color:#999">self</span><span style="color:#000;font-weight:bold">.</span>key, timeout<span style="color:#000;font-weight:bold">=</span>timeout)
-        <span style="color:#998;font-style:italic"># if item:</span>
-        <span style="color:#998;font-style:italic">#     item = item[1]  # 返回值为一个tuple</span>
-        <span style="color:#000;font-weight:bold">return</span> item
+    <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">get_wait</span>(self, timeout<span style="color:#ff79c6">=</span>None):
+        <span style="color:#6272a4"># 返回队列第一个元素，如果为空则等待至有元素被加入队列（超时时间阈值为timeout，如果为None则一直等待）</span>
+        item <span style="color:#ff79c6">=</span> self<span style="color:#ff79c6">.</span>__db<span style="color:#ff79c6">.</span>blpop(self<span style="color:#ff79c6">.</span>key, timeout<span style="color:#ff79c6">=</span>timeout)
+        <span style="color:#6272a4"># if item:</span>
+        <span style="color:#6272a4">#     item = item[1]  # 返回值为一个tuple</span>
+        <span style="color:#ff79c6">return</span> item
 
-    <span style="color:#000;font-weight:bold">def</span> <span style="color:#900;font-weight:bold">get_nowait</span>(<span style="color:#999">self</span>):
-        <span style="color:#998;font-style:italic"># 直接返回队列第一个元素，如果队列为空返回的是None</span>
-        item <span style="color:#000;font-weight:bold">=</span> <span style="color:#999">self</span><span style="color:#000;font-weight:bold">.</span>__db<span style="color:#000;font-weight:bold">.</span>lpop(<span style="color:#999">self</span><span style="color:#000;font-weight:bold">.</span>key)
-        <span style="color:#000;font-weight:bold">return</span> item
+    <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">get_nowait</span>(self):
+        <span style="color:#6272a4"># 直接返回队列第一个元素，如果队列为空返回的是None</span>
+        item <span style="color:#ff79c6">=</span> self<span style="color:#ff79c6">.</span>__db<span style="color:#ff79c6">.</span>lpop(self<span style="color:#ff79c6">.</span>key)
+        <span style="color:#ff79c6">return</span> item
 
-    <span style="color:#000;font-weight:bold">def</span> <span style="color:#900;font-weight:bold">get_all</span>(<span style="color:#999">self</span>):
-        items <span style="color:#000;font-weight:bold">=</span> []
-        <span style="color:#000;font-weight:bold">while</span> <span style="color:#999">True</span>:
-            result <span style="color:#000;font-weight:bold">=</span> <span style="color:#999">self</span><span style="color:#000;font-weight:bold">.</span>get_nowait()
-            <span style="color:#000;font-weight:bold">if</span> result:
-                items<span style="color:#000;font-weight:bold">.</span>append(<span style="color:#0086b3">eval</span>(result))
-            <span style="color:#000;font-weight:bold">else</span>:
-                <span style="color:#000;font-weight:bold">break</span>
-        <span style="color:#000;font-weight:bold">return</span> items
+    <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">get_all</span>(self):
+        items <span style="color:#ff79c6">=</span> []
+        <span style="color:#ff79c6">while</span> True:
+            result <span style="color:#ff79c6">=</span> self<span style="color:#ff79c6">.</span>get_nowait()
+            <span style="color:#ff79c6">if</span> result:
+                items<span style="color:#ff79c6">.</span>append(<span style="color:#8be9fd;font-style:italic">eval</span>(result))
+            <span style="color:#ff79c6">else</span>:
+                <span style="color:#ff79c6">break</span>
+        <span style="color:#ff79c6">return</span> items
 
 </code></pre></td></tr></table>
 </div>
 </div><h3 id="接收端">接收端</h3>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
@@ -210,24 +210,24 @@
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#998;font-style:italic">#!usr/bin/env python2.7</span>
-<span style="color:#998;font-style:italic"># -*- coding: utf-8 -*-</span>
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#6272a4">#!usr/bin/env python2.7</span>
+<span style="color:#6272a4"># -*- coding: utf-8 -*-</span>
 
-<span style="color:#000;font-weight:bold">from</span> <span style="color:#555">MyRedisQueue</span> <span style="color:#000;font-weight:bold">import</span> RedisQueue
+<span style="color:#ff79c6">from</span> MyRedisQueue <span style="color:#ff79c6">import</span> RedisQueue
 
-queue_name <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;q1&#34;</span>
-retCode <span style="color:#000;font-weight:bold">=</span> {<span style="color:#d14">&#34;status&#34;</span>: {<span style="color:#d14">&#34;code&#34;</span>: <span style="color:#099">0</span>, <span style="color:#d14">&#34;msg&#34;</span>: <span style="color:#d14">&#34;success&#34;</span>}}
-redis_queue <span style="color:#000;font-weight:bold">=</span> RedisQueue(queue_name)
-ret <span style="color:#000;font-weight:bold">=</span> redis_queue<span style="color:#000;font-weight:bold">.</span>get_wait(<span style="color:#099">30</span>)  <span style="color:#998;font-style:italic"># 阻塞等待30s，直到队列中有元素进来</span>
-<span style="color:#000;font-weight:bold">if</span> ret <span style="color:#000;font-weight:bold">is</span> <span style="color:#999">None</span>:
-    retCode[<span style="color:#d14">&#34;status&#34;</span>][<span style="color:#d14">&#34;code&#34;</span>] <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">2</span>
-    retCode[<span style="color:#d14">&#34;status&#34;</span>][<span style="color:#d14">&#34;msg&#34;</span>] <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;超时未响应&#34;</span>
+queue_name <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;q1&#34;</span>
+retCode <span style="color:#ff79c6">=</span> {<span style="color:#f1fa8c">&#34;status&#34;</span>: {<span style="color:#f1fa8c">&#34;code&#34;</span>: <span style="color:#bd93f9">0</span>, <span style="color:#f1fa8c">&#34;msg&#34;</span>: <span style="color:#f1fa8c">&#34;success&#34;</span>}}
+redis_queue <span style="color:#ff79c6">=</span> RedisQueue(queue_name)
+ret <span style="color:#ff79c6">=</span> redis_queue<span style="color:#ff79c6">.</span>get_wait(<span style="color:#bd93f9">30</span>)  <span style="color:#6272a4"># 阻塞等待30s，直到队列中有元素进来</span>
+<span style="color:#ff79c6">if</span> ret <span style="color:#ff79c6">is</span> None:
+    retCode[<span style="color:#f1fa8c">&#34;status&#34;</span>][<span style="color:#f1fa8c">&#34;code&#34;</span>] <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">2</span>
+    retCode[<span style="color:#f1fa8c">&#34;status&#34;</span>][<span style="color:#f1fa8c">&#34;msg&#34;</span>] <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;超时未响应&#34;</span>
 </code></pre></td></tr></table>
 </div>
 </div><h3 id="发送端">发送端</h3>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
@@ -238,14 +238,14 @@ ret <span style="color:#000;font-weight:bold">=</span> redis_queue<span style="c
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">9
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#998;font-style:italic">#!usr/bin/env python2.7</span>
-<span style="color:#998;font-style:italic"># -*- coding: utf-8 -*-</span>
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#6272a4">#!usr/bin/env python2.7</span>
+<span style="color:#6272a4"># -*- coding: utf-8 -*-</span>
 
-<span style="color:#000;font-weight:bold">from</span> <span style="color:#555">MyRedisQueue</span> <span style="color:#000;font-weight:bold">import</span> RedisQueue
+<span style="color:#ff79c6">from</span> MyRedisQueue <span style="color:#ff79c6">import</span> RedisQueue
 
-queue_name <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;q1&#34;</span>
-redis_queue <span style="color:#000;font-weight:bold">=</span> RedisQueue(queue_name)
-redis_queue<span style="color:#000;font-weight:bold">.</span>put(<span style="color:#d14">&#34;all done&#34;</span>)
+queue_name <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;q1&#34;</span>
+redis_queue <span style="color:#ff79c6">=</span> RedisQueue(queue_name)
+redis_queue<span style="color:#ff79c6">.</span>put(<span style="color:#f1fa8c">&#34;all done&#34;</span>)
 
 </code></pre></td></tr></table>
 </div>
@@ -326,6 +326,10 @@ redis_queue<span style="color:#000;font-weight:bold">.</span>put(<span style="co
 <ul class="widget-list">
     
     <li>
+        <a href="http://tianbaoo.github.io/post/PyCoroutines/" title="Python协程&amp;asyncio&amp;异步编程">Python协程&amp;asyncio&amp;异步编程</a>
+    </li>
+    
+    <li>
         <a href="http://tianbaoo.github.io/post/MyRedisQueue/" title="封装的Redis队列">封装的Redis队列</a>
     </li>
     
@@ -342,7 +346,7 @@ redis_queue<span style="color:#000;font-weight:bold">.</span>put(<span style="co
         <h3 class="widget-title">分类</h3>
 <ul class="widget-list">
     
-    <li><a href="http://tianbaoo.github.io/categories/Python/">Python (1)</a></li>
+    <li><a href="http://tianbaoo.github.io/categories/Python/">Python (2)</a></li>
     
     <li><a href="http://tianbaoo.github.io/categories/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/">消息队列 (1)</a></li>
     
@@ -356,6 +360,8 @@ redis_queue<span style="color:#000;font-weight:bold">.</span>put(<span style="co
     <a href="http://tianbaoo.github.io/tags/Redis/">Redis</a>
     
     <a href="http://tianbaoo.github.io/tags/pyjsonrpc/">pyjsonrpc</a>
+    
+    <a href="http://tianbaoo.github.io/tags/%E5%8D%8F%E7%A8%8B/">协程</a>
     
 </div>
     </section>

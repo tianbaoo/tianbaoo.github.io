@@ -12,6 +12,15 @@
     
     
     <item>
+      <title>Python协程&amp;asyncio&amp;异步编程</title>
+      <link>http://tianbaoo.github.io/post/PyCoroutines/</link>
+      <pubDate>Sat, 23 May 2020 11:15:46 +0000</pubDate>
+      
+      <guid>http://tianbaoo.github.io/post/PyCoroutines/</guid>
+      <description>Python协程&amp;amp;asyncio&amp;amp;异步编程 1.协程 协程是微线程，是一种用户态上下文切换技术，通过一个线程实现代码块相互切换执行 实现协程有这么几种方法： greenlet，早期的模块 yield 关键字 asyncio python3.4引入的 async、await关键字 python3.5 主流[推荐] 1.1 gree</description>
+    </item>
+    
+    <item>
       <title>封装的Redis队列</title>
       <link>http://tianbaoo.github.io/post/MyRedisQueue/</link>
       <pubDate>Thu, 20 Feb 2020 11:15:46 +0000</pubDate>
