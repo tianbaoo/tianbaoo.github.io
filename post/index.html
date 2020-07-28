@@ -73,6 +73,31 @@
     <article class="post">
         <header>
             <h1 class="post-title">
+                <a href="http://tianbaoo.github.io/post/goFast/" title="go常用命令行命令">go常用命令行命令</a>
+            </h1>
+        </header>
+        <date class="post-meta meta-date">
+            2020年7月19日
+        </date>
+        
+        <div class="post-meta">
+            <span>|</span>
+            
+            <span class="meta-category"><a href='http://tianbaoo.github.io/categories/Go'>Go</a></span>
+            
+        </div>
+        
+        <div class="post-content">
+            安装工具 最简单的方式 1 $ go get -u golang.org/x/tool/... 替代方式 1 $ GO111MODULE=on go get golang.org/x/tool/cmd/stress 环境变量 1 2 3 4 $ go env $ go env GOPATH GOO GOARCH $ go env -w GOPROXY=https://goproxy.cn,direct $ go help environment 开发 运行代码 1 2 3 4 5 6 7 8 9 $ go run . # 运行当前目录的包 $ go run ./cmd/foo # 运行 ./cmd/foo 目录下的包 获取依赖 $ go get github.com/foo/bar@v1.2.3 $ go get github.com/foo/bar@8e1b8d3 $ go list -m all # 显示所有依赖 $ go mod why -m golang.org/x/y # 为什依赖它？ $ go clean -modcache # 清除模块缓……
+        </div>
+        <p class="readmore"><a href="http://tianbaoo.github.io/post/goFast/">阅读全文</a></p>
+    </article>
+    
+    
+    
+    <article class="post">
+        <header>
+            <h1 class="post-title">
                 <a href="http://tianbaoo.github.io/post/PyCoroutines/" title="Python协程&amp;asyncio&amp;异步编程">Python协程&amp;asyncio&amp;异步编程</a>
             </h1>
         </header>
@@ -169,6 +194,10 @@
 <ul class="widget-list">
     
     <li>
+        <a href="http://tianbaoo.github.io/post/goFast/" title="go常用命令行命令">go常用命令行命令</a>
+    </li>
+    
+    <li>
         <a href="http://tianbaoo.github.io/post/PyCoroutines/" title="Python协程&amp;asyncio&amp;异步编程">Python协程&amp;asyncio&amp;异步编程</a>
     </li>
     
@@ -189,6 +218,8 @@
         <h3 class="widget-title">分类</h3>
 <ul class="widget-list">
     
+    <li><a href="http://tianbaoo.github.io/categories/Go/">Go (1)</a></li>
+    
     <li><a href="http://tianbaoo.github.io/categories/Python/">Python (2)</a></li>
     
     <li><a href="http://tianbaoo.github.io/categories/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/">消息队列 (1)</a></li>
@@ -200,11 +231,7 @@
         <h3 class="widget-title">标签</h3>
 <div class="tagcloud">
     
-    <a href="http://tianbaoo.github.io/tags/Redis/">Redis</a>
-    
-    <a href="http://tianbaoo.github.io/tags/pyjsonrpc/">pyjsonrpc</a>
-    
-    <a href="http://tianbaoo.github.io/tags/%E5%8D%8F%E7%A8%8B/">协程</a>
+    <a href="http://tianbaoo.github.io/tags/%E7%BC%96%E7%A8%8B/">编程</a>
     
 </div>
     </section>

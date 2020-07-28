@@ -12,6 +12,15 @@
     
     
     <item>
+      <title>go常用命令行命令</title>
+      <link>http://tianbaoo.github.io/post/goFast/</link>
+      <pubDate>Sun, 19 Jul 2020 12:15:46 +0000</pubDate>
+      
+      <guid>http://tianbaoo.github.io/post/goFast/</guid>
+      <description>安装工具 最简单的方式 1 $ go get -u golang.org/x/tool/... 替代方式 1 $ GO111MODULE=on go get golang.org/x/tool/cmd/stress 环境变量 1 2 3 4 $ go env $ go env GOPATH GOO GOARCH $ go env -w GOPROXY=https://goproxy.cn,direct $ go help environment 开发 运行代码 1 2 3 4 5 6 7 8 9 $ go run . # 运行当前目录的包 $ go run ./cmd/foo # 运行 ./cmd/foo 目录下的包 获取依赖 $ go get github.com/foo/bar@v1.2.3 $ go get github.com/foo/bar@8e1b8d3 $ go list -m all # 显示所有依赖 $ go mod why -m golang.org/x/y # 为什依赖它？ $ go clean -modcache # 清除模块缓</description>
+    </item>
+    
+    <item>
       <title>Python协程&amp;asyncio&amp;异步编程</title>
       <link>http://tianbaoo.github.io/post/PyCoroutines/</link>
       <pubDate>Sat, 23 May 2020 11:15:46 +0000</pubDate>
@@ -44,7 +53,7 @@
       <pubDate>Tue, 18 Feb 2020 00:13:27 +0000</pubDate>
       
       <guid>http://tianbaoo.github.io/about/</guid>
-      <description>2018.06~2020.04年 Python工程师 云计算行业 邮箱: gtb365@163.com 微信号: GT_365</description>
+      <description>2018.06~2020.04年 Python工程师 云计算行业 2020.05~至今 Python工程师 3D打印行业 邮箱: gtb365@163.com 微信号: GT_365</description>
     </item>
     
     <item>

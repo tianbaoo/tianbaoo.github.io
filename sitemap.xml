@@ -4,12 +4,32 @@
   
   <url>
     <loc>http://tianbaoo.github.io/categories/</loc>
-    <lastmod>2020-05-23T11:15:46+00:00</lastmod>
+    <lastmod>2020-07-19T12:15:46+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://tianbaoo.github.io/categories/Go/</loc>
+    <lastmod>2020-07-19T12:15:46+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://tianbaoo.github.io/post/goFast/</loc>
+    <lastmod>2020-07-19T12:15:46+00:00</lastmod>
   </url>
   
   <url>
     <loc>http://tianbaoo.github.io/post/</loc>
-    <lastmod>2020-05-23T11:15:46+00:00</lastmod>
+    <lastmod>2020-07-19T12:15:46+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://tianbaoo.github.io/tags/</loc>
+    <lastmod>2020-07-19T12:15:46+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://tianbaoo.github.io/tags/%E7%BC%96%E7%A8%8B/</loc>
+    <lastmod>2020-07-19T12:15:46+00:00</lastmod>
   </url>
   
   <url>
@@ -23,21 +43,6 @@
   </url>
   
   <url>
-    <loc>http://tianbaoo.github.io/tags/</loc>
-    <lastmod>2020-05-23T11:15:46+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://tianbaoo.github.io/tags/%E5%8D%8F%E7%A8%8B/</loc>
-    <lastmod>2020-05-23T11:15:46+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://tianbaoo.github.io/tags/Redis/</loc>
-    <lastmod>2020-02-20T11:15:46+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>http://tianbaoo.github.io/post/MyRedisQueue/</loc>
     <lastmod>2020-02-20T11:15:46+00:00</lastmod>
   </url>
@@ -45,11 +50,6 @@
   <url>
     <loc>http://tianbaoo.github.io/categories/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/</loc>
     <lastmod>2020-02-20T11:15:46+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://tianbaoo.github.io/tags/pyjsonrpc/</loc>
-    <lastmod>2020-02-19T12:15:46+00:00</lastmod>
   </url>
   
   <url>
