@@ -6,20 +6,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>关于我 | 天宝的博客</title>
-    <meta property="og:title" content="关于我 - 天宝的博客">
+    <title>go--map | 天宝的博客</title>
+    <meta property="og:title" content="go--map - 天宝的博客">
     <meta property="og:type" content="article">
         
-    <meta property="article:published_time" content='2021-06-18T00:13:27&#43;08:00'>
+    <meta property="article:published_time" content='2021-03-09T14:34:21&#43;08:00'>
         
         
-    <meta property="article:modified_time" content='2021-06-18T00:13:27&#43;08:00'>
+    <meta property="article:modified_time" content='2021-03-09T14:34:21&#43;08:00'>
         
     <meta name="Keywords" content="golang,go语言,go语言笔记,天宝,Python,Django,博客">
-    <meta name="description" content="高级Python工程师、Go爱好者，云计算打杂师">
+    <meta name="description" content="go--map">
         
     <meta name="author" content="郭天宝">
-    <meta property="og:url" content="http://tianbaoo.github.io/about/">
+    <meta property="og:url" content="http://tianbaoo.github.io/post/go-map/">
     <link rel="shortcut icon" href='css/favicon.ico' type="image/x-icon">
 
     <link rel="stylesheet" href='/css/normalize.css'>
@@ -52,11 +52,11 @@
             </div>
             <div>
                 <nav id="nav-menu" class="clearfix">
-                    <a class="" href="http://tianbaoo.github.io/">首页</a>
+                    <a class="current" href="http://tianbaoo.github.io/">首页</a>
                     
                     <a  href="http://tianbaoo.github.io/archives/" title="归档">归档</a>
                     
-                    <a class="current" href="http://tianbaoo.github.io/about/" title="关于">关于</a>
+                    <a  href="http://tianbaoo.github.io/about/" title="关于">关于</a>
                     
                 </nav>
             </div>
@@ -74,11 +74,18 @@
     
     <article class="post">
         <header>
-            <h1 class="post-title">关于我</h1>
+            <h1 class="post-title">go--map</h1>
         </header>
         <date class="post-meta meta-date">
-            2021年6月18日
+            2021年3月9日
         </date>
+        
+        <div class="post-meta">
+            <span>|</span>
+            
+            <span class="meta-category"><a href='http://tianbaoo.github.io/categories/Go'>Go</a></span>
+            
+        </div>
         
         
         <div class="post-meta">
@@ -88,16 +95,65 @@
         
         
         <div class="post-content">
-            <p>2018.06~2020.04年 Python工程师 深圳市智网云联科技有限公司 云计算行业<br>
-2020.05~至今      高级Python工程师 深圳市创想三维科技股份有限公司 3D打印行业</p>
-<ul>
-<li>邮箱: <a href="mailto:gtb365@163.com">gtb365@163.com</a></li>
-<li>微信号: GT_365</li>
-</ul>
+            <h1 id="go的map常用操作">go的map常用操作</h1>
+<p>map常用操作</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#ff79c6">package</span> main
 
+<span style="color:#ff79c6">import</span> <span style="color:#f1fa8c">&#34;fmt&#34;</span>
+
+<span style="color:#8be9fd;font-style:italic">func</span> <span style="color:#50fa7b">ChangeMap</span>(myMap <span style="color:#8be9fd;font-style:italic">map</span>[<span style="color:#8be9fd">string</span>]<span style="color:#8be9fd">string</span>) {
+	<span style="color:#6272a4">// map是引用传递
+</span><span style="color:#6272a4"></span>	myMap[<span style="color:#f1fa8c">&#34;name&#34;</span>] = <span style="color:#f1fa8c">&#34;guo&#34;</span>
+}
+
+<span style="color:#8be9fd;font-style:italic">func</span> <span style="color:#50fa7b">main</span>() {
+	<span style="color:#8be9fd;font-style:italic">var</span> myMap1 <span style="color:#8be9fd;font-style:italic">map</span>[<span style="color:#8be9fd">string</span>]<span style="color:#8be9fd">string</span>
+	<span style="color:#6272a4">// 在使用map前， 需要先用make给map分配数据空间
+</span><span style="color:#6272a4"></span>	myMap1 = <span style="color:#8be9fd;font-style:italic">make</span>(<span style="color:#8be9fd;font-style:italic">map</span>[<span style="color:#8be9fd">string</span>]<span style="color:#8be9fd">string</span>, <span style="color:#bd93f9">10</span>)
+	myMap1[<span style="color:#f1fa8c">&#34;name&#34;</span>] = <span style="color:#f1fa8c">&#34;tianbao&#34;</span>
+	fmt.<span style="color:#50fa7b">Println</span>(myMap1)  <span style="color:#6272a4">// 输出：map[name:tianbao]
+</span><span style="color:#6272a4"></span>	<span style="color:#50fa7b">ChangeMap</span>(myMap1)
+	fmt.<span style="color:#50fa7b">Println</span>(myMap1)  <span style="color:#6272a4">// 输出：map[name:guo]
+</span><span style="color:#6272a4"></span>}
+
+</code></pre></td></tr></table>
+</div>
+</div>
         </div>
 
         
+<div class="post-archive">
+    <ul class="post-copyright">
+        <li><strong>原文作者：</strong><a rel="author" href="http://tianbaoo.github.io/">郭天宝</a></li>
+        <li style="word-break:break-all"><strong>原文链接：</strong><a href="http://tianbaoo.github.io/post/go-map/">http://tianbaoo.github.io/post/go-map/</a></li>
+        <li><strong>版权声明：</strong>本作品采用<a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议</a>进行许可，非商业转载请注明出处（作者，原文链接），商业转载请联系作者获得授权。</li>
+    </ul>
+</div>
+<br/>
+
 
 
         
@@ -106,15 +162,15 @@
     <h2>See Also</h2>
     <ul class="listing">
         
-        <li><a href="/post/go-%E5%B9%B6%E5%8F%91/">go--并发</a></li>
-        
-        <li><a href="/post/go-%E5%8F%8D%E5%B0%84/">go--反射</a></li>
-        
-        <li><a href="/post/go-%E7%BB%93%E6%9E%84%E4%BD%93/">go--结构体和interface</a></li>
-        
-        <li><a href="/post/go-map/">go--map</a></li>
-        
         <li><a href="/post/go-%E5%87%BD%E6%95%B0/">go--函数</a></li>
+        
+        <li><a href="/post/go-%E5%88%87%E7%89%87/">go--切片</a></li>
+        
+        <li><a href="/post/go-%E5%AD%97%E7%AC%A6%E4%B8%B2/">go--字符串</a></li>
+        
+        <li><a href="/post/go-%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">go--环境搭建</a></li>
+        
+        <li><a href="/post/goFast/">go常用命令行命令</a></li>
         
     </ul>
 </div>
@@ -122,7 +178,11 @@
 
         <div class="post-meta meta-tags">
             
-            没有标签
+            <ul class="clearfix">
+                
+                <li><a href='http://tianbaoo.github.io/tags/%E7%BC%96%E7%A8%8B'>编程</a></li>
+                
+            </ul>
             
         </div>
     </article>

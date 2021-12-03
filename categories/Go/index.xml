@@ -6,10 +6,82 @@
     <description>Recent content in Go on 天宝的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sun, 19 Jul 2020 12:15:46 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 11 Mar 2021 19:29:32 +0000</lastBuildDate>
     
 	<atom:link href="http://tianbaoo.github.io/categories/Go/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>go--并发</title>
+      <link>http://tianbaoo.github.io/post/go-%E5%B9%B6%E5%8F%91/</link>
+      <pubDate>Thu, 11 Mar 2021 19:29:32 +0000</pubDate>
+      
+      <guid>http://tianbaoo.github.io/post/go-%E5%B9%B6%E5%8F%91/</guid>
+      <description>go并发常用操作 启动多个goroutine 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 package main import ( &amp;#34;fmt&amp;#34; &amp;#34;sync&amp;#34; ) var wg sync.WaitGroup func hello(i int) { defer wg.Done() // goroutine结束就登记-1 fmt.Println(&amp;#34;hello&amp;#34;, i) } func main() { for i:= 0; i &amp;lt; 100; i++{ wg.Add(1) // 启动一个goroutine就登记+1 go hello(i) } wg.Wait() // 等待所有登记的goroutine都结束 } runtime包</description>
+    </item>
+    
+    <item>
+      <title>go--反射</title>
+      <link>http://tianbaoo.github.io/post/go-%E5%8F%8D%E5%B0%84/</link>
+      <pubDate>Wed, 10 Mar 2021 18:28:34 +0000</pubDate>
+      
+      <guid>http://tianbaoo.github.io/post/go-%E5%8F%8D%E5%B0%84/</guid>
+      <description>go的反射常用操作 变量内在机制 类型信息：预先定义好的元信息 值信息：程序运行过程中可动态变化的 reflect包提供了reflect.TypeOf和reflect.ValueOf两个函数来获取任意对象的Type和Value go的反射常用操作 reflect包 1 2 3 4 5 6 7 8 9 10 11 12 13 14</description>
+    </item>
+    
+    <item>
+      <title>go--结构体和interface</title>
+      <link>http://tianbaoo.github.io/post/go-%E7%BB%93%E6%9E%84%E4%BD%93/</link>
+      <pubDate>Wed, 10 Mar 2021 16:22:45 +0000</pubDate>
+      
+      <guid>http://tianbaoo.github.io/post/go-%E7%BB%93%E6%9E%84%E4%BD%93/</guid>
+      <description>go的struct常用操作 struct常用操作 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 package main import &amp;#34;fmt&amp;#34; type Person struct { Name string Age int } func newPerson(name string, age int) *Person { // Go语言的结构体没有构造函数，我们可以</description>
+    </item>
+    
+    <item>
+      <title>go--map</title>
+      <link>http://tianbaoo.github.io/post/go-map/</link>
+      <pubDate>Tue, 09 Mar 2021 14:34:21 +0000</pubDate>
+      
+      <guid>http://tianbaoo.github.io/post/go-map/</guid>
+      <description>go的map常用操作 map常用操作 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 package main import &amp;#34;fmt&amp;#34; func ChangeMap(myMap map[string]string) { // map是引用传递 myMap[&amp;#34;name&amp;#34;] = &amp;#34;guo&amp;#34; } func main() { var myMap1 map[string]string // 在使用map前， 需要先用make给map分配数据空间 myMap1 = make(map[string]string, 10) myMap1[&amp;#34;name&amp;#34;] = &amp;#34;tianbao&amp;#34; fmt.Println(myMap1) // 输出：map[name:tianbao] ChangeMap(myMap1) fmt.Println(myMap1) // 输出：map[name:guo] }</description>
+    </item>
+    
+    <item>
+      <title>go--函数</title>
+      <link>http://tianbaoo.github.io/post/go-%E5%87%BD%E6%95%B0/</link>
+      <pubDate>Mon, 08 Mar 2021 13:49:56 +0000</pubDate>
+      
+      <guid>http://tianbaoo.github.io/post/go-%E5%87%BD%E6%95%B0/</guid>
+      <description>go的函数常用操作 函数常用操作 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 package main import &amp;#34;fmt&amp;#34; func Add(a int, b int) (c int) { // 返回返回值， 有形参名称的, 直接return // go 不支持函数重载 不支持默认参数 c = a + b return } func main() { ret := Add(5, 7) fmt.Println(ret) }</description>
+    </item>
+    
+    <item>
+      <title>go--切片</title>
+      <link>http://tianbaoo.github.io/post/go-%E5%88%87%E7%89%87/</link>
+      <pubDate>Sun, 07 Mar 2021 12:19:23 +0000</pubDate>
+      
+      <guid>http://tianbaoo.github.io/post/go-%E5%88%87%E7%89%87/</guid>
+      <description>go切片常用操作 切片常用操作 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 package main import ( &amp;#34;fmt&amp;#34; ) func main() { sli := []int{1,2,3,4,5} fmt.Println(sli) // 输出：[1 2 3 4 5] // append追加操作 sli = append(sli, 6) fmt.Println(sli) // 输出：[1 2 3 4 5 6] // 删除切片中的元素 i := 2 sli = append(sli[:i],</description>
+    </item>
+    
+    <item>
+      <title>go--字符串</title>
+      <link>http://tianbaoo.github.io/post/go-%E5%AD%97%E7%AC%A6%E4%B8%B2/</link>
+      <pubDate>Sat, 06 Mar 2021 11:16:23 +0000</pubDate>
+      
+      <guid>http://tianbaoo.github.io/post/go-%E5%AD%97%E7%AC%A6%E4%B8%B2/</guid>
+      <description>go操作字符串 字符串常用操作 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 package main import ( &amp;#34;fmt&amp;#34; &amp;#34;strings&amp;#34; &amp;#34;unicode/utf8&amp;#34; ) func main() { s := &amp;#34;Hello World世界</description>
+    </item>
+    
+    <item>
+      <title>go--环境搭建</title>
+      <link>http://tianbaoo.github.io/post/go-%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</link>
+      <pubDate>Fri, 05 Mar 2021 10:26:46 +0000</pubDate>
+      
+      <guid>http://tianbaoo.github.io/post/go-%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</guid>
+      <description>go环境搭建 环境搭建 1</description>
+    </item>
     
     <item>
       <title>go常用命令行命令</title>

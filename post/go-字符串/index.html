@@ -1,0 +1,537 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>go--字符串 | 天宝的博客</title>
+    <meta property="og:title" content="go--字符串 - 天宝的博客">
+    <meta property="og:type" content="article">
+        
+    <meta property="article:published_time" content='2021-03-06T11:16:23&#43;08:00'>
+        
+        
+    <meta property="article:modified_time" content='2021-03-06T11:16:23&#43;08:00'>
+        
+    <meta name="Keywords" content="golang,go语言,go语言笔记,天宝,Python,Django,博客">
+    <meta name="description" content="go--字符串">
+        
+    <meta name="author" content="郭天宝">
+    <meta property="og:url" content="http://tianbaoo.github.io/post/go-%E5%AD%97%E7%AC%A6%E4%B8%B2/">
+    <link rel="shortcut icon" href='css/favicon.ico' type="image/x-icon">
+
+    <link rel="stylesheet" href='/css/normalize.css'>
+    <link rel="stylesheet" href='/css/style.css'>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    
+
+
+    
+    
+        <link rel="stylesheet" href='/css/douban.css'>
+    
+        <link rel="stylesheet" href='/css/other.css'>
+    
+</head>
+
+
+<body>
+    <header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="http://tianbaoo.github.io/">
+                        天宝的博客
+                    </a>
+                
+                <p class="description">高级Python工程师、Go爱好者</p>
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="current" href="http://tianbaoo.github.io/">首页</a>
+                    
+                    <a  href="http://tianbaoo.github.io/archives/" title="归档">归档</a>
+                    
+                    <a  href="http://tianbaoo.github.io/about/" title="关于">关于</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+    <div id="body">
+        <div class="container">
+            <div class="col-group">
+
+                <div class="col-8" id="main">
+                    
+<div class="res-cons">
+    
+    <article class="post">
+        <header>
+            <h1 class="post-title">go--字符串</h1>
+        </header>
+        <date class="post-meta meta-date">
+            2021年3月6日
+        </date>
+        
+        <div class="post-meta">
+            <span>|</span>
+            
+            <span class="meta-category"><a href='http://tianbaoo.github.io/categories/Go'>Go</a></span>
+            
+        </div>
+        
+        
+        <div class="post-meta">
+            <span id="busuanzi_container_page_pv">|<span id="busuanzi_value_page_pv"></span><span>
+                    阅读</span></span>
+        </div>
+        
+        
+        <div class="post-content">
+            <h1 id="go操作字符串">go操作字符串</h1>
+<p>字符串常用操作</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 30
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 31
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 32
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 33
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 34
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 35
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 36
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 37
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 38
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 39
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 40
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 41
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 42
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 43
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 44
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 45
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 46
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 47
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 48
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 49
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 50
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 51
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 52
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 53
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 54
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 55
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 56
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 57
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 58
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 59
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 60
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 61
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 62
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 63
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 64
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 65
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 66
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 67
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 68
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 69
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 70
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 71
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 72
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 73
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 74
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 75
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 76
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 77
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 78
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 79
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 80
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 81
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 82
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 83
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 84
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 85
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 86
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 87
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 88
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 89
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 90
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 91
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 92
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 93
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 94
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 95
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 96
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 97
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 98
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 99
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">100
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">101
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">102
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">103
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">104
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">105
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#ff79c6">package</span> main
+
+<span style="color:#ff79c6">import</span> (
+	<span style="color:#f1fa8c">&#34;fmt&#34;</span>
+	<span style="color:#f1fa8c">&#34;strings&#34;</span>
+	<span style="color:#f1fa8c">&#34;unicode/utf8&#34;</span>
+)
+
+<span style="color:#8be9fd;font-style:italic">func</span> <span style="color:#50fa7b">main</span>() {
+    s <span style="color:#ff79c6">:=</span> <span style="color:#f1fa8c">&#34;Hello World世界&#34;</span>
+	<span style="color:#6272a4">// 打印变量s的值
+</span><span style="color:#6272a4"></span>	fmt.<span style="color:#50fa7b">Println</span>(s)  <span style="color:#6272a4">// 输出：Hello World世界
+</span><span style="color:#6272a4"></span>
+	<span style="color:#6272a4">// 打印变量s的长度 世界两个字占用6个字节
+</span><span style="color:#6272a4"></span>	fmt.<span style="color:#50fa7b">Println</span>(<span style="color:#8be9fd;font-style:italic">len</span>(s))  <span style="color:#6272a4">// 输出：17
+</span><span style="color:#6272a4"></span>
+	<span style="color:#6272a4">// fmt.Sprintf字符串格式化拼接  fmt.Printf不会自带换行
+</span><span style="color:#6272a4"></span>	name <span style="color:#ff79c6">:=</span> <span style="color:#f1fa8c">&#34;tianbao&#34;</span>
+	age <span style="color:#ff79c6">:=</span> <span style="color:#bd93f9">18</span>
+	s1 <span style="color:#ff79c6">:=</span> fmt.<span style="color:#50fa7b">Sprintf</span>(<span style="color:#f1fa8c">&#34;name: %s, age: %d\n&#34;</span>, name, age)
+	fmt.<span style="color:#50fa7b">Printf</span>(s1)  <span style="color:#6272a4">// 输出：name: tianbao, age: 18
+</span><span style="color:#6272a4"></span>
+	<span style="color:#6272a4">// 字符串分割
+</span><span style="color:#6272a4"></span>	s2 <span style="color:#ff79c6">:=</span> strings.<span style="color:#50fa7b">Split</span>(s, <span style="color:#f1fa8c">&#34;o&#34;</span>)
+	s3 <span style="color:#ff79c6">:=</span> fmt.<span style="color:#50fa7b">Sprintf</span>(<span style="color:#f1fa8c">&#34;type: %T, value: %s&#34;</span>, s2, s2)
+	fmt.<span style="color:#50fa7b">Println</span>(s3)  <span style="color:#6272a4">// 输出：type: []string, value: [Hell  W rld世界]
+</span><span style="color:#6272a4"></span>
+	<span style="color:#6272a4">// 字符串是否包含某个字符
+</span><span style="color:#6272a4"></span>	s4 <span style="color:#ff79c6">:=</span> strings.<span style="color:#50fa7b">Contains</span>(s, <span style="color:#f1fa8c">&#34;Hello&#34;</span>)
+	fmt.<span style="color:#50fa7b">Println</span>(s4)  <span style="color:#6272a4">// 输出：true
+</span><span style="color:#6272a4"></span>	s5 <span style="color:#ff79c6">:=</span> strings.<span style="color:#50fa7b">Contains</span>(s, <span style="color:#f1fa8c">&#34;Heo&#34;</span>)
+	fmt.<span style="color:#50fa7b">Println</span>(s5)  <span style="color:#6272a4">// 输出：false
+</span><span style="color:#6272a4"></span>
+	<span style="color:#6272a4">// 字符串前缀和后缀判断
+</span><span style="color:#6272a4"></span>	s6 <span style="color:#ff79c6">:=</span> strings.<span style="color:#50fa7b">HasPrefix</span>(s, <span style="color:#f1fa8c">&#34;He&#34;</span>)
+	fmt.<span style="color:#50fa7b">Println</span>(s6)  <span style="color:#6272a4">// 输出：true
+</span><span style="color:#6272a4"></span>	s7 <span style="color:#ff79c6">:=</span> strings.<span style="color:#50fa7b">HasSuffix</span>(s, <span style="color:#f1fa8c">&#34;HH&#34;</span>)
+	fmt.<span style="color:#50fa7b">Println</span>(s7)  <span style="color:#6272a4">// 输出：false
+</span><span style="color:#6272a4"></span>
+	<span style="color:#6272a4">// 字符串出现的子位置 Index会输出第一次出现的位置 LastIndex输出最后一次输出的位置
+</span><span style="color:#6272a4"></span>	index <span style="color:#ff79c6">:=</span> strings.<span style="color:#50fa7b">Index</span>(s, <span style="color:#f1fa8c">&#34;o&#34;</span>)
+	fmt.<span style="color:#50fa7b">Println</span>(index)  <span style="color:#6272a4">// 输出：4
+</span><span style="color:#6272a4"></span>	index2 <span style="color:#ff79c6">:=</span> strings.<span style="color:#50fa7b">LastIndex</span>(s, <span style="color:#f1fa8c">&#34;o&#34;</span>)
+	fmt.<span style="color:#50fa7b">Println</span>(index2)  <span style="color:#6272a4">// 输出：7
+</span><span style="color:#6272a4"></span>
+	<span style="color:#6272a4">// 字符串的join操作
+</span><span style="color:#6272a4"></span>	s8 <span style="color:#ff79c6">:=</span> []<span style="color:#8be9fd">string</span>{<span style="color:#f1fa8c">&#34;a1&#34;</span>, <span style="color:#f1fa8c">&#34;a2&#34;</span>, <span style="color:#f1fa8c">&#34;a3&#34;</span>}
+	s9 <span style="color:#ff79c6">:=</span> strings.<span style="color:#50fa7b">Join</span>(s8, <span style="color:#f1fa8c">&#34;#&#34;</span>)
+	fmt.<span style="color:#50fa7b">Println</span>(s9)  <span style="color:#6272a4">// 输出：a1#a2#a3
+</span><span style="color:#6272a4"></span>
+	<span style="color:#6272a4">// byte和rune类型
+</span><span style="color:#6272a4"></span>	<span style="color:#6272a4">// byte uint8类型，或者叫 byte 型，代表了ASCII码的一个字符
+</span><span style="color:#6272a4"></span>	<span style="color:#6272a4">// rune rune类型(int32)，代表一个 UTF-8字符
+</span><span style="color:#6272a4"></span>	<span style="color:#6272a4">// 组成每个字符串的元素叫做&#34;字符&#34;，可以通过遍历或者单个获取字符串元素获得字符。 字符用单引号（&#39;）包裹
+</span><span style="color:#6272a4"></span>	<span style="color:#6272a4">// 当需要处理中文、日文或者其他复合字符时，则需要用到rune类型
+</span><span style="color:#6272a4"></span>	<span style="color:#ff79c6">for</span> i <span style="color:#ff79c6">:=</span> <span style="color:#bd93f9">0</span>; i &lt; <span style="color:#8be9fd;font-style:italic">len</span>(s); i<span style="color:#ff79c6">++</span> { <span style="color:#6272a4">//byte
+</span><span style="color:#6272a4"></span>		fmt.<span style="color:#50fa7b">Printf</span>(<span style="color:#f1fa8c">&#34;%v(%c) &#34;</span>, s[i], s[i])
+	}
+	fmt.<span style="color:#50fa7b">Println</span>()
+	<span style="color:#6272a4">// 输出：72(H) 101(e) 108(l) 108(l) 111(o) 32( ) 87(W) 111(o) 114(r) 108(l) 100(d) 228(ä) 184(¸)
+</span><span style="color:#6272a4"></span>	<span style="color:#ff79c6">for</span> _, r <span style="color:#ff79c6">:=</span> <span style="color:#ff79c6">range</span> s { <span style="color:#6272a4">//rune
+</span><span style="color:#6272a4"></span>		fmt.<span style="color:#50fa7b">Printf</span>(<span style="color:#f1fa8c">&#34;%v(%c) &#34;</span>, r, r)
+	}
+	fmt.<span style="color:#50fa7b">Println</span>()
+	<span style="color:#6272a4">// 输出：72(H) 101(e) 108(l) 108(l) 111(o) 32( ) 87(W) 111(o) 114(r) 108(l) 100(d) 19990(世) 30028(界)
+</span><span style="color:#6272a4"></span>	<span style="color:#6272a4">// 因为UTF8编码下一个中文汉字由3~4个字节组成，所以我们不能简单的按照字节去遍历一个包含中文的字符串，否则就会出现上面输出中第一行的结果
+</span><span style="color:#6272a4"></span>	<span style="color:#6272a4">// 字符串底层是一个byte数组，所以可以和[]byte类型相互转换
+</span><span style="color:#6272a4"></span>	<span style="color:#6272a4">// 字符串是不能修改的 字符串是由byte字节组成，所以字符串的长度是byte字节的长度
+</span><span style="color:#6272a4"></span>	<span style="color:#6272a4">// rune类型用来表示utf8字符，一个rune字符由一个或多个byte组成
+</span><span style="color:#6272a4"></span>
+	<span style="color:#6272a4">// 修改字符串
+</span><span style="color:#6272a4"></span>	<span style="color:#6272a4">// 要修改字符串，需要先将其转换成[]rune或[]byte，完成后再转换为string
+</span><span style="color:#6272a4"></span>	<span style="color:#6272a4">// 无论哪种转换，都会重新分配内存，并复制字节数组
+</span><span style="color:#6272a4"></span>	s10 <span style="color:#ff79c6">:=</span> <span style="color:#f1fa8c">&#34;hello&#34;</span>
+	<span style="color:#6272a4">// 强制类型转换
+</span><span style="color:#6272a4"></span>	bytesS1 <span style="color:#ff79c6">:=</span> []<span style="color:#8be9fd;font-style:italic">byte</span>(s10)
+	bytesS1[<span style="color:#bd93f9">0</span>] = <span style="color:#f1fa8c">&#39;H&#39;</span>
+	fmt.<span style="color:#50fa7b">Println</span>(<span style="color:#8be9fd;font-style:italic">string</span>((bytesS1)))  <span style="color:#6272a4">// 输出：Hello
+</span><span style="color:#6272a4"></span>	s11 <span style="color:#ff79c6">:=</span> <span style="color:#f1fa8c">&#34;世界&#34;</span>
+	runeS2 <span style="color:#ff79c6">:=</span> []<span style="color:#8be9fd;font-style:italic">rune</span>(s11)
+	runeS2[<span style="color:#bd93f9">0</span>] = <span style="color:#f1fa8c">&#39;天&#39;</span>
+	fmt.<span style="color:#50fa7b">Println</span>(<span style="color:#8be9fd;font-style:italic">string</span>(runeS2))  <span style="color:#6272a4">// 天界
+</span><span style="color:#6272a4"></span>
+	<span style="color:#6272a4">// 字符串切片
+</span><span style="color:#6272a4"></span>	substr <span style="color:#ff79c6">:=</span> s[<span style="color:#bd93f9">6</span>:<span style="color:#bd93f9">11</span>]
+	fmt.<span style="color:#50fa7b">Printf</span>(<span style="color:#f1fa8c">&#34;substr:%T\n&#34;</span>, substr)  <span style="color:#6272a4">// 输出：substr:string
+</span><span style="color:#6272a4"></span>    fmt.<span style="color:#50fa7b">Println</span>(substr)  <span style="color:#6272a4">// 输出：World
+</span><span style="color:#6272a4"></span>
+	<span style="color:#6272a4">// 获取字符串字节数
+</span><span style="color:#6272a4"></span>	fmt.<span style="color:#50fa7b">Println</span>(<span style="color:#8be9fd;font-style:italic">len</span>(s)) <span style="color:#6272a4">// 输出：17
+</span><span style="color:#6272a4"></span>	<span style="color:#6272a4">// 获取一个字符串的字符数
+</span><span style="color:#6272a4"></span>	s12 <span style="color:#ff79c6">:=</span> utf8.<span style="color:#50fa7b">RuneCountInString</span>(s)
+	fmt.<span style="color:#50fa7b">Println</span>(s12)  <span style="color:#6272a4">// 输出：13
+</span><span style="color:#6272a4"></span>
+	<span style="color:#6272a4">// 字符串替换Replace
+</span><span style="color:#6272a4"></span>	s13 <span style="color:#ff79c6">:=</span> strings.<span style="color:#50fa7b">Replace</span>(s, <span style="color:#f1fa8c">&#34;o&#34;</span>, <span style="color:#f1fa8c">&#34;a&#34;</span>, <span style="color:#ff79c6">-</span><span style="color:#bd93f9">1</span>)
+	fmt.<span style="color:#50fa7b">Println</span>(s13)  <span style="color:#6272a4">// 输出：Hella Warld世界
+</span><span style="color:#6272a4"></span>
+	<span style="color:#6272a4">// 大小写全字符替换
+</span><span style="color:#6272a4"></span>	s14 <span style="color:#ff79c6">:=</span> strings.<span style="color:#50fa7b">ToLower</span>(s)
+	fmt.<span style="color:#50fa7b">Println</span>(s14)  <span style="color:#6272a4">// 输出：hello world世界
+</span><span style="color:#6272a4"></span>	s15 <span style="color:#ff79c6">:=</span> strings.<span style="color:#50fa7b">ToUpper</span>(s)
+	fmt.<span style="color:#50fa7b">Println</span>(s15)  <span style="color:#6272a4">// 输出：HELLO WORLD世界
+</span><span style="color:#6272a4"></span>
+}
+</code></pre></td></tr></table>
+</div>
+</div>
+        </div>
+
+        
+<div class="post-archive">
+    <ul class="post-copyright">
+        <li><strong>原文作者：</strong><a rel="author" href="http://tianbaoo.github.io/">郭天宝</a></li>
+        <li style="word-break:break-all"><strong>原文链接：</strong><a href="http://tianbaoo.github.io/post/go-%E5%AD%97%E7%AC%A6%E4%B8%B2/">http://tianbaoo.github.io/post/go-%E5%AD%97%E7%AC%A6%E4%B8%B2/</a></li>
+        <li><strong>版权声明：</strong>本作品采用<a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议</a>进行许可，非商业转载请注明出处（作者，原文链接），商业转载请联系作者获得授权。</li>
+    </ul>
+</div>
+<br/>
+
+
+
+        
+
+<div class="post-archive">
+    <h2>See Also</h2>
+    <ul class="listing">
+        
+        <li><a href="/post/go-%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">go--环境搭建</a></li>
+        
+        <li><a href="/post/goFast/">go常用命令行命令</a></li>
+        
+        <li><a href="/post/PyCoroutines/">Python协程&amp;asyncio&amp;异步编程</a></li>
+        
+        <li><a href="/post/MyRedisQueue/">封装的Redis队列</a></li>
+        
+        <li><a href="/post/jsonrpc/">pyjsonrpc的使用</a></li>
+        
+    </ul>
+</div>
+
+
+        <div class="post-meta meta-tags">
+            
+            <ul class="clearfix">
+                
+                <li><a href='http://tianbaoo.github.io/tags/%E7%BC%96%E7%A8%8B'>编程</a></li>
+                
+            </ul>
+            
+        </div>
+    </article>
+    
+    
+
+    
+    
+    <div class="post bg-white">
+      <script src="https://utteranc.es/client.js"
+            repo= "tianbaoo/tianbaoo.github.io"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+      </script>
+    </div>
+    
+</div>
+
+                </div>
+
+                <div id="secondary">
+    <section class="widget">
+        <form id="search" action='http://tianbaoo.github.io/search/' method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="http://tianbaoo.github.io/">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+    
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="http://tianbaoo.github.io/post/go-%E5%B9%B6%E5%8F%91/" title="go--并发">go--并发</a>
+    </li>
+    
+    <li>
+        <a href="http://tianbaoo.github.io/post/go-%E5%8F%8D%E5%B0%84/" title="go--反射">go--反射</a>
+    </li>
+    
+    <li>
+        <a href="http://tianbaoo.github.io/post/go-%E7%BB%93%E6%9E%84%E4%BD%93/" title="go--结构体和interface">go--结构体和interface</a>
+    </li>
+    
+    <li>
+        <a href="http://tianbaoo.github.io/post/go-map/" title="go--map">go--map</a>
+    </li>
+    
+    <li>
+        <a href="http://tianbaoo.github.io/post/go-%E5%87%BD%E6%95%B0/" title="go--函数">go--函数</a>
+    </li>
+    
+    <li>
+        <a href="http://tianbaoo.github.io/post/go-%E5%88%87%E7%89%87/" title="go--切片">go--切片</a>
+    </li>
+    
+    <li>
+        <a href="http://tianbaoo.github.io/post/go-%E5%AD%97%E7%AC%A6%E4%B8%B2/" title="go--字符串">go--字符串</a>
+    </li>
+    
+    <li>
+        <a href="http://tianbaoo.github.io/post/go-%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" title="go--环境搭建">go--环境搭建</a>
+    </li>
+    
+    <li>
+        <a href="http://tianbaoo.github.io/post/goFast/" title="go常用命令行命令">go常用命令行命令</a>
+    </li>
+    
+    <li>
+        <a href="http://tianbaoo.github.io/post/PyCoroutines/" title="Python协程&amp;asyncio&amp;异步编程">Python协程&amp;asyncio&amp;异步编程</a>
+    </li>
+    
+</ul>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+    <li><a href="http://tianbaoo.github.io/categories/Go/">Go (9)</a></li>
+    
+    <li><a href="http://tianbaoo.github.io/categories/Python/">Python (2)</a></li>
+    
+    <li><a href="http://tianbaoo.github.io/categories/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/">消息队列 (1)</a></li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="http://tianbaoo.github.io/tags/%E7%BC%96%E7%A8%8B/">编程</a>
+    
+</div>
+    </section>
+
+    
+<section class="widget">
+    <h3 class="widget-title">友情链接</h3>
+    <ul class="widget-list">
+        
+        <li>
+            <a target="_blank" href="https://www.github.com/tianbaoo/" title="天宝的GitHub">天宝的Github</a>
+        </li>
+        
+    </ul>
+</section>
+
+
+    <section class="widget">
+        <h3 class="widget-title">其它</h3>
+        <ul class="widget-list">
+            <li><a href="http://tianbaoo.github.io/index.xml">文章 RSS</a></li>
+        </ul>
+    </section>
+</div>
+            </div>
+        </div>
+    </div>
+    <footer id="footer">
+    <div class="container">
+        &copy; 2021 <a href="http://tianbaoo.github.io/">天宝的博客 By 郭天宝</a>.
+        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
+        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/flysnow-org/maupassant-hugo" target="_blank">maupassant</a>.
+        
+    </div>
+</footer>
+
+
+    
+    <script type="text/javascript">
+        window.MathJax = {
+            tex2jax: {
+                inlineMath: [['$', '$']],
+                processEscapes: true
+                }
+            };
+    </script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src='/js/totop.js?v=0.0.0' async=""></script>
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'GA ID', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+    <script type="text/javascript" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+
+
+
+
+    <script src='/js/douban.js'></script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+
+</body>
+
+</html>
