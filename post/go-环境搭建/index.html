@@ -99,11 +99,31 @@
 <p>环境搭建</p>
 <div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">
-</code></pre></td></tr></table>
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">wget https:<span style="color:#6272a4">//studygolang.com/dl/golang/go1.17.4.linux-amd64.tar.gz
+</span><span style="color:#6272a4"></span>sudo tar <span style="color:#ff79c6">-</span>xvf go1<span style="color:#bd93f9">.17.4</span>.linux<span style="color:#ff79c6">-</span>amd64.tar.gz
+sudo mv <span style="color:#ff79c6">go</span> <span style="color:#ff79c6">/</span>usr<span style="color:#ff79c6">/</span>local
+# 配置环境变量
+vim ~<span style="color:#ff79c6">/</span>.bashrc
+写入
+export GOROOT=<span style="color:#ff79c6">/</span>usr<span style="color:#ff79c6">/</span>local<span style="color:#ff79c6">/</span><span style="color:#ff79c6">go</span> #编译器路径
+export GOPATH=$HOME<span style="color:#ff79c6">/</span><span style="color:#ff79c6">go</span> #项目路径
+export PATH=$GOPATH<span style="color:#ff79c6">/</span>bin:$GOROOT<span style="color:#ff79c6">/</span>bin:$PATH
+保存后source ~<span style="color:#ff79c6">/</span>.bashrc
+<span style="color:#ff79c6">go</span> env <span style="color:#ff79c6">-</span>w GOPROXY=https:<span style="color:#6272a4">//goproxy.cn,direct # 代理
+</span></code></pre></td></tr></table>
 </div>
 </div>
         </div>
