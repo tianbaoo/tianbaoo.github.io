@@ -80,6 +80,29 @@
     <article class="post">
         <header>
             <h1 class="post-title">
+                <a href="http://tianbaoo.github.io/post/Dockerfile-%E5%88%86%E6%AE%B5%E7%BC%96%E8%AF%91/">Dockerfile--分段编译</a>
+            </h1>
+        </header>
+        <date class="post-meta meta-date">
+            2021年3月15日
+        </date>
+        
+        <div class="post-meta meta-category">
+            |
+            
+            <a href='http://tianbaoo.github.io/categories/Go'>Go</a>
+            
+        </div>
+        
+        <div class="post-content">
+            Dockerfile&ndash;分段编译 Dockerfile示例 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 FROM golang:1.16-alpine AS builder LABEL stage=gobuilder ENV CGO_ENABLED 0 ENV GOOS linux ENV GOPROXY https://goproxy.cn,direct RUN mkdir /server WORKDIR /server ADD go.mod . ADD go.sum . RUN go mod download COPY . . RUN go build -ldflags=&#34;-s -w&#34; -o /server/main ./main.go FROM alpine RUN apk update --no-cache &amp;&amp; apk add --no-cache ca-certificates tzdata ENV TZ Asia/Shanghai WORKDIR /server COPY --from=builder /server/main /server/main CMD [&#34;./main&#34;] 运行 1 2 docker build -t server_api:v1.0.2 . docker run -it --rm server_api:v1.0.2……
+            <p class="readmore"><a href="http://tianbaoo.github.io/post/Dockerfile-%E5%88%86%E6%AE%B5%E7%BC%96%E8%AF%91/">阅读全文</a></p>
+        </div>
+    </article>
+    
+    <article class="post">
+        <header>
+            <h1 class="post-title">
                 <a href="http://tianbaoo.github.io/post/go-%E5%B9%B6%E5%8F%91/">go--并发</a>
             </h1>
         </header>
@@ -233,7 +256,7 @@
         </div>
         
         <div class="post-content">
-            go操作字符串 字符串常用操作 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 package main import ( &#34;fmt&#34; &#34;strings&#34; &#34;unicode/utf8&#34; ) func main() { s := &#34;Hello World世界……
+            go操作字符串 字符串常用操作 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 package main import ( &#34;fmt&#34; &#34;strings&#34; &#34;unicode/utf8&#34; ) func main() { s := &#34;Hello Wo……
             <p class="readmore"><a href="http://tianbaoo.github.io/post/go-%E5%AD%97%E7%AC%A6%E4%B8%B2/">阅读全文</a></p>
         </div>
     </article>
@@ -310,6 +333,18 @@
 <ul class="widget-list">
     
     <li>
+        <a href="http://tianbaoo.github.io/post/MySQL/" title="MySQL面试题">MySQL面试题</a>
+    </li>
+    
+    <li>
+        <a href="http://tianbaoo.github.io/post/Redis/" title="Redis知识点">Redis知识点</a>
+    </li>
+    
+    <li>
+        <a href="http://tianbaoo.github.io/post/Dockerfile-%E5%88%86%E6%AE%B5%E7%BC%96%E8%AF%91/" title="Dockerfile--分段编译">Dockerfile--分段编译</a>
+    </li>
+    
+    <li>
         <a href="http://tianbaoo.github.io/post/go-%E5%B9%B6%E5%8F%91/" title="go--并发">go--并发</a>
     </li>
     
@@ -337,18 +372,6 @@
         <a href="http://tianbaoo.github.io/post/go-%E5%AD%97%E7%AC%A6%E4%B8%B2/" title="go--字符串">go--字符串</a>
     </li>
     
-    <li>
-        <a href="http://tianbaoo.github.io/post/go-%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" title="go--环境搭建">go--环境搭建</a>
-    </li>
-    
-    <li>
-        <a href="http://tianbaoo.github.io/post/goFast/" title="go常用命令行命令">go常用命令行命令</a>
-    </li>
-    
-    <li>
-        <a href="http://tianbaoo.github.io/post/PyCoroutines/" title="Python协程&amp;asyncio&amp;异步编程">Python协程&amp;asyncio&amp;异步编程</a>
-    </li>
-    
 </ul>
     </section>
 
@@ -358,11 +381,13 @@
         <h3 class="widget-title">分类</h3>
 <ul class="widget-list">
     
-    <li><a href="http://tianbaoo.github.io/categories/Go/">Go (9)</a></li>
+    <li><a href="http://tianbaoo.github.io/categories/Go/">Go (10)</a></li>
     
     <li><a href="http://tianbaoo.github.io/categories/Python/">Python (2)</a></li>
     
     <li><a href="http://tianbaoo.github.io/categories/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/">消息队列 (1)</a></li>
+    
+    <li><a href="http://tianbaoo.github.io/categories/%E9%9D%A2%E8%AF%95/">面试 (2)</a></li>
     
 </ul>
     </section>
@@ -372,6 +397,8 @@
 <div class="tagcloud">
     
     <a href="http://tianbaoo.github.io/tags/%E7%BC%96%E7%A8%8B/">编程</a>
+    
+    <a href="http://tianbaoo.github.io/tags/%E9%9D%A2%E8%AF%95/">面试</a>
     
 </div>
     </section>
@@ -401,7 +428,7 @@
     </div>
     <footer id="footer">
     <div class="container">
-        &copy; 2021 <a href="http://tianbaoo.github.io/">天宝的博客 By 郭天宝</a>.
+        &copy; 2022 <a href="http://tianbaoo.github.io/">天宝的博客 By 郭天宝</a>.
         Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
         <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/flysnow-org/maupassant-hugo" target="_blank">maupassant</a>.
         

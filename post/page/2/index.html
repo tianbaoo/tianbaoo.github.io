@@ -73,6 +73,81 @@
     <article class="post">
         <header>
             <h1 class="post-title">
+                <a href="http://tianbaoo.github.io/post/go-%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" title="go--环境搭建">go--环境搭建</a>
+            </h1>
+        </header>
+        <date class="post-meta meta-date">
+            2021年3月5日
+        </date>
+        
+        <div class="post-meta">
+            <span>|</span>
+            
+            <span class="meta-category"><a href='http://tianbaoo.github.io/categories/Go'>Go</a></span>
+            
+        </div>
+        
+        <div class="post-content">
+            go环境搭建 环境搭建 1 2 3 4 5 6 7 8 9 10 11 wget https://studygolang.com/dl/golang/go1.17.4.linux-amd64.tar.gz sudo tar -xvf go1.17.4.linux-amd64.tar.gz sudo mv go /usr/local # 配置环境变量 vim ~/.bashrc 写入 export GOROOT=/usr/local/go #编译器路径 export GOPATH=$HOME/go #项目路径 export PATH=$GOPATH/bin:$GOROOT/bin:$PATH 保存后source ~/.bashrc go env -w GOPROXY=https://goproxy.cn,direct # 代理……
+        </div>
+        <p class="readmore"><a href="http://tianbaoo.github.io/post/go-%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">阅读全文</a></p>
+    </article>
+    
+    
+    
+    <article class="post">
+        <header>
+            <h1 class="post-title">
+                <a href="http://tianbaoo.github.io/post/goFast/" title="go常用命令行命令">go常用命令行命令</a>
+            </h1>
+        </header>
+        <date class="post-meta meta-date">
+            2020年7月19日
+        </date>
+        
+        <div class="post-meta">
+            <span>|</span>
+            
+            <span class="meta-category"><a href='http://tianbaoo.github.io/categories/Go'>Go</a></span>
+            
+        </div>
+        
+        <div class="post-content">
+            安装工具 最简单的方式 1 $ go get -u golang.org/x/tool/... 替代方式 1 $ GO111MODULE=on go get golang.org/x/tool/cmd/stress 环境变量 1 2 3 4 $ go env $ go env GOPATH GOO GOARCH $ go env -w GOPROXY=https://goproxy.cn,direct $ go help environment 开发 运行代码 1 2 3 4 5 6 7 8 9 $ go run . # 运行当前目录的包 $ go run ./cmd/foo # 运行 ./cmd/foo 目录下的包 获取依赖 $ go get github.com/foo/bar@v1.2.3 $ go get github.com/foo/bar@8e1b8d3 $ go list -m all # 显示所有依赖 $ go mod why -m golang.org/x/y # 为什依赖它？ $ go clean -modcache # 清除模块缓……
+        </div>
+        <p class="readmore"><a href="http://tianbaoo.github.io/post/goFast/">阅读全文</a></p>
+    </article>
+    
+    
+    
+    <article class="post">
+        <header>
+            <h1 class="post-title">
+                <a href="http://tianbaoo.github.io/post/PyCoroutines/" title="Python协程&amp;asyncio&amp;异步编程">Python协程&amp;asyncio&amp;异步编程</a>
+            </h1>
+        </header>
+        <date class="post-meta meta-date">
+            2020年5月23日
+        </date>
+        
+        <div class="post-meta">
+            <span>|</span>
+            
+            <span class="meta-category"><a href='http://tianbaoo.github.io/categories/Python'>Python</a></span>
+            
+        </div>
+        
+        <div class="post-content">
+            Python协程&amp;asyncio&amp;异步编程 1.协程 协程是微线程，是一种用户态上下文切换技术，通过一个线程实现代码块相互切换执行 实现协程有这么几种方法： greenlet，早期的模块 yield 关键字 asyncio python3.4引入的 async、await关键字 python3.5 主流[推荐] 1.1 gree……
+        </div>
+        <p class="readmore"><a href="http://tianbaoo.github.io/post/PyCoroutines/">阅读全文</a></p>
+    </article>
+    
+    
+    
+    <article class="post">
+        <header>
+            <h1 class="post-title">
                 <a href="http://tianbaoo.github.io/post/MyRedisQueue/" title="封装的Redis队列">封装的Redis队列</a>
             </h1>
         </header>
@@ -164,6 +239,18 @@
 <ul class="widget-list">
     
     <li>
+        <a href="http://tianbaoo.github.io/post/MySQL/" title="MySQL面试题">MySQL面试题</a>
+    </li>
+    
+    <li>
+        <a href="http://tianbaoo.github.io/post/Redis/" title="Redis知识点">Redis知识点</a>
+    </li>
+    
+    <li>
+        <a href="http://tianbaoo.github.io/post/Dockerfile-%E5%88%86%E6%AE%B5%E7%BC%96%E8%AF%91/" title="Dockerfile--分段编译">Dockerfile--分段编译</a>
+    </li>
+    
+    <li>
         <a href="http://tianbaoo.github.io/post/go-%E5%B9%B6%E5%8F%91/" title="go--并发">go--并发</a>
     </li>
     
@@ -191,18 +278,6 @@
         <a href="http://tianbaoo.github.io/post/go-%E5%AD%97%E7%AC%A6%E4%B8%B2/" title="go--字符串">go--字符串</a>
     </li>
     
-    <li>
-        <a href="http://tianbaoo.github.io/post/go-%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" title="go--环境搭建">go--环境搭建</a>
-    </li>
-    
-    <li>
-        <a href="http://tianbaoo.github.io/post/goFast/" title="go常用命令行命令">go常用命令行命令</a>
-    </li>
-    
-    <li>
-        <a href="http://tianbaoo.github.io/post/PyCoroutines/" title="Python协程&amp;asyncio&amp;异步编程">Python协程&amp;asyncio&amp;异步编程</a>
-    </li>
-    
 </ul>
     </section>
 
@@ -212,11 +287,13 @@
         <h3 class="widget-title">分类</h3>
 <ul class="widget-list">
     
-    <li><a href="http://tianbaoo.github.io/categories/Go/">Go (9)</a></li>
+    <li><a href="http://tianbaoo.github.io/categories/Go/">Go (10)</a></li>
     
     <li><a href="http://tianbaoo.github.io/categories/Python/">Python (2)</a></li>
     
     <li><a href="http://tianbaoo.github.io/categories/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/">消息队列 (1)</a></li>
+    
+    <li><a href="http://tianbaoo.github.io/categories/%E9%9D%A2%E8%AF%95/">面试 (2)</a></li>
     
 </ul>
     </section>
@@ -226,6 +303,8 @@
 <div class="tagcloud">
     
     <a href="http://tianbaoo.github.io/tags/%E7%BC%96%E7%A8%8B/">编程</a>
+    
+    <a href="http://tianbaoo.github.io/tags/%E9%9D%A2%E8%AF%95/">面试</a>
     
 </div>
     </section>
@@ -255,7 +334,7 @@
     </div>
     <footer id="footer">
     <div class="container">
-        &copy; 2021 <a href="http://tianbaoo.github.io/">天宝的博客 By 郭天宝</a>.
+        &copy; 2022 <a href="http://tianbaoo.github.io/">天宝的博客 By 郭天宝</a>.
         Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
         <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/flysnow-org/maupassant-hugo" target="_blank">maupassant</a>.
         

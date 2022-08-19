@@ -6,21 +6,24 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>消息队列 | 天宝的博客</title>
-    <meta property="og:title" content="消息队列 - 天宝的博客">
+    <title>Redis知识点 | 天宝的博客</title>
+    <meta property="og:title" content="Redis知识点 - 天宝的博客">
     <meta property="og:type" content="article">
         
+    <meta property="article:published_time" content='2022-08-17T09:25:39&#43;08:00'>
+        
+        
+    <meta property="article:modified_time" content='2022-08-17T09:25:39&#43;08:00'>
         
     <meta name="Keywords" content="golang,go语言,go语言笔记,天宝,Python,Django,博客">
-    <meta name="description" content="消息队列">
+    <meta name="description" content="Redis知识点">
         
     <meta name="author" content="郭天宝">
-    <meta property="og:url" content="http://tianbaoo.github.io/categories/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/">
+    <meta property="og:url" content="http://tianbaoo.github.io/post/Redis/">
     <link rel="shortcut icon" href='css/favicon.ico' type="image/x-icon">
 
     <link rel="stylesheet" href='/css/normalize.css'>
     <link rel="stylesheet" href='/css/style.css'>
-    <link rel="alternate" type="application/rss+xml+xml" href="http://tianbaoo.github.io/categories/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/index.xml" title="天宝的博客" />
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
     
@@ -49,7 +52,7 @@
             </div>
             <div>
                 <nav id="nav-menu" class="clearfix">
-                    <a class="" href="http://tianbaoo.github.io/">首页</a>
+                    <a class="current" href="http://tianbaoo.github.io/">首页</a>
                     
                     <a  href="http://tianbaoo.github.io/archives/" title="归档">归档</a>
                     
@@ -69,44 +72,113 @@
                     
 <div class="res-cons">
     
-    <h3 class="archive-title">
-        分类
-        <span class="keyword">消息队列</span>
-        中的文章
-    </h3>
-    
-
-    
     <article class="post">
         <header>
-            <h1 class="post-title">
-                <a href="http://tianbaoo.github.io/post/MyRedisQueue/">封装的Redis队列</a>
-            </h1>
+            <h1 class="post-title">Redis知识点</h1>
         </header>
         <date class="post-meta meta-date">
-            2020年2月20日
+            2022年8月17日
         </date>
         
-        <div class="post-meta meta-category">
-            |
+        <div class="post-meta">
+            <span>|</span>
             
-            <a href='http://tianbaoo.github.io/categories/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97'>消息队列</a>
+            <span class="meta-category"><a href='http://tianbaoo.github.io/categories/%E9%9D%A2%E8%AF%95'>面试</a></span>
             
         </div>
         
+        
+        <div class="post-meta">
+            <span id="busuanzi_container_page_pv">|<span id="busuanzi_value_page_pv"></span><span>
+                    阅读</span></span>
+        </div>
+        
+        
         <div class="post-content">
-            封装的Redis队列 MyRedisQueue.py 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 #!usr/bin/env python2.7 # -*- coding: utf-8 -*- import redis class RedisQueue(object): def __init__(self, name, namespace=&#39;queue&#39;, **redis_kwargs): # redis的默认参数为：host=&#39;localhost&#39;, port=6379, db=0， 其中db为定义redis database的数量 #……
-            <p class="readmore"><a href="http://tianbaoo.github.io/post/MyRedisQueue/">阅读全文</a></p>
+            <h3 id="缓存问题">缓存问题</h3>
+<h4 id="1缓存雪崩">1.缓存雪崩</h4>
+<p>定义：造成缓存雪崩的关键在于在同一时间大规模的key失效<br>
+原因：第一种可能是Redis宕机，第二种可能是采用了相同的过期时间<br>
+解决方法：
+1.采用相同的过期时间导致的缓存雪崩，可以在原有的失效时间上加上一个随机值，比如1-5分钟随机<br>
+2.为了防止Redis宕机导致缓存雪崩的问题，可以搭建Redis集群，提高Redis的容灾性(Redis重启导致的雪崩)<br>
+3.使用熔断机制。当流量到达一定的阈值时，就直接返回“系统拥挤”之类的提示，防止过多的请求打在数据库上。至少能保证一部分用户是可以正常使用，其他用户多刷新几次也能得到结果<br>
+4.提高数据库的容灾能力，可以使用分库分表，读写分离的策略</p>
+<h4 id="2缓存击穿">2.缓存击穿</h4>
+<p>定义：缓存击穿是一个热点的Key，有大并发集中对其进行访问<br>
+原因：突然间这个Key失效了，导致大并发全部打在数据库上，导致数据库压力剧增
+解决方法：<br>
+1.如果业务允许的话，对于热点的key可以设置永不过期的key<br>
+2.使用互斥锁。如果缓存失效的情况，只有拿到锁才可以查询数据库，降低了在同一时刻打在数据库上的请求，防止数据库打死。当然这样会导致系统的性能变差</p>
+<h4 id="3缓存穿透">3.缓存穿透</h4>
+<p>定义：缓存穿透是指缓存和数据库中都没有的数据，而用户不断发起请求，如发起为id为“-1”的数据或id为特别大不存在的数据。这时的用户很可能是攻击者，攻击会导致数据库压力过大。请求传进来的key是不存在Redis中的，假如有大量这样的请求，这些请求像“穿透”了缓存一样直接打在数据库上，这种现象就叫做缓存穿透<br>
+原因：发送的请求传进来的key是不存在Redis中的，那么就查不到缓存，查不到缓存就会去数据库查询<br>
+分析：和缓存雪崩有点相似，都是key不存在导致的，假如有黑客传进大量的不存在的key，那么大量的请求打在数据库上是很致命的问题，所以在日常开发中要对参数做好校验，一些非法的参数，不可能存在的key就直接返回错误提示，要对调用方保持这种“不信任”的心态<br>
+解決方法：<br>
+1.接口层增加校验，如用户鉴权校验，id做基础校验，id&lt;=0的直接拦截<br>
+2.<strong>使用布隆过滤器</strong>。布隆过滤器的作用是某个 key 不存在，那么就一定不存在，它说某个 key 存在，那么很大可能是存在(存在一定的误判率)。于是我们可以在缓存之前再加一层布隆过滤器，在查询的时候先去布隆过滤器查询 key 是否存在，如果不存在就直接返回</p>
+<h4 id="总结">总结</h4>
+<p>做好熔断，一旦出现缓存雪崩，击穿，穿透这种情况，至少还有熔断机制保护数据库不会被打死</p>
+
+        </div>
+
+        
+<div class="post-archive">
+    <ul class="post-copyright">
+        <li><strong>原文作者：</strong><a rel="author" href="http://tianbaoo.github.io/">郭天宝</a></li>
+        <li style="word-break:break-all"><strong>原文链接：</strong><a href="http://tianbaoo.github.io/post/Redis/">http://tianbaoo.github.io/post/Redis/</a></li>
+        <li><strong>版权声明：</strong>本作品采用<a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议</a>进行许可，非商业转载请注明出处（作者，原文链接），商业转载请联系作者获得授权。</li>
+    </ul>
+</div>
+<br/>
+
+
+
+        
+
+<div class="post-archive">
+    <h2>See Also</h2>
+    <ul class="listing">
+        
+        <li><a href="/about/">关于我</a></li>
+        
+        <li><a href="/post/Dockerfile-%E5%88%86%E6%AE%B5%E7%BC%96%E8%AF%91/">Dockerfile--分段编译</a></li>
+        
+        <li><a href="/post/go-%E5%B9%B6%E5%8F%91/">go--并发</a></li>
+        
+        <li><a href="/post/go-%E5%8F%8D%E5%B0%84/">go--反射</a></li>
+        
+        <li><a href="/post/go-%E7%BB%93%E6%9E%84%E4%BD%93/">go--结构体和interface</a></li>
+        
+    </ul>
+</div>
+
+
+        <div class="post-meta meta-tags">
+            
+            <ul class="clearfix">
+                
+                <li><a href='http://tianbaoo.github.io/tags/%E9%9D%A2%E8%AF%95'>面试</a></li>
+                
+            </ul>
+            
         </div>
     </article>
     
-
     
 
-
-
-
-
+    
+    
+    <div class="post bg-white">
+      <script src="https://utteranc.es/client.js"
+            repo= "tianbaoo/tianbaoo.github.io"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+      </script>
+    </div>
+    
 </div>
 
                 </div>
@@ -228,6 +300,17 @@
     </div>
 </footer>
 
+
+    
+    <script type="text/javascript">
+        window.MathJax = {
+            tex2jax: {
+                inlineMath: [['$', '$']],
+                processEscapes: true
+                }
+            };
+    </script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
 
 
 <a id="rocket" href="#top"></a>

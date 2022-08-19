@@ -204,6 +204,11 @@
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">103
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">104
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">105
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">106
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">107
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">108
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">109
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">110
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
 <pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#ff79c6">package</span> main
@@ -309,7 +314,12 @@
 	fmt.<span style="color:#50fa7b">Println</span>(s14)  <span style="color:#6272a4">// 输出：hello world世界
 </span><span style="color:#6272a4"></span>	s15 <span style="color:#ff79c6">:=</span> strings.<span style="color:#50fa7b">ToUpper</span>(s)
 	fmt.<span style="color:#50fa7b">Println</span>(s15)  <span style="color:#6272a4">// 输出：HELLO WORLD世界
-</span><span style="color:#6272a4"></span>
+</span><span style="color:#6272a4"></span>	
+	<span style="color:#6272a4">// 格式化时间
+</span><span style="color:#6272a4"></span>	tm <span style="color:#ff79c6">:=</span> time.<span style="color:#50fa7b">Now</span>()
+	rtime <span style="color:#ff79c6">:=</span> tm.<span style="color:#50fa7b">Format</span>(<span style="color:#f1fa8c">&#34;2006-01-02 15:04:05.000&#34;</span>)
+	fmt.<span style="color:#50fa7b">Println</span>(rtime)
+
 }
 </code></pre></td></tr></table>
 </div>
@@ -392,6 +402,18 @@
 <ul class="widget-list">
     
     <li>
+        <a href="http://tianbaoo.github.io/post/MySQL/" title="MySQL面试题">MySQL面试题</a>
+    </li>
+    
+    <li>
+        <a href="http://tianbaoo.github.io/post/Redis/" title="Redis知识点">Redis知识点</a>
+    </li>
+    
+    <li>
+        <a href="http://tianbaoo.github.io/post/Dockerfile-%E5%88%86%E6%AE%B5%E7%BC%96%E8%AF%91/" title="Dockerfile--分段编译">Dockerfile--分段编译</a>
+    </li>
+    
+    <li>
         <a href="http://tianbaoo.github.io/post/go-%E5%B9%B6%E5%8F%91/" title="go--并发">go--并发</a>
     </li>
     
@@ -419,18 +441,6 @@
         <a href="http://tianbaoo.github.io/post/go-%E5%AD%97%E7%AC%A6%E4%B8%B2/" title="go--字符串">go--字符串</a>
     </li>
     
-    <li>
-        <a href="http://tianbaoo.github.io/post/go-%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" title="go--环境搭建">go--环境搭建</a>
-    </li>
-    
-    <li>
-        <a href="http://tianbaoo.github.io/post/goFast/" title="go常用命令行命令">go常用命令行命令</a>
-    </li>
-    
-    <li>
-        <a href="http://tianbaoo.github.io/post/PyCoroutines/" title="Python协程&amp;asyncio&amp;异步编程">Python协程&amp;asyncio&amp;异步编程</a>
-    </li>
-    
 </ul>
     </section>
 
@@ -440,11 +450,13 @@
         <h3 class="widget-title">分类</h3>
 <ul class="widget-list">
     
-    <li><a href="http://tianbaoo.github.io/categories/Go/">Go (9)</a></li>
+    <li><a href="http://tianbaoo.github.io/categories/Go/">Go (10)</a></li>
     
     <li><a href="http://tianbaoo.github.io/categories/Python/">Python (2)</a></li>
     
     <li><a href="http://tianbaoo.github.io/categories/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/">消息队列 (1)</a></li>
+    
+    <li><a href="http://tianbaoo.github.io/categories/%E9%9D%A2%E8%AF%95/">面试 (2)</a></li>
     
 </ul>
     </section>
@@ -454,6 +466,8 @@
 <div class="tagcloud">
     
     <a href="http://tianbaoo.github.io/tags/%E7%BC%96%E7%A8%8B/">编程</a>
+    
+    <a href="http://tianbaoo.github.io/tags/%E9%9D%A2%E8%AF%95/">面试</a>
     
 </div>
     </section>
@@ -483,7 +497,7 @@
     </div>
     <footer id="footer">
     <div class="container">
-        &copy; 2021 <a href="http://tianbaoo.github.io/">天宝的博客 By 郭天宝</a>.
+        &copy; 2022 <a href="http://tianbaoo.github.io/">天宝的博客 By 郭天宝</a>.
         Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
         <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/flysnow-org/maupassant-hugo" target="_blank">maupassant</a>.
         

@@ -6,15 +6,24 @@
     <description>Recent content in Categories on 天宝的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Thu, 11 Mar 2021 19:29:32 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 18 Aug 2022 10:32:35 +0000</lastBuildDate>
     
 	<atom:link href="http://tianbaoo.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
+      <title>面试</title>
+      <link>http://tianbaoo.github.io/categories/%E9%9D%A2%E8%AF%95/</link>
+      <pubDate>Thu, 18 Aug 2022 10:32:35 +0000</pubDate>
+      
+      <guid>http://tianbaoo.github.io/categories/%E9%9D%A2%E8%AF%95/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Go</title>
       <link>http://tianbaoo.github.io/categories/Go/</link>
-      <pubDate>Thu, 11 Mar 2021 19:29:32 +0000</pubDate>
+      <pubDate>Mon, 15 Mar 2021 09:20:32 +0000</pubDate>
       
       <guid>http://tianbaoo.github.io/categories/Go/</guid>
       <description></description>
