@@ -6,20 +6,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>go--反射 | 天宝的博客</title>
-    <meta property="og:title" content="go--反射 - 天宝的博客">
+    <title>Go泛型 | 天宝的博客</title>
+    <meta property="og:title" content="Go泛型 - 天宝的博客">
     <meta property="og:type" content="article">
         
-    <meta property="article:published_time" content='2021-03-10T18:28:34&#43;08:00'>
+    <meta property="article:published_time" content='2022-08-20T09:33:25&#43;08:00'>
         
         
-    <meta property="article:modified_time" content='2021-03-10T18:28:34&#43;08:00'>
+    <meta property="article:modified_time" content='2022-08-20T09:33:25&#43;08:00'>
         
     <meta name="Keywords" content="golang,go语言,go语言笔记,天宝,Python,Django,博客">
-    <meta name="description" content="go--反射">
+    <meta name="description" content="Go泛型">
         
     <meta name="author" content="郭天宝">
-    <meta property="og:url" content="http://tianbaoo.github.io/post/go-%E5%8F%8D%E5%B0%84/">
+    <meta property="og:url" content="http://tianbaoo.github.io/post/GoGeneric/">
     <link rel="shortcut icon" href='css/favicon.ico' type="image/x-icon">
 
     <link rel="stylesheet" href='/css/normalize.css'>
@@ -74,10 +74,10 @@
     
     <article class="post">
         <header>
-            <h1 class="post-title">go--反射</h1>
+            <h1 class="post-title">Go泛型</h1>
         </header>
         <date class="post-meta meta-date">
-            2021年3月10日
+            2022年8月20日
         </date>
         
         <div class="post-meta">
@@ -95,15 +95,8 @@
         
         
         <div class="post-content">
-            <h1 id="go的反射常用操作">go的反射常用操作</h1>
-<p>变量内在机制</p>
-<ul>
-<li>类型信息：预先定义好的元信息</li>
-<li>值信息：程序运行过程中可动态变化的</li>
-</ul>
-<p>reflect包提供了reflect.TypeOf和reflect.ValueOf两个函数来获取任意对象的Type和Value<br>
-go的反射常用操作</p>
-<h2 id="reflect包">reflect包</h2>
+            <h1 id="golang泛型知识点">Golang泛型知识点</h1>
+<h2 id="1声明泛型函数">1.声明泛型函数</h2>
 <div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
 <pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
@@ -123,30 +116,119 @@ go的反射常用操作</p>
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
 <pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#ff79c6">package</span> main
 
 <span style="color:#ff79c6">import</span> (
 	<span style="color:#f1fa8c">&#34;fmt&#34;</span>
-	<span style="color:#f1fa8c">&#34;reflect&#34;</span>
 )
 
-<span style="color:#8be9fd;font-style:italic">func</span> <span style="color:#50fa7b">reflectType</span>(x <span style="color:#8be9fd;font-style:italic">interface</span>{}) {
-	t <span style="color:#ff79c6">:=</span> reflect.<span style="color:#50fa7b">TypeOf</span>(x)
-	fmt.<span style="color:#50fa7b">Println</span>(t)
+
+<span style="color:#8be9fd;font-style:italic">func</span> printSlice[T any](s []T){
+	<span style="color:#ff79c6">for</span> _,v <span style="color:#ff79c6">:=</span> <span style="color:#ff79c6">range</span> s{
+		fmt.<span style="color:#50fa7b">Printf</span>(<span style="color:#f1fa8c">&#34;%v\n&#34;</span>,v)
+	}
 }
-<span style="color:#8be9fd;font-style:italic">func</span> <span style="color:#50fa7b">main</span>() {
-	a <span style="color:#ff79c6">:=</span> <span style="color:#bd93f9">10</span>
-	<span style="color:#50fa7b">reflectType</span>(a)  <span style="color:#6272a4">// 输出：int
-</span><span style="color:#6272a4"></span>	b <span style="color:#ff79c6">:=</span> <span style="color:#f1fa8c">&#34;str&#34;</span>
-	<span style="color:#50fa7b">reflectType</span>(b)  <span style="color:#6272a4">// 输出：string
-</span><span style="color:#6272a4"></span>}
+
+<span style="color:#8be9fd;font-style:italic">func</span> <span style="color:#50fa7b">main</span>(){
+	<span style="color:#6272a4">// 使用泛型可以传入多种类型不同的参数，进行函数复用
+</span><span style="color:#6272a4"></span>	printSlice[<span style="color:#8be9fd">int</span>]([]<span style="color:#8be9fd">int</span>{<span style="color:#bd93f9">1</span>,<span style="color:#bd93f9">2</span>,<span style="color:#bd93f9">3</span>,<span style="color:#bd93f9">4</span>,<span style="color:#bd93f9">5</span>})
+	printSlice[<span style="color:#8be9fd">float64</span>]([]<span style="color:#8be9fd">float64</span>{<span style="color:#bd93f9">1.1</span>,<span style="color:#bd93f9">1.2</span>,<span style="color:#bd93f9">1.3</span>})
+	printSlice[<span style="color:#8be9fd">string</span>]([]<span style="color:#8be9fd">string</span>{<span style="color:#f1fa8c">&#34;hello&#34;</span>,<span style="color:#f1fa8c">&#34;world&#34;</span>,<span style="color:#f1fa8c">&#34;!&#34;</span>})
+
+	<span style="color:#6272a4">// 省略显示类型 省略显示[T any]
+</span><span style="color:#6272a4"></span>	<span style="color:#50fa7b">printSlice</span>([]<span style="color:#8be9fd">int64</span>{<span style="color:#bd93f9">5</span>,<span style="color:#bd93f9">4</span>,<span style="color:#bd93f9">3</span>,<span style="color:#bd93f9">2</span>,<span style="color:#bd93f9">1</span>})
+
+}
+
 </code></pre></td></tr></table>
 </div>
-</div><h2 id="type-name和type-kind">type name和type kind</h2>
-<p>反射中关于类型还划分为两种：类型（Type）和种类（Kind）<br>
-种类（Kind）就是指底层的类型，但在反射中，当需要区分指针、结构体等大品种的类型时，就会用到种类（Kind）</p>
+</div><p>[T any]参数的类型，意思是该函数支持任何T类型<br>
+多个泛型参数语法</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">[T, M any]
+[T any, M any]
+[T any, M comparable]
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="2声明一个泛型切片">2.声明一个泛型切片</h2>
+<p>带有类型参数的类型被叫做泛型类型<br>
+要使用泛型类型，要先对其进行实例化，就是给类型参数指定一个实参</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#ff79c6">package</span> main
+
+<span style="color:#ff79c6">import</span> (
+	<span style="color:#f1fa8c">&#34;fmt&#34;</span>
+)
+
+<span style="color:#8be9fd;font-style:italic">type</span> anySlice[T any][]T
+
+<span style="color:#8be9fd;font-style:italic">func</span> printSlice[T any](s []T){
+	<span style="color:#ff79c6">for</span> _,v <span style="color:#ff79c6">:=</span> <span style="color:#ff79c6">range</span> s{
+		fmt.<span style="color:#50fa7b">Printf</span>(<span style="color:#f1fa8c">&#34;%v\n&#34;</span>,v)
+	}
+}
+
+<span style="color:#8be9fd;font-style:italic">func</span> <span style="color:#50fa7b">main</span>(){
+
+    a <span style="color:#ff79c6">:=</span> anySlice[<span style="color:#8be9fd">int</span>]{<span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">2</span>}
+	<span style="color:#50fa7b">printSlice</span>(a)
+
+	a2 <span style="color:#ff79c6">:=</span> anySlice[<span style="color:#8be9fd">string</span>]{<span style="color:#f1fa8c">&#34;hello&#34;</span>, <span style="color:#f1fa8c">&#34;world&#34;</span>, <span style="color:#f1fa8c">&#34;!&#34;</span>}
+	<span style="color:#50fa7b">printSlice</span>(a2)
+
+	a3 <span style="color:#ff79c6">:=</span> anySlice[<span style="color:#8be9fd">float64</span>]{<span style="color:#bd93f9">1.1</span>, <span style="color:#bd93f9">1.2</span>, <span style="color:#bd93f9">1.3</span>}
+	<span style="color:#50fa7b">printSlice</span>(a3)
+
+}
+
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="3声明一个泛型map">3.声明一个泛型map</h2>
 <div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
 <pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
@@ -184,336 +266,34 @@ go的反射常用操作</p>
 
 <span style="color:#ff79c6">import</span> (
 	<span style="color:#f1fa8c">&#34;fmt&#34;</span>
-	<span style="color:#f1fa8c">&#34;reflect&#34;</span>
 )
 
-<span style="color:#8be9fd;font-style:italic">func</span> <span style="color:#50fa7b">reflectType</span>(x <span style="color:#8be9fd;font-style:italic">interface</span>{}) {
-	t <span style="color:#ff79c6">:=</span> reflect.<span style="color:#50fa7b">TypeOf</span>(x)
-	fmt.<span style="color:#50fa7b">Println</span>(<span style="color:#f1fa8c">&#34;name:&#34;</span>, t.<span style="color:#50fa7b">Name</span>(), <span style="color:#f1fa8c">&#34; kind:&#34;</span>, t.<span style="color:#50fa7b">Kind</span>())
-}
-<span style="color:#8be9fd;font-style:italic">func</span> <span style="color:#50fa7b">main</span>() {
-	<span style="color:#8be9fd;font-style:italic">var</span> a <span style="color:#ff79c6">*</span><span style="color:#8be9fd">float64</span>
-	<span style="color:#8be9fd;font-style:italic">var</span> b <span style="color:#8be9fd">int</span>
-	<span style="color:#50fa7b">reflectType</span>(a)  <span style="color:#6272a4">// 输出：name:   kind: ptr
-</span><span style="color:#6272a4"></span>	<span style="color:#50fa7b">reflectType</span>(b)  <span style="color:#6272a4">// 输出：name: int  kind: int
+<span style="color:#8be9fd;font-style:italic">type</span> M[K <span style="color:#8be9fd">string</span>, V any] <span style="color:#8be9fd;font-style:italic">map</span>[K]V   <span style="color:#6272a4">// 这里的K不支持any ,由于底层map不支持,所以使用string
 </span><span style="color:#6272a4"></span>
-	<span style="color:#6272a4">// 结构体类型
-</span><span style="color:#6272a4"></span>	<span style="color:#8be9fd;font-style:italic">type</span> person <span style="color:#8be9fd;font-style:italic">struct</span> {
-		name <span style="color:#8be9fd">string</span>
-	}
-	p <span style="color:#ff79c6">:=</span> person{name: <span style="color:#f1fa8c">&#34;tianbao&#34;</span>}
-	<span style="color:#50fa7b">reflectType</span>(p)  <span style="color:#6272a4">// 输出：name: person  kind: struct
-</span><span style="color:#6272a4"></span>	<span style="color:#8be9fd;font-style:italic">type</span> book <span style="color:#8be9fd;font-style:italic">struct</span> {
-		name <span style="color:#8be9fd">string</span>
-	}
-	bk <span style="color:#ff79c6">:=</span> book{name: <span style="color:#f1fa8c">&#34;中国近代史&#34;</span>}
-	<span style="color:#50fa7b">reflectType</span>(bk)  <span style="color:#6272a4">// 输出：name: book  kind: struct
-</span><span style="color:#6272a4"></span>}
-</code></pre></td></tr></table>
-</div>
-</div><p><strong>Go语言的反射中像数组、切片、Map、指针等类型的变量，它们的.Name()都是返回空</strong></p>
-<h2 id="valueof">ValueOf</h2>
-<p>reflect.ValueOf()返回的是reflect.Value类型，其中包含了原始值的值信息</p>
-<h3 id="通过反射获取值">通过反射获取值</h3>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#ff79c6">package</span> main
 
-<span style="color:#ff79c6">import</span> (
-	<span style="color:#f1fa8c">&#34;fmt&#34;</span>
-	<span style="color:#f1fa8c">&#34;reflect&#34;</span>
-)
-
-<span style="color:#8be9fd;font-style:italic">func</span> <span style="color:#50fa7b">reflectType</span>(x <span style="color:#8be9fd;font-style:italic">interface</span>{}) {
-	v <span style="color:#ff79c6">:=</span> reflect.<span style="color:#50fa7b">ValueOf</span>(x)
-	k <span style="color:#ff79c6">:=</span> v.<span style="color:#50fa7b">Kind</span>()
-	<span style="color:#ff79c6">switch</span> k {
-	<span style="color:#ff79c6">case</span> reflect.Int64:
-		<span style="color:#6272a4">// v.Int()从反射中获取整型的原始值，然后通过int64()强制类型转换
-</span><span style="color:#6272a4"></span>		fmt.<span style="color:#50fa7b">Printf</span>(<span style="color:#f1fa8c">&#34;type is int64, value is %d\n&#34;</span>, <span style="color:#8be9fd;font-style:italic">int64</span>(v.<span style="color:#50fa7b">Int</span>()))
-	<span style="color:#ff79c6">case</span> reflect.String:
-		<span style="color:#6272a4">// v.String()从反射中获取整型的原始值，然后通过string()强制类型转换
-</span><span style="color:#6272a4"></span>		fmt.<span style="color:#50fa7b">Printf</span>(<span style="color:#f1fa8c">&#34;type is string, value is %v\n&#34;</span>, <span style="color:#8be9fd;font-style:italic">string</span>(v.<span style="color:#50fa7b">String</span>()))
-	}
-}
-<span style="color:#8be9fd;font-style:italic">func</span> <span style="color:#50fa7b">main</span>() {
-	<span style="color:#8be9fd;font-style:italic">var</span> a <span style="color:#8be9fd">int64</span>
-	<span style="color:#8be9fd;font-style:italic">var</span> b <span style="color:#8be9fd">string</span>
-	b = <span style="color:#f1fa8c">&#34;hello&#34;</span>
-	<span style="color:#50fa7b">reflectType</span>(a)  <span style="color:#6272a4">// 输出：type is int64, value is 0
-</span><span style="color:#6272a4"></span>	<span style="color:#50fa7b">reflectType</span>(b)  <span style="color:#6272a4">// 输出：type is string, value is hello
-</span><span style="color:#6272a4"></span>	<span style="color:#6272a4">// 将int类型的原始值转换为reflect.Value类型
-</span><span style="color:#6272a4"></span>	c <span style="color:#ff79c6">:=</span> reflect.<span style="color:#50fa7b">ValueOf</span>(<span style="color:#bd93f9">10</span>)
-	fmt.<span style="color:#50fa7b">Printf</span>(<span style="color:#f1fa8c">&#34;type c :%T\n&#34;</span>, c) <span style="color:#6272a4">// type c :reflect.Value
-</span><span style="color:#6272a4"></span>}
-
-</code></pre></td></tr></table>
-</div>
-</div><h3 id="通过反射设置变量的值">通过反射设置变量的值</h3>
-<p>在函数中通过反射修改变量的值，需要注意函数参数传递的是值拷贝，必须传递变量地址才能修改变量值<br>
-反射中使用专有的Elem()方法来获取指针对应的值</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#ff79c6">package</span> main
-
-<span style="color:#ff79c6">import</span> (
-	<span style="color:#f1fa8c">&#34;fmt&#34;</span>
-	<span style="color:#f1fa8c">&#34;reflect&#34;</span>
-)
-
-<span style="color:#8be9fd;font-style:italic">func</span> <span style="color:#50fa7b">reflectType</span>(x <span style="color:#8be9fd;font-style:italic">interface</span>{}) {
-	v <span style="color:#ff79c6">:=</span> reflect.<span style="color:#50fa7b">ValueOf</span>(x)
-	<span style="color:#ff79c6">if</span> v.<span style="color:#50fa7b">Kind</span>() <span style="color:#ff79c6">==</span> reflect.Int64 {
-		v.<span style="color:#50fa7b">SetInt</span>(<span style="color:#bd93f9">200</span>)  <span style="color:#6272a4">// 修改的是副本，reflect包会引发panic
-</span><span style="color:#6272a4"></span>	}
-}
-
-<span style="color:#8be9fd;font-style:italic">func</span> <span style="color:#50fa7b">reflectType2</span>(x <span style="color:#8be9fd;font-style:italic">interface</span>{}) {
-	v <span style="color:#ff79c6">:=</span> reflect.<span style="color:#50fa7b">ValueOf</span>(x)
-	<span style="color:#6272a4">// 反射中使用 Elem()方法获取指针对应的值
-</span><span style="color:#6272a4"></span>	<span style="color:#ff79c6">if</span> v.<span style="color:#50fa7b">Elem</span>().<span style="color:#50fa7b">Kind</span>() <span style="color:#ff79c6">==</span> reflect.Int64 {
-		v.<span style="color:#50fa7b">Elem</span>().<span style="color:#50fa7b">SetInt</span>(<span style="color:#bd93f9">200</span>)
+<span style="color:#8be9fd;font-style:italic">func</span> printMap[K <span style="color:#8be9fd">string</span>, V any](s <span style="color:#8be9fd;font-style:italic">map</span>[K]V){
+	<span style="color:#ff79c6">for</span> k, v <span style="color:#ff79c6">:=</span> <span style="color:#ff79c6">range</span> s{
+		fmt.<span style="color:#50fa7b">Printf</span>(<span style="color:#f1fa8c">&#34;%v:%v\n&#34;</span>, k, v)
 	}
 }
 
-<span style="color:#8be9fd;font-style:italic">func</span> <span style="color:#50fa7b">main</span>() {
-	<span style="color:#8be9fd;font-style:italic">var</span> a <span style="color:#8be9fd">int64</span>
-	<span style="color:#6272a4">//reflectType(a)  // panic: reflect: reflect.Value.SetInt using unaddressable value
-</span><span style="color:#6272a4"></span>	<span style="color:#50fa7b">reflectType2</span>(<span style="color:#ff79c6">&amp;</span>a)
-	fmt.<span style="color:#50fa7b">Printf</span>(<span style="color:#f1fa8c">&#34;a:%v\n&#34;</span>, a)  <span style="color:#6272a4">// 输出：a:200
-</span><span style="color:#6272a4"></span>}
+<span style="color:#8be9fd;font-style:italic">func</span> <span style="color:#50fa7b">main</span>(){
 
-</code></pre></td></tr></table>
-</div>
-</div><h3 id="isnil和isvalid">isNil()和isValid()</h3>
-<ul>
-<li>IsNil()报告v持有的值是否为nil。v持有的值的分类必须是通道、函数、接口、映射、指针、切片之一；否则IsNil函数会导致panic</li>
-<li>IsValid()返回v是否持有一个值。如果v是Value零值会返回假，此时v除</li>
-<li>IsValid、String、Kind之外的方法都会导致panic
-IsNil()常被用于判断指针是否为空；IsValid()常被用于判定返回值是否有效</li>
-</ul>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#ff79c6">package</span> main
+    m1 <span style="color:#ff79c6">:=</span> M[<span style="color:#8be9fd">string</span>, <span style="color:#8be9fd">int</span>]{<span style="color:#f1fa8c">&#34;key&#34;</span>: <span style="color:#bd93f9">1</span>}
+	printMap[<span style="color:#8be9fd">string</span>, <span style="color:#8be9fd">int</span>](m1)
 
-<span style="color:#ff79c6">import</span> (
-	<span style="color:#f1fa8c">&#34;fmt&#34;</span>
-	<span style="color:#f1fa8c">&#34;reflect&#34;</span>
-)
+	m2 <span style="color:#ff79c6">:=</span> M[<span style="color:#8be9fd">string</span>, <span style="color:#8be9fd">string</span>]{<span style="color:#f1fa8c">&#34;hello&#34;</span>: <span style="color:#f1fa8c">&#34;world&#34;</span>}
+	printMap[<span style="color:#8be9fd">string</span>, <span style="color:#8be9fd">string</span>](m2)
+    
+    m3 <span style="color:#ff79c6">:=</span> M[<span style="color:#8be9fd">string</span>, <span style="color:#8be9fd">float64</span>]{<span style="color:#f1fa8c">&#34;float&#34;</span>: <span style="color:#bd93f9">1.2</span>}
+    <span style="color:#6272a4">// 省略泛型类型
+</span><span style="color:#6272a4"></span>    <span style="color:#50fa7b">printMap</span>(m3)
 
-<span style="color:#8be9fd;font-style:italic">func</span> <span style="color:#50fa7b">main</span>() {
-	<span style="color:#6272a4">// *int类型指针
-</span><span style="color:#6272a4"></span>	<span style="color:#8be9fd;font-style:italic">var</span> a <span style="color:#ff79c6">*</span><span style="color:#8be9fd">int</span>
-	fmt.<span style="color:#50fa7b">Println</span>(<span style="color:#f1fa8c">&#34;var a *int IsNil:&#34;</span>, reflect.<span style="color:#50fa7b">ValueOf</span>(a).<span style="color:#50fa7b">IsNil</span>())  <span style="color:#6272a4">// var a *int IsNil: true
-</span><span style="color:#6272a4"></span>	b <span style="color:#ff79c6">:=</span> <span style="color:#bd93f9">10</span>
-	a = <span style="color:#ff79c6">&amp;</span>b
-	fmt.<span style="color:#50fa7b">Println</span>(<span style="color:#f1fa8c">&#34;var a *int IsNil:&#34;</span>, reflect.<span style="color:#50fa7b">ValueOf</span>(a).<span style="color:#50fa7b">IsNil</span>())  <span style="color:#6272a4">// var a *int IsNil: false
-</span><span style="color:#6272a4"></span>
-	<span style="color:#6272a4">// nil值
-</span><span style="color:#6272a4"></span>	fmt.<span style="color:#50fa7b">Println</span>(<span style="color:#f1fa8c">&#34;nil IsNil&#34;</span>, reflect.<span style="color:#50fa7b">ValueOf</span>(<span style="color:#ff79c6">nil</span>).<span style="color:#50fa7b">IsValid</span>())  <span style="color:#6272a4">// nil IsNil false
-</span><span style="color:#6272a4"></span>
-	<span style="color:#6272a4">// 实例化一个匿名结构体
-</span><span style="color:#6272a4"></span>	c <span style="color:#ff79c6">:=</span> <span style="color:#8be9fd;font-style:italic">struct</span> {}{}
-	<span style="color:#6272a4">// 尝试从b结构体中寻找&#34;abc&#34;字段
-</span><span style="color:#6272a4"></span>	fmt.<span style="color:#50fa7b">Println</span>(<span style="color:#f1fa8c">&#34;不存在的结构体成员&#34;</span>, reflect.<span style="color:#50fa7b">ValueOf</span>(c).<span style="color:#50fa7b">FieldByName</span>(<span style="color:#f1fa8c">&#34;abc&#34;</span>).<span style="color:#50fa7b">IsValid</span>())  <span style="color:#6272a4">// 不存在的结构体成员 false
-</span><span style="color:#6272a4"></span>    <span style="color:#6272a4">// 尝试b结构体中寻找&#34;abc&#34;方法
-</span><span style="color:#6272a4"></span>	fmt.<span style="color:#50fa7b">Println</span>(<span style="color:#f1fa8c">&#34;不存在的结构体方法&#34;</span>, reflect.<span style="color:#50fa7b">ValueOf</span>(c).<span style="color:#50fa7b">MethodByName</span>(<span style="color:#f1fa8c">&#34;abc&#34;</span>).<span style="color:#50fa7b">IsValid</span>())  <span style="color:#6272a4">// 不存在的结构体方法 false
-</span><span style="color:#6272a4"></span>
-	<span style="color:#6272a4">// 尝试从map中寻找一个不存在的键
-</span><span style="color:#6272a4"></span>	d <span style="color:#ff79c6">:=</span> <span style="color:#8be9fd;font-style:italic">make</span>(<span style="color:#8be9fd;font-style:italic">map</span>[<span style="color:#8be9fd">string</span>]<span style="color:#8be9fd">string</span>)
-	fmt.<span style="color:#50fa7b">Println</span>(<span style="color:#f1fa8c">&#34;不存在的键&#34;</span>, reflect.<span style="color:#50fa7b">ValueOf</span>(d).<span style="color:#50fa7b">MapIndex</span>(reflect.<span style="color:#50fa7b">ValueOf</span>(<span style="color:#f1fa8c">&#34;abc&#34;</span>)).<span style="color:#50fa7b">IsValid</span>())  <span style="color:#6272a4">// 不存在的键 false
-</span><span style="color:#6272a4"></span>
 }
 
 </code></pre></td></tr></table>
 </div>
-</div><h2 id="结构体反射">结构体反射</h2>
-<p><strong>结构体可以通过反射值对象（reflect.Type）的NumField()和Field()方法获得结构体成员的详细信息</strong></p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">40
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">41
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#ff79c6">package</span> main
-
-<span style="color:#ff79c6">import</span> (
-	<span style="color:#f1fa8c">&#34;fmt&#34;</span>
-	<span style="color:#f1fa8c">&#34;reflect&#34;</span>
-)
-
-<span style="color:#8be9fd;font-style:italic">type</span> student <span style="color:#8be9fd;font-style:italic">struct</span> {
-	Name <span style="color:#8be9fd">string</span> <span style="color:#f1fa8c">`json:&#34;name&#34;`</span>
-	Age  <span style="color:#8be9fd">int</span>    <span style="color:#f1fa8c">`json:&#34;age&#34;`</span>
-}
-
-<span style="color:#8be9fd;font-style:italic">func</span> <span style="color:#50fa7b">newStudent</span>(name <span style="color:#8be9fd">string</span>, age <span style="color:#8be9fd">int</span>) <span style="color:#ff79c6">*</span>student {
-	<span style="color:#6272a4">// Go语言的结构体没有构造函数，我们可以自己实现
-</span><span style="color:#6272a4"></span>	<span style="color:#6272a4">// 因为struct是值类型，如果结构体比较复杂的话，值拷贝性能开销会比较大
-</span><span style="color:#6272a4"></span>	<span style="color:#6272a4">// 故此构造函数返回的是结构体指针类型
-</span><span style="color:#6272a4"></span>	<span style="color:#ff79c6">return</span> <span style="color:#ff79c6">&amp;</span>student{
-		Name: name,
-		Age:  age,
-	}
-}
-<span style="color:#8be9fd;font-style:italic">func</span> <span style="color:#50fa7b">main</span>() {
-	stu1 <span style="color:#ff79c6">:=</span> <span style="color:#ff79c6">*</span><span style="color:#50fa7b">newStudent</span>(<span style="color:#f1fa8c">&#34;tianbao&#34;</span>, <span style="color:#bd93f9">18</span>)
-	t <span style="color:#ff79c6">:=</span> reflect.<span style="color:#50fa7b">TypeOf</span>(stu1)
-	fmt.<span style="color:#50fa7b">Printf</span>(<span style="color:#f1fa8c">&#34;Name:%v, Kind:%v\n&#34;</span>, t.<span style="color:#50fa7b">Name</span>(), t.<span style="color:#50fa7b">Kind</span>()) <span style="color:#6272a4">// Name:student, Kind:struct
-</span><span style="color:#6272a4"></span>
-	<span style="color:#6272a4">// 通过for循环遍历结构体所有字段信息
-</span><span style="color:#6272a4"></span>	<span style="color:#ff79c6">for</span> i <span style="color:#ff79c6">:=</span> <span style="color:#bd93f9">0</span>; i &lt; t.<span style="color:#50fa7b">NumField</span>(); i<span style="color:#ff79c6">++</span> {
-		filed <span style="color:#ff79c6">:=</span> t.<span style="color:#50fa7b">Field</span>(i)
-		fmt.<span style="color:#50fa7b">Printf</span>(<span style="color:#f1fa8c">&#34;name:%s, index:%d, type:%v, json tag:%v\n&#34;</span>, filed.Name, filed.Index, filed.Type, filed.Tag.<span style="color:#50fa7b">Get</span>(<span style="color:#f1fa8c">&#34;json&#34;</span>))
-		<span style="color:#6272a4">// name:Name, index:[0], type:string, json tag:name
-</span><span style="color:#6272a4"></span>		<span style="color:#6272a4">// name:Age, index:[1], type:int, json tag:age
-</span><span style="color:#6272a4"></span>	}
-
-	<span style="color:#6272a4">// 通过字段名获取指定结构体字段信息
-</span><span style="color:#6272a4"></span>	<span style="color:#ff79c6">if</span> ageField, ok <span style="color:#ff79c6">:=</span> t.<span style="color:#50fa7b">FieldByName</span>(<span style="color:#f1fa8c">&#34;Age&#34;</span>); ok {
-		fmt.<span style="color:#50fa7b">Printf</span>(<span style="color:#f1fa8c">&#34;name:%s index:%d type:%v json tag:%v\n&#34;</span>, ageField.Name, ageField.Index, ageField.Type, ageField.Tag.<span style="color:#50fa7b">Get</span>(<span style="color:#f1fa8c">&#34;json&#34;</span>))
-	    <span style="color:#6272a4">// name:Age index:[1] type:int json tag:age
-</span><span style="color:#6272a4"></span>	}
-
-}
-</code></pre></td></tr></table>
-</div>
-</div><p>编写一个printMethod(s interface{})来打印所有的student结构体的所有方法</p>
+</div><h2 id="4声明一个泛型通道">4.声明一个泛型通道</h2>
 <div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
 <pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
@@ -561,61 +341,336 @@ IsNil()常被用于判断指针是否为空；IsValid()常被用于判定返回�
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">43
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">44
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">45
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">46
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">47
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">48
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">49
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
 <pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#ff79c6">package</span> main
 
 <span style="color:#ff79c6">import</span> (
 	<span style="color:#f1fa8c">&#34;fmt&#34;</span>
-	<span style="color:#f1fa8c">&#34;reflect&#34;</span>
 )
 
-<span style="color:#8be9fd;font-style:italic">type</span> student <span style="color:#8be9fd;font-style:italic">struct</span> {
-	Name <span style="color:#8be9fd">string</span> <span style="color:#f1fa8c">`json:&#34;name&#34;`</span>
-	Age  <span style="color:#8be9fd">int</span>    <span style="color:#f1fa8c">`json:&#34;age&#34;`</span>
-}
+<span style="color:#8be9fd;font-style:italic">type</span> C[T any] <span style="color:#8be9fd;font-style:italic">chan</span> T
 
-<span style="color:#8be9fd;font-style:italic">func</span> (s student) <span style="color:#50fa7b">SayHello</span>() <span style="color:#8be9fd">string</span> {
-	msg <span style="color:#ff79c6">:=</span> <span style="color:#f1fa8c">&#34;Hello 你好&#34;</span>
-	<span style="color:#ff79c6">return</span> msg
-}
-
-<span style="color:#8be9fd;font-style:italic">func</span> (s student) <span style="color:#50fa7b">Run</span>() <span style="color:#8be9fd">string</span> {
-	msg <span style="color:#ff79c6">:=</span> <span style="color:#f1fa8c">&#34;run run run&#34;</span>
-	<span style="color:#ff79c6">return</span> msg
-}
-
-<span style="color:#8be9fd;font-style:italic">func</span> <span style="color:#50fa7b">newStudent</span>(name <span style="color:#8be9fd">string</span>, age <span style="color:#8be9fd">int</span>) <span style="color:#ff79c6">*</span>student {
-	<span style="color:#6272a4">// Go语言的结构体没有构造函数，我们可以自己实现
-</span><span style="color:#6272a4"></span>	<span style="color:#6272a4">// 因为struct是值类型，如果结构体比较复杂的话，值拷贝性能开销会比较大
-</span><span style="color:#6272a4"></span>	<span style="color:#6272a4">// 故此构造函数返回的是结构体指针类型
-</span><span style="color:#6272a4"></span>	<span style="color:#ff79c6">return</span> <span style="color:#ff79c6">&amp;</span>student{
-		Name: name,
-		Age:  age,
-	}
-}
-<span style="color:#8be9fd;font-style:italic">func</span> <span style="color:#50fa7b">main</span>() {
-	stu1 <span style="color:#ff79c6">:=</span> <span style="color:#ff79c6">*</span><span style="color:#50fa7b">newStudent</span>(<span style="color:#f1fa8c">&#34;tianbao&#34;</span>, <span style="color:#bd93f9">18</span>)
-	t <span style="color:#ff79c6">:=</span> reflect.<span style="color:#50fa7b">TypeOf</span>(stu1)
-	v <span style="color:#ff79c6">:=</span> reflect.<span style="color:#50fa7b">ValueOf</span>(stu1)
-
-	fmt.<span style="color:#50fa7b">Println</span>(t.<span style="color:#50fa7b">NumField</span>())  <span style="color:#6272a4">// 2
-</span><span style="color:#6272a4"></span>	<span style="color:#ff79c6">for</span> i <span style="color:#ff79c6">:=</span> <span style="color:#bd93f9">0</span>; i &lt; v.<span style="color:#50fa7b">NumMethod</span>(); i<span style="color:#ff79c6">++</span> {
-		methodType <span style="color:#ff79c6">:=</span> v.<span style="color:#50fa7b">Method</span>(i).<span style="color:#50fa7b">Type</span>()
-		fmt.<span style="color:#50fa7b">Printf</span>(<span style="color:#f1fa8c">&#34;method name:%v, method type:%T\n&#34;</span>, t.<span style="color:#50fa7b">Method</span>(i).Name, methodType)  <span style="color:#6272a4">// method name:Run, method type:*reflect.rtype
-</span><span style="color:#6272a4"></span>		<span style="color:#6272a4">// method name:Run, method type:*reflect.rtype
-</span><span style="color:#6272a4"></span>		<span style="color:#6272a4">// method name:SayHello, method type:*reflect.rtype
-</span><span style="color:#6272a4"></span>		<span style="color:#8be9fd;font-style:italic">var</span> args = []reflect.Value{}
-		<span style="color:#6272a4">// 通过反射调用方法传递的参数必须是 []reflect.Value 类型
-</span><span style="color:#6272a4"></span>		v.<span style="color:#50fa7b">Method</span>(i).<span style="color:#50fa7b">Call</span>(args)
+<span style="color:#8be9fd;font-style:italic">func</span> printC[T any](s <span style="color:#8be9fd;font-style:italic">chan</span> T){
+	<span style="color:#6272a4">// 第一种遍历方式 chan 必须先被close
+</span><span style="color:#6272a4"></span>	<span style="color:#ff79c6">for</span> k <span style="color:#ff79c6">:=</span> <span style="color:#ff79c6">range</span> s{
+		fmt.<span style="color:#50fa7b">Printf</span>(<span style="color:#f1fa8c">&#34;%v\n&#34;</span>, k)
 	}
 
+	<span style="color:#6272a4">// 第二种遍历方式
+</span><span style="color:#6272a4"></span>	<span style="color:#6272a4">// for{
+</span><span style="color:#6272a4"></span>	<span style="color:#6272a4">// 	if value, ok := &lt;-s; ok{
+</span><span style="color:#6272a4"></span>	<span style="color:#6272a4">// 		//do somthing
+</span><span style="color:#6272a4"></span>	<span style="color:#6272a4">// 		fmt.Printf(&#34;%v\n&#34;, value)
+</span><span style="color:#6272a4"></span>	<span style="color:#6272a4">// 	}else{
+</span><span style="color:#6272a4"></span>	<span style="color:#6272a4">// 		break;//表示channel已经被关闭，退出循环
+</span><span style="color:#6272a4"></span>	<span style="color:#6272a4">// 	}
+</span><span style="color:#6272a4"></span>	<span style="color:#6272a4">// }
+</span><span style="color:#6272a4"></span>}
+
+
+
+<span style="color:#8be9fd;font-style:italic">func</span> <span style="color:#50fa7b">main</span>(){
+
+    c1 <span style="color:#ff79c6">:=</span> <span style="color:#8be9fd;font-style:italic">make</span>(C[<span style="color:#8be9fd">int</span>], <span style="color:#bd93f9">2</span>)
+	c1 <span style="color:#ff79c6">&lt;-</span> <span style="color:#bd93f9">1</span>
+	c1 <span style="color:#ff79c6">&lt;-</span> <span style="color:#bd93f9">2</span>
+	<span style="color:#6272a4">// 使用for range遍历chan，必须先close chan
+</span><span style="color:#6272a4"></span>	<span style="color:#8be9fd;font-style:italic">close</span>(c1)
+	<span style="color:#50fa7b">printC</span>(c1)
+
+	c2 <span style="color:#ff79c6">:=</span> <span style="color:#8be9fd;font-style:italic">make</span>(C[<span style="color:#8be9fd">string</span>], <span style="color:#bd93f9">10</span>)
+	c2 <span style="color:#ff79c6">&lt;-</span> <span style="color:#f1fa8c">&#34;hello&#34;</span>
+	c2 <span style="color:#ff79c6">&lt;-</span> <span style="color:#f1fa8c">&#34;world&#34;</span>
+	<span style="color:#6272a4">// 使用for range遍历chan，必须先close chan
+</span><span style="color:#6272a4"></span>	<span style="color:#8be9fd;font-style:italic">close</span>(c2)
+	<span style="color:#50fa7b">printC</span>(c2)
+
 }
 
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="泛型约束">泛型约束</h2>
+<p>使用interface中规定的类型约束泛型函数的参数</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#ff79c6">package</span> main
+
+<span style="color:#ff79c6">import</span> <span style="color:#f1fa8c">&#34;fmt&#34;</span>
+
+<span style="color:#8be9fd;font-style:italic">type</span> NumStr <span style="color:#8be9fd;font-style:italic">interface</span> {
+	Num | Str
+}
+
+<span style="color:#8be9fd;font-style:italic">type</span> Num <span style="color:#8be9fd;font-style:italic">interface</span> {
+	~<span style="color:#8be9fd">int</span> | ~<span style="color:#8be9fd">int8</span> | ~<span style="color:#8be9fd">int16</span>| ~<span style="color:#8be9fd">int32</span>| ~<span style="color:#8be9fd">int64</span>| ~<span style="color:#8be9fd">uint</span>| ~ <span style="color:#8be9fd">uint8</span>| ~ <span style="color:#8be9fd">uint16</span>| ~ <span style="color:#8be9fd">uint32</span>| ~<span style="color:#8be9fd">uint64</span>| ~ <span style="color:#8be9fd">uintptr</span>| ~ <span style="color:#8be9fd">float32</span>| ~ <span style="color:#8be9fd">float64</span>| ~ <span style="color:#8be9fd">complex64</span>| ~ <span style="color:#8be9fd">complex128</span>
+}
+<span style="color:#8be9fd;font-style:italic">type</span> Str <span style="color:#8be9fd;font-style:italic">interface</span> {
+	<span style="color:#8be9fd">string</span>
+}
+
+<span style="color:#8be9fd;font-style:italic">func</span> add[T NumStr](a,b T) T {
+	<span style="color:#ff79c6">return</span> a <span style="color:#ff79c6">+</span> b
+}
+
+
+<span style="color:#8be9fd;font-style:italic">func</span> <span style="color:#50fa7b">main</span>(){
+
+    fmt.<span style="color:#50fa7b">Println</span>(<span style="color:#50fa7b">add</span>(<span style="color:#bd93f9">3</span>,<span style="color:#bd93f9">4</span>))
+	fmt.<span style="color:#50fa7b">Println</span>(<span style="color:#50fa7b">add</span>(<span style="color:#f1fa8c">&#34;hello &#34;</span>,<span style="color:#f1fa8c">&#34;world&#34;</span>))
+}
+
+</code></pre></td></tr></table>
+</div>
+</div><p>上面的 NumStr，新增了类型列表表达式，它是对类型参数进行约束<br>
+使用 | 表示取并集<br>
+如果传入参数不在集合限制范围内，就会报错<br>
+<strong>使用interface中规定的方法来约束泛型的参数</strong></p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">40
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#ff79c6">package</span> main
+
+<span style="color:#ff79c6">import</span> <span style="color:#f1fa8c">&#34;fmt&#34;</span>
+<span style="color:#ff79c6">import</span> <span style="color:#f1fa8c">&#34;strconv&#34;</span>
+
+<span style="color:#8be9fd;font-style:italic">type</span> Price <span style="color:#8be9fd">int</span>
+
+<span style="color:#8be9fd;font-style:italic">func</span> (i Price) <span style="color:#50fa7b">String</span>() <span style="color:#8be9fd">string</span> {
+	<span style="color:#6272a4">//  Price自身的一个方法，将自己转成str类型
+</span><span style="color:#6272a4"></span>	<span style="color:#ff79c6">return</span> strconv.<span style="color:#50fa7b">Itoa</span>(<span style="color:#8be9fd;font-style:italic">int</span>(i))
+}
+
+<span style="color:#8be9fd;font-style:italic">type</span> Price2 <span style="color:#8be9fd">string</span>
+
+<span style="color:#8be9fd;font-style:italic">func</span> (i Price2) <span style="color:#50fa7b">String</span>() <span style="color:#8be9fd">string</span> {
+	<span style="color:#6272a4">//  Price自身的一个方法，将自己转成str类型
+</span><span style="color:#6272a4"></span>	<span style="color:#ff79c6">return</span> <span style="color:#8be9fd;font-style:italic">string</span>(i)
+}
+
+<span style="color:#8be9fd;font-style:italic">type</span> ShowPrice <span style="color:#8be9fd;font-style:italic">interface</span> {
+	<span style="color:#50fa7b">String</span>() <span style="color:#8be9fd">string</span>
+	~<span style="color:#8be9fd">int</span> | ~<span style="color:#8be9fd">string</span>
+}
+
+<span style="color:#6272a4">// [T ShowPrice]限制了传入的类型只能是ShowPrice内包含的类型
+</span><span style="color:#6272a4"></span><span style="color:#8be9fd;font-style:italic">func</span> ShowPriceList[T ShowPrice](s []T) (ret []<span style="color:#8be9fd">string</span>) {
+	<span style="color:#ff79c6">for</span> _, v <span style="color:#ff79c6">:=</span> <span style="color:#ff79c6">range</span> s {
+		ret = <span style="color:#8be9fd;font-style:italic">append</span>(ret, v.<span style="color:#50fa7b">String</span>())
+	}
+	<span style="color:#ff79c6">return</span>
+}
+
+<span style="color:#8be9fd;font-style:italic">func</span> <span style="color:#50fa7b">main</span>(){
+	<span style="color:#6272a4">// 用strconv包转字符串
+</span><span style="color:#6272a4"></span>    fmt.<span style="color:#50fa7b">Println</span>(<span style="color:#50fa7b">ShowPriceList</span>([]Price{<span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">2</span>}))
+	<span style="color:#6272a4">// 用string方法转字符串
+</span><span style="color:#6272a4"></span>	fmt.<span style="color:#50fa7b">Println</span>(<span style="color:#50fa7b">ShowPriceList</span>([]Price2{<span style="color:#f1fa8c">&#34;a&#34;</span>, <span style="color:#f1fa8c">&#34;b&#34;</span>}))
+    
+}
+
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>使用interface中规定的方法和类型来双重约束泛型的参数</strong></p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#ff79c6">package</span> main
+
+<span style="color:#ff79c6">import</span> (
+	<span style="color:#f1fa8c">&#34;fmt&#34;</span>
+	<span style="color:#f1fa8c">&#34;strconv&#34;</span>
+)
+
+<span style="color:#8be9fd;font-style:italic">type</span> Price <span style="color:#8be9fd">int</span>
+
+<span style="color:#8be9fd;font-style:italic">func</span> (i Price) <span style="color:#50fa7b">String</span>() <span style="color:#8be9fd">string</span> {
+	<span style="color:#6272a4">//  Price自身的一个方法，将自己转成str类型
+</span><span style="color:#6272a4"></span>	<span style="color:#ff79c6">return</span> strconv.<span style="color:#50fa7b">Itoa</span>(<span style="color:#8be9fd;font-style:italic">int</span>(i))
+}
+
+
+<span style="color:#8be9fd;font-style:italic">type</span> ShowPrice <span style="color:#8be9fd;font-style:italic">interface</span> {
+	<span style="color:#50fa7b">String</span>() <span style="color:#8be9fd">string</span>
+	~<span style="color:#8be9fd">int</span> | ~<span style="color:#8be9fd">string</span>
+}
+
+<span style="color:#6272a4">// [T ShowPrice]限制了传入的类型只能是ShowPrice内包含的类型
+</span><span style="color:#6272a4"></span><span style="color:#8be9fd;font-style:italic">func</span> ShowPriceList[T ShowPrice](s []T) (ret []<span style="color:#8be9fd">string</span>) {
+	<span style="color:#ff79c6">for</span> _, v <span style="color:#ff79c6">:=</span> <span style="color:#ff79c6">range</span> s {
+		ret = <span style="color:#8be9fd;font-style:italic">append</span>(ret, v.<span style="color:#50fa7b">String</span>())
+	}
+	<span style="color:#ff79c6">return</span>
+}
+
+<span style="color:#8be9fd;font-style:italic">func</span> <span style="color:#50fa7b">main</span>(){
+	<span style="color:#6272a4">// 用strconv包转字符串
+</span><span style="color:#6272a4"></span>    fmt.<span style="color:#50fa7b">Println</span>(<span style="color:#50fa7b">ShowPriceList</span>([]Price{<span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">2</span>}))
+    <span style="color:#6272a4">// 传入浮点参数，就会因为不是约束类型而报错
+</span><span style="color:#6272a4"></span>}
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>使用泛型自带comparable约束，判断比较</strong></p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#ff79c6">package</span> main
+
+<span style="color:#ff79c6">import</span> (
+	<span style="color:#f1fa8c">&#34;fmt&#34;</span>
+)
+
+<span style="color:#8be9fd;font-style:italic">func</span> findFunc[T comparable](a []T, v T) <span style="color:#8be9fd">int</span> {
+	<span style="color:#ff79c6">for</span> i, e <span style="color:#ff79c6">:=</span> <span style="color:#ff79c6">range</span> a {
+		<span style="color:#ff79c6">if</span> e <span style="color:#ff79c6">==</span> v {
+			<span style="color:#ff79c6">return</span> i
+		}
+	}
+	<span style="color:#ff79c6">return</span> <span style="color:#ff79c6">-</span><span style="color:#bd93f9">1</span>
+}
+
+<span style="color:#8be9fd;font-style:italic">func</span> <span style="color:#50fa7b">main</span>(){
+	fmt.<span style="color:#50fa7b">Println</span>(<span style="color:#50fa7b">findFunc</span>([]<span style="color:#8be9fd">int</span>{<span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">2</span>, <span style="color:#bd93f9">3</span>, <span style="color:#bd93f9">4</span>, <span style="color:#bd93f9">5</span>, <span style="color:#bd93f9">6</span>}, <span style="color:#bd93f9">5</span>))
+	fmt.<span style="color:#50fa7b">Println</span>(<span style="color:#50fa7b">findFunc</span>([]<span style="color:#8be9fd">string</span>{<span style="color:#f1fa8c">&#34;q&#34;</span>, <span style="color:#f1fa8c">&#34;w&#34;</span>, <span style="color:#f1fa8c">&#34;e&#34;</span>, <span style="color:#f1fa8c">&#34;r&#34;</span>}, <span style="color:#f1fa8c">&#34;w&#34;</span>))
+    
+}
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>comparable 的约束类型支持整数 和字符，自定义结构体，也可以嵌套在自定义约束中</strong></p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#8be9fd;font-style:italic">type</span> ShowPrice <span style="color:#8be9fd;font-style:italic">interface</span> {	
+	~<span style="color:#8be9fd">int</span> | ~<span style="color:#8be9fd">string</span> | ~comparable 
+}
 </code></pre></td></tr></table>
 </div>
 </div>
@@ -625,7 +680,7 @@ IsNil()常被用于判断指针是否为空；IsValid()常被用于判定返回�
 <div class="post-archive">
     <ul class="post-copyright">
         <li><strong>原文作者：</strong><a rel="author" href="http://tianbaoo.github.io/">郭天宝</a></li>
-        <li style="word-break:break-all"><strong>原文链接：</strong><a href="http://tianbaoo.github.io/post/go-%E5%8F%8D%E5%B0%84/">http://tianbaoo.github.io/post/go-%E5%8F%8D%E5%B0%84/</a></li>
+        <li style="word-break:break-all"><strong>原文链接：</strong><a href="http://tianbaoo.github.io/post/GoGeneric/">http://tianbaoo.github.io/post/GoGeneric/</a></li>
         <li><strong>版权声明：</strong>本作品采用<a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议</a>进行许可，非商业转载请注明出处（作者，原文链接），商业转载请联系作者获得授权。</li>
     </ul>
 </div>
@@ -639,15 +694,15 @@ IsNil()常被用于判断指针是否为空；IsValid()常被用于判定返回�
     <h2>See Also</h2>
     <ul class="listing">
         
-        <li><a href="/post/go-%E7%BB%93%E6%9E%84%E4%BD%93/">go--结构体和interface</a></li>
+        <li><a href="/post/MySQL/">MySQL知识点</a></li>
         
-        <li><a href="/post/go-map/">go--map</a></li>
+        <li><a href="/post/Redis/">Redis知识点</a></li>
         
-        <li><a href="/post/go-%E5%87%BD%E6%95%B0/">go--函数</a></li>
+        <li><a href="/about/">关于我</a></li>
         
-        <li><a href="/post/go-%E5%88%87%E7%89%87/">go--切片</a></li>
+        <li><a href="/post/Dockerfile-%E5%88%86%E6%AE%B5%E7%BC%96%E8%AF%91/">Dockerfile--分段编译</a></li>
         
-        <li><a href="/post/go-%E5%AD%97%E7%AC%A6%E4%B8%B2/">go--字符串</a></li>
+        <li><a href="/post/go-%E5%B9%B6%E5%8F%91/">go--并发</a></li>
         
     </ul>
 </div>
@@ -657,7 +712,7 @@ IsNil()常被用于判断指针是否为空；IsValid()常被用于判定返回�
             
             <ul class="clearfix">
                 
-                <li><a href='http://tianbaoo.github.io/tags/%E7%BC%96%E7%A8%8B'>编程</a></li>
+                <li><a href='http://tianbaoo.github.io/tags/Go'>Go</a></li>
                 
             </ul>
             

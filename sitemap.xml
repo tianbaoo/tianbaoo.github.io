@@ -4,7 +4,32 @@
   
   <url>
     <loc>http://tianbaoo.github.io/categories/</loc>
-    <lastmod>2022-08-18T10:32:35+00:00</lastmod>
+    <lastmod>2022-08-20T09:33:25+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://tianbaoo.github.io/tags/Go/</loc>
+    <lastmod>2022-08-20T09:33:25+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://tianbaoo.github.io/categories/Go/</loc>
+    <lastmod>2022-08-20T09:33:25+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://tianbaoo.github.io/post/GoGeneric/</loc>
+    <lastmod>2022-08-20T09:33:25+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://tianbaoo.github.io/post/</loc>
+    <lastmod>2022-08-20T09:33:25+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://tianbaoo.github.io/tags/</loc>
+    <lastmod>2022-08-20T09:33:25+00:00</lastmod>
   </url>
   
   <url>
@@ -13,22 +38,12 @@
   </url>
   
   <url>
-    <loc>http://tianbaoo.github.io/post/</loc>
+    <loc>http://tianbaoo.github.io/tags/%E7%9F%A5%E8%AF%86%E7%82%B9/</loc>
     <lastmod>2022-08-18T10:32:35+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://tianbaoo.github.io/tags/</loc>
-    <lastmod>2022-08-18T10:32:35+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://tianbaoo.github.io/tags/%E9%9D%A2%E8%AF%95/</loc>
-    <lastmod>2022-08-18T10:32:35+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://tianbaoo.github.io/categories/%E9%9D%A2%E8%AF%95/</loc>
+    <loc>http://tianbaoo.github.io/categories/%E7%9F%A5%E8%AF%86%E7%82%B9/</loc>
     <lastmod>2022-08-18T10:32:35+00:00</lastmod>
   </url>
   
@@ -49,11 +64,6 @@
   
   <url>
     <loc>http://tianbaoo.github.io/post/Dockerfile-%E5%88%86%E6%AE%B5%E7%BC%96%E8%AF%91/</loc>
-    <lastmod>2021-03-15T09:20:32+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://tianbaoo.github.io/categories/Go/</loc>
     <lastmod>2021-03-15T09:20:32+00:00</lastmod>
   </url>
   

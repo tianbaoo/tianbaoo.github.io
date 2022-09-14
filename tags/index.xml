@@ -6,17 +6,26 @@
     <description>Recent content in Tags on 天宝的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Thu, 18 Aug 2022 10:32:35 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 20 Aug 2022 09:33:25 +0000</lastBuildDate>
     
 	<atom:link href="http://tianbaoo.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>面试</title>
-      <link>http://tianbaoo.github.io/tags/%E9%9D%A2%E8%AF%95/</link>
+      <title>Go</title>
+      <link>http://tianbaoo.github.io/tags/Go/</link>
+      <pubDate>Sat, 20 Aug 2022 09:33:25 +0000</pubDate>
+      
+      <guid>http://tianbaoo.github.io/tags/Go/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>知识点</title>
+      <link>http://tianbaoo.github.io/tags/%E7%9F%A5%E8%AF%86%E7%82%B9/</link>
       <pubDate>Thu, 18 Aug 2022 10:32:35 +0000</pubDate>
       
-      <guid>http://tianbaoo.github.io/tags/%E9%9D%A2%E8%AF%95/</guid>
+      <guid>http://tianbaoo.github.io/tags/%E7%9F%A5%E8%AF%86%E7%82%B9/</guid>
       <description></description>
     </item>
     
