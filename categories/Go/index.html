@@ -80,6 +80,29 @@
     <article class="post">
         <header>
             <h1 class="post-title">
+                <a href="http://tianbaoo.github.io/post/golangGC/">Golang的GC机制</a>
+            </h1>
+        </header>
+        <date class="post-meta meta-date">
+            2022年8月22日
+        </date>
+        
+        <div class="post-meta meta-category">
+            |
+            
+            <a href='http://tianbaoo.github.io/categories/Go'>Go</a>
+            
+        </div>
+        
+        <div class="post-content">
+            golang的三色标记和写屏障 无STW的三色标记 第一步 , 每次新创建的对象，默认的颜色都是标记为&quot;白色&rdquo; 第二步, 每次GC回收开始, 会从根节点开始遍历所有对象，把遍历到的对象从白色集合放入&quot;灰色&quot;集合 第三步, 遍历灰色集合，将灰色对象引用的对象……
+            <p class="readmore"><a href="http://tianbaoo.github.io/post/golangGC/">阅读全文</a></p>
+        </div>
+    </article>
+    
+    <article class="post">
+        <header>
+            <h1 class="post-title">
                 <a href="http://tianbaoo.github.io/post/GoGeneric/">Go泛型</a>
             </h1>
         </header>
@@ -284,29 +307,6 @@
         </div>
     </article>
     
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="http://tianbaoo.github.io/post/go-%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">go--环境搭建</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2021年3月5日
-        </date>
-        
-        <div class="post-meta meta-category">
-            |
-            
-            <a href='http://tianbaoo.github.io/categories/Go'>Go</a>
-            
-        </div>
-        
-        <div class="post-content">
-            go环境搭建 环境搭建 1 2 3 4 5 6 7 8 9 10 11 wget https://studygolang.com/dl/golang/go1.17.4.linux-amd64.tar.gz sudo tar -xvf go1.17.4.linux-amd64.tar.gz sudo mv go /usr/local # 配置环境变量 vim ~/.bashrc 写入 export GOROOT=/usr/local/go #编译器路径 export GOPATH=$HOME/go #项目路径 export PATH=$GOPATH/bin:$GOROOT/bin:$PATH 保存后source ~/.bashrc go env -w GOPROXY=https://goproxy.cn,direct # 代理……
-            <p class="readmore"><a href="http://tianbaoo.github.io/post/go-%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">阅读全文</a></p>
-        </div>
-    </article>
-    
 
     
 
@@ -353,6 +353,10 @@
 <ul class="widget-list">
     
     <li>
+        <a href="http://tianbaoo.github.io/post/golangGC/" title="Golang的GC机制">Golang的GC机制</a>
+    </li>
+    
+    <li>
         <a href="http://tianbaoo.github.io/post/GoGeneric/" title="Go泛型">Go泛型</a>
     </li>
     
@@ -388,10 +392,6 @@
         <a href="http://tianbaoo.github.io/post/go-%E5%87%BD%E6%95%B0/" title="go--函数">go--函数</a>
     </li>
     
-    <li>
-        <a href="http://tianbaoo.github.io/post/go-%E5%88%87%E7%89%87/" title="go--切片">go--切片</a>
-    </li>
-    
 </ul>
     </section>
 
@@ -401,7 +401,7 @@
         <h3 class="widget-title">分类</h3>
 <ul class="widget-list">
     
-    <li><a href="http://tianbaoo.github.io/categories/Go/">Go (11)</a></li>
+    <li><a href="http://tianbaoo.github.io/categories/Go/">Go (12)</a></li>
     
     <li><a href="http://tianbaoo.github.io/categories/Python/">Python (2)</a></li>
     

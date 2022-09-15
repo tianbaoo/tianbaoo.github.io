@@ -12,6 +12,15 @@
     
     
     <item>
+      <title>Golang的GC机制</title>
+      <link>http://tianbaoo.github.io/post/golangGC/</link>
+      <pubDate>Mon, 22 Aug 2022 08:36:15 +0000</pubDate>
+      
+      <guid>http://tianbaoo.github.io/post/golangGC/</guid>
+      <description>golang的三色标记和写屏障 无STW的三色标记 第一步 , 每次新创建的对象，默认的颜色都是标记为&amp;quot;白色&amp;rdquo; 第二步, 每次GC回收开始, 会从根节点开始遍历所有对象，把遍历到的对象从白色集合放入&amp;quot;灰色&amp;quot;集合 第三步, 遍历灰色集合，将灰色对象引用的对象</description>
+    </item>
+    
+    <item>
       <title>Go泛型</title>
       <link>http://tianbaoo.github.io/post/GoGeneric/</link>
       <pubDate>Sat, 20 Aug 2022 09:33:25 +0000</pubDate>
